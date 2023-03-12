@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">App_System_Management_Visitors_For_Old_Aparment</string>
+    <string name="textview1" >Regiser form</string>
+    <string name="textview2">Name</string>
+    <string name="textview3">Age</string>
+    <string name="textview4">Identity card</string>
+    <string name="textview5">Visit time</string>
+    <string name="textview6">Staff name</string>
+    <string name="textview7">Status</string>
+    <string name="hint_name">Nguyễn Văn A</string>
+    <string name="hint_age">18</string>
+    <string name="hint_id_card">0-9</string>
+    <string name="hint_visit_time">8:30 AM</string>
+    <string name="hint_staff_name">Nguyễn Văn B</string>
+    <string name="hint_status">success</string>
+    <string name="btn_register">Register</string>
+</resources>
