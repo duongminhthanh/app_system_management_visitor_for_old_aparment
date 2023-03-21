@@ -4,143 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/edit_text_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/edit_text_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="LabelFor,DuplicateSpeakableTextCheck,VisualLintTextFieldSize" />
-
-    <EditText
-        android:id="@+id/edit_text_age"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_age"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/edit_text_age"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_name"
-        tools:ignore="LabelFor,VisualLintTextFieldSize" />
-
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_text_form"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/text_home"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
-
-    <EditText
-        android:id="@+id/edit_text_id_card"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_id_card"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/edit_text_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_age"
-        tools:ignore="LabelFor,VisualLintTextFieldSize" />
-
-    <EditText
-        android:id="@+id/edit_text_staff_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_staff_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/edit_text_staff_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTime"
-        tools:ignore="LabelFor,VisualLintTextFieldSize" />
-
-    <EditText
-        android:id="@+id/edit_text_status"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_status"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="@string/edit_text_status"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_staff_name"
-        tools:ignore="LabelFor,VisualLintTextFieldSize,VisualLintBounds" />
+        app:layout_constraintVertical_bias="0.961" />
 
     <Button
-        android:id="@+id/btn_register"
-        android:layout_width="0dp"
+        android:id="@+id/btn_register_visit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/btn_register"
+        android:layout_marginTop="24dp"
+        android:text="@string/register_visit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_status"
-        tools:ignore="VisualLintButtonSize,VisualLintBounds" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
-    <EditText
-        android:id="@+id/editTextTime"
+    <Button
+        android:id="@+id/btn_rating"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/hint_visit_time"
-        android:inputType="time"
-        android:minHeight="48dp"
-        android:text="@string/edit_text_visit_time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.471"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_id_card"
-        tools:ignore="VisualLintTextFieldSize" />
+        android:layout_marginTop="32dp"
+        android:text="@string/rating"
+        app:layout_constraintEnd_toEndOf="@+id/btn_register_visit"
+        app:layout_constraintStart_toStartOf="@+id/btn_register_visit"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register_visit" />
 
+    <Button
+        android:id="@+id/btn_feedback"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/feedback"
+        app:layout_constraintEnd_toEndOf="@+id/btn_rating"
+        app:layout_constraintStart_toStartOf="@+id/btn_rating"
+        app:layout_constraintTop_toBottomOf="@+id/btn_rating" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/image_pin_code"
+        android:layout_width="67dp"
+        android:layout_height="76dp"
+        android:contentDescription="@string/pin_code"
+        android:src="@drawable/pin_code"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
