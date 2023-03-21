@@ -13,11 +13,13 @@
         android:layout_height="wrap_content"
         android:text="@string/text_home"
         android:textSize="48sp"
+        android:drawableStart="@drawable/icon_home"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
+        app:layout_constraintVertical_bias="0.961"
+        tools:ignore="RtlHardcoded,UseCompatTextViewDrawableXml" />
 
     <Button
         android:id="@+id/btn_register_visit"

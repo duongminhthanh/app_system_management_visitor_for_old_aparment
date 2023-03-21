@@ -37,4 +37,5 @@
     <string name="rating">Rating</string>
     <string name="feedback">Feedback</string>
     <string name="pin_code">PIN CODE</string>
+    <string name="visiting_register_form">Visiting register form</string>
 </resources>
