@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@color/gray_600"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_home"
-        android:textSize="48sp"
         android:drawableStart="@drawable/icon_home"
+        android:text="@string/text_home"
+        android:textColor="#212121"
+        android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +29,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/register_visit"
+        android:drawableLeft="@drawable/form"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/btn_rating"
@@ -37,9 +41,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/rating"
+        android:drawableLeft="@drawable/rating_face"
         app:layout_constraintEnd_toEndOf="@+id/btn_register_visit"
         app:layout_constraintStart_toStartOf="@+id/btn_register_visit"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register_visit" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_register_visit"
+        tools:ignore="RtlHardcoded" />
 
     <Button
         android:id="@+id/btn_feedback"
@@ -47,9 +53,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/feedback"
+        android:drawableLeft="@drawable/feedback"
         app:layout_constraintEnd_toEndOf="@+id/btn_rating"
         app:layout_constraintStart_toStartOf="@+id/btn_rating"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rating" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_rating"
+        tools:ignore="RtlHardcoded" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
