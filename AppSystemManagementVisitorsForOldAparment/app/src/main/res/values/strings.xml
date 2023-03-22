@@ -44,4 +44,7 @@
     <string name="register">Register</string>
     <string name="button">Button</string>
     <string name="drop_down">Select room ID</string>
+    <string name="satisfy">Your satistify level is: </string>
+    <string name="pleas_rate_the_service_level">Please rate the service level</string>
+    <string name="submit">Submit</string>
 </resources>
