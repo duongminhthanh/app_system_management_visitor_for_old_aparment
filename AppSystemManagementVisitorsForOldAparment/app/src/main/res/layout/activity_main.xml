@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/gray_600"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
@@ -25,6 +25,7 @@
 
     <Button
         android:id="@+id/btn_register_visit"
+        android:background="@drawable/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -37,6 +38,7 @@
 
     <Button
         android:id="@+id/btn_rating"
+        android:background="@drawable/button_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -49,6 +51,7 @@
 
     <Button
         android:id="@+id/btn_feedback"
+        android:background="@drawable/button_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
