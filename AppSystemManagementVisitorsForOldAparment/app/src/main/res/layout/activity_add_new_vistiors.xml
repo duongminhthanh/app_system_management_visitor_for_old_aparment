@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_600"
+    tools:context=".AddNewVistiorsActivity">
+
+    <TextView
+        android:id="@+id/text_title_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_vistior_form"
+        android:textColor="#212121"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <EditText
+        android:id="@+id/edit_new_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/edit_visitor_name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="#212121"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_form"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edit_new_id_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/edit_id_card"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#212121"
+        app:layout_constraintEnd_toEndOf="@+id/edit_new_name"
+        app:layout_constraintStart_toStartOf="@+id/edit_new_name"
+        app:layout_constraintTop_toBottomOf="@+id/edit_new_name"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edit_room_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint_room_id"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#212121"
+        app:layout_constraintEnd_toEndOf="@+id/edit_new_id_card"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_new_id_card"
+        app:layout_constraintTop_toBottomOf="@+id/edit_new_id_card"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edit_new_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/edit_time"
+        android:inputType="time"
+        android:minHeight="48dp"
+        android:textColorHint="#212121"
+        app:layout_constraintEnd_toEndOf="@+id/edit_room_id"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_room_id"
+        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="160dp" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/lime"
+        android:drawableLeft="@drawable/save"
+        android:text="@string/save"
+        android:textColor="#616161"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/edit_new_time"
+        app:layout_constraintStart_toStartOf="@+id/edit_new_time"
+        app:layout_constraintTop_toBottomOf="@+id/edit_new_time"
+        tools:ignore="RtlHardcoded" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
