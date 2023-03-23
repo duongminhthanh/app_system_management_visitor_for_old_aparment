@@ -51,5 +51,6 @@
     <string name="write_your_feedback_here">Write your feedback here</string>
     <string name="send">Send</string>
     <string name="new_vistior_form">New vistior form</string>
+    <string name="edit_vistior_form">Edit vistior form</string>
     <string name="save">Save</string>
 </resources>

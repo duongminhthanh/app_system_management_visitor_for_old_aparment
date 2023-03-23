@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/icon_home"
         android:text="@string/text_home"
-        android:textColor="#212121"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,25 +25,25 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register_visit"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="200dp"
+        android:layout_height="88dp"
         android:layout_marginStart="300dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="300dp"
         android:background="@drawable/button_background"
-        android:drawableStart="@drawable/form"
+        android:drawableLeft="@drawable/form"
         android:text="@string/register_visit"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded,TextSizeCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_rating"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="88dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_background"
         android:drawableStart="@drawable/rating_face"
@@ -58,7 +58,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_feedback"
         android:layout_width="0dp"
-        android:layout_height="70dp"
+        android:layout_height="88dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_background"
         android:drawableStart="@drawable/feedback"

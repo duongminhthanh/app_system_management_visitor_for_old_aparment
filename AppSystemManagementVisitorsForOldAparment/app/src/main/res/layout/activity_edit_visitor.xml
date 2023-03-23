@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".AddNewVistiorsActivity">
+    tools:context=".EditVisitorActivity">
 
     <TextView
         android:id="@+id/text_title_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_vistior_form"
+        android:layout_marginTop="8dp"
+        android:text="@string/edit_vistior_form"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
@@ -90,7 +92,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edit_room_id"
         app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck,VisualLintBounds" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -101,7 +103,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
-        android:layout_width="150sp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:drawableLeft="@drawable/save"
@@ -113,6 +115,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_new_time"
-        tools:ignore="RtlHardcoded,TextContrastCheck" />
+        tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintBounds" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
