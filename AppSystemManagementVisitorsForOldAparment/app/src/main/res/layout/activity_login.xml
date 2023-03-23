@@ -60,7 +60,7 @@
         android:drawableLeft="@drawable/icon_login"
         android:text="@string/text_button_login"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
