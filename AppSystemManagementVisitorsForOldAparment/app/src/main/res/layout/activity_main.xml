@@ -23,40 +23,48 @@
         app:layout_constraintVertical_bias="0.961"
         tools:ignore="RtlHardcoded,UseCompatTextViewDrawableXml" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register_visit"
-        android:background="@drawable/button_background"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="300dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="300dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/form"
         android:text="@string/register_visit"
-        android:drawableLeft="@drawable/form"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title"
         tools:ignore="RtlHardcoded" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_rating"
-        android:background="@drawable/button_background"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/rating_face"
         android:text="@string/rating"
-        android:drawableLeft="@drawable/rating_face"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_register_visit"
         app:layout_constraintStart_toStartOf="@+id/btn_register_visit"
         app:layout_constraintTop_toBottomOf="@+id/btn_register_visit"
         tools:ignore="RtlHardcoded" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_feedback"
-        android:background="@drawable/button_background"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/feedback"
         android:text="@string/feedback"
-        android:drawableLeft="@drawable/feedback"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/btn_rating"
         app:layout_constraintStart_toStartOf="@+id/btn_rating"
         app:layout_constraintTop_toBottomOf="@+id/btn_rating"
@@ -64,7 +72,7 @@
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
