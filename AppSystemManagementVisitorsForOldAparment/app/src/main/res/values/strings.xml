@@ -13,6 +13,7 @@
     <string name="hint_visit_time">8:30 AM</string>
     <string name="hint_staff_name">Nguyễn Văn B</string>
     <string name="hint_status">success</string>
+    <string name="hint_phone">Owner phone</string>
     <string name="btn_register">Register</string>
     <string name="padding_top">20dp</string>
     <string name="padding_bottom">20dp</string>
@@ -53,4 +54,10 @@
     <string name="new_vistior_form">New vistior form</string>
     <string name="edit_vistior_form">Edit vistior form</string>
     <string name="save">Save</string>
+    <string name="new_apartment_form">New vistior form</string>
+    <string name="edit_apartment_form" >Edit apartment form</string>
+    <string name="delete_confirm">Delete confirm</string>
+    <string name="message">message</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

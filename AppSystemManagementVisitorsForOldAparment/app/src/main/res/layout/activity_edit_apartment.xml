@@ -2,21 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".EditVisitorActivity">
+    tools:context=".EditApartmentActivity">
 
     <TextView
         android:id="@+id/text_title_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/edit_vistior_form"
+        android:text="@string/edit_apartment_form"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9"
         tools:ignore="TextContrastCheck" />
@@ -40,60 +38,22 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/edit_new_id_card"
-        android:background="@drawable/edit_text_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/edit_id_card"
-        android:textColorHint="@color/white"
-        android:textSize="30sp"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_new_name"
-        app:layout_constraintStart_toStartOf="@+id/edit_new_name"
-        app:layout_constraintTop_toBottomOf="@+id/edit_new_name"
-        tools:ignore="TextContrastCheck" />
-
-    <EditText
         android:id="@+id/edit_room_id"
-        android:background="@drawable/edit_text_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:autofillHints=""
+        android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="@string/hint_room_id"
-        android:textColorHint="@color/white"
-        android:textSize="30sp"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_new_id_card"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edit_new_id_card"
-        app:layout_constraintTop_toBottomOf="@+id/edit_new_id_card"
-        tools:ignore="TextContrastCheck" />
-
-    <EditText
-        android:id="@+id/edit_new_time"
-        android:background="@drawable/edit_text_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/edit_time"
         android:textColorHint="@color/white"
         android:textSize="30sp"
-        android:inputType="time"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_room_id"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edit_room_id"
-        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
-        tools:ignore="TextContrastCheck,VisualLintBounds" />
+        app:layout_constraintEnd_toEndOf="@+id/edit_phone"
+        app:layout_constraintStart_toStartOf="@+id/edit_phone"
+        app:layout_constraintTop_toBottomOf="@+id/edit_phone"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -104,18 +64,34 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
-        android:layout_width="150dp"
+        android:layout_width="150sp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:background="@drawable/button_background"
         android:drawableLeft="@drawable/save"
         android:text="@string/save"
-        android:textSize="30sp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_new_time"
-        tools:ignore="RtlHardcoded,TextContrastCheck,VisualLintBounds" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
+        tools:ignore="RtlHardcoded,TextContrastCheck" />
 
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="@string/hint_phone"
+        android:textColorHint="@color/white"
+        android:textSize="30sp"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_new_name"
+        app:layout_constraintStart_toStartOf="@+id/edit_new_name"
+        app:layout_constraintTop_toBottomOf="@+id/edit_new_name"
+        android:autofillHints="" />
 </androidx.constraintlayout.widget.ConstraintLayout>
