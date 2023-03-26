@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_600"
+    android:background="@drawable/bg"
+    android:orientation="horizontal"
     tools:context=".RegisterFormActivity">
 
   <TextView
@@ -12,7 +13,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="@string/visiting_register_form"
-      android:textColor="#212121"
+      android:textColor="@color/colorPrimaryDark"
       android:textColorHighlight="@color/white"
       android:textSize="40sp"
       app:drawableStartCompat="@drawable/form"
@@ -32,6 +33,7 @@
 
   <EditText
       android:id="@+id/edit_name_visitor"
+      android:background="@drawable/edit_text_background"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="32dp"
@@ -48,6 +50,7 @@
 
   <EditText
       android:id="@+id/edit_id_card"
+      android:background="@drawable/edit_text_background"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="32dp"
@@ -64,6 +67,7 @@
 
   <EditText
       android:id="@+id/edit_time"
+      android:background="@drawable/edit_text_background"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="32dp"
@@ -89,16 +93,18 @@
       app:layout_constraintStart_toStartOf="@+id/edit_time"
       app:layout_constraintTop_toBottomOf="@+id/edit_time" />
 
-  <Button
+  <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="32dp"
+      android:background="@drawable/button_background"
       android:hint="@string/register"
-      android:text="@string/button"
-      android:textColor="#E1BEE7"
+      android:text="@string/register"
+      android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/spinner_arpartment_id" />
+      app:layout_constraintTop_toBottomOf="@+id/spinner_arpartment_id"
+      tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

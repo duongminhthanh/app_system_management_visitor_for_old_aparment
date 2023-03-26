@@ -27,7 +27,7 @@
             android:gravity="center"
             android:text="@string/message"
             android:textColor="@color/black"
-            android:textStyle="Bold"
+            android:textStyle="bold"
             android:textSize="16sp"></TextView>
 
         <LinearLayout
