@@ -1,22 +1,35 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class MainActivity extends AppCompatActivity {
+    Button btnRegisterVisitingForm, btnRating, btnFeedback;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        btnRegisterVisitingForm = findViewById(R.id.btn_register_visit);
+        btnFeedback = findViewById(R.id.btn_feedback);
+        btnRating = findViewById(R.id.btn_rating);
+        btnRegisterVisitingForm.setOnClickListener(view -> {
+            intent = new Intent(this, RegisterFormActivity.class);
+            startActivity(intent);
+        });
+        btnFeedback.setOnClickListener(view -> {
+            intent = new Intent(this, FeedbackActivity.class);
+            startActivity(intent);
+        });
 
-        myRef.setValue("Hello, World!");
+
+        btnRating.setOnClickListener(view -> {
+            intent = new Intent(this, RatingActivity.class);
+            startActivity(intent);
+        });
     }
 }
