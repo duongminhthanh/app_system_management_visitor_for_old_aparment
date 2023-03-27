@@ -27,22 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        android:background="@drawable/button_background"
-        android:drawableLeft="@drawable/send"
-        android:text="@string/send"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_feedback"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="RtlHardcoded,VisualLintOverlap,TextContrastCheck" />
 
     <EditText
         android:id="@+id/edit_feedback"
@@ -60,5 +44,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_feedback"
         tools:ignore="VisualLintTextFieldSize,TextContrastCheck,VisualLintBounds" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/button_background"
+        android:drawableLeft="@drawable/send"
+        android:text="@string/send"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_feedback"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="RtlHardcoded,VisualLintOverlap,TextContrastCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

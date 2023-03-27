@@ -11,7 +11,9 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
+    <color name="green">#BDD2B6</color>
     <color name="lime">#00FF00</color>
     <color name="colorPrimary">#FD4C4C</color>
     <color name="colorPrimaryDark">#3700B3</color>
+    <color name="clr_otp_bg">#535288</color>
 </resources>
