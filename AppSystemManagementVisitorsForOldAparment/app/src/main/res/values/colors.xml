@@ -16,4 +16,5 @@
     <color name="colorPrimary">#FD4C4C</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="clr_otp_bg">#535288</color>
+    <color name="lavender">#8692f7</color>
 </resources>

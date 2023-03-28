@@ -63,4 +63,8 @@
     <string name="pin_code_title">Pin code</string>
     <string name="enter_your_pin_code_here">Enter your pin code here</string>
     <string name="verify">Verify</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="visitor">Visitor</string>
+    <string name="apartment">Apartment</string>
+    <string name="feedbacks">Feedbacks</string>
 </resources>
