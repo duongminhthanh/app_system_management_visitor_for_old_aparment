@@ -67,4 +67,6 @@
     <string name="visitor">Visitor</string>
     <string name="apartment">Apartment</string>
     <string name="feedbacks">Feedbacks</string>
+    <string name="log_out">Log out</string>
+    <string name="accounts">Accounts</string>
 </resources>
