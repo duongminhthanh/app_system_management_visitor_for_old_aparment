@@ -69,4 +69,6 @@
     <string name="feedbacks">Feedbacks</string>
     <string name="log_out">Log out</string>
     <string name="accounts">Accounts</string>
+    <string name="search">Search</string>
+    <string name="what_do_you_want_to_find">What do you want to find?</string>
 </resources>

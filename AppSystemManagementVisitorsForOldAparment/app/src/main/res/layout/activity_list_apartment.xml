@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".ListApartmentActivity">
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="-6dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/button_background"
+            android:minHeight="48dp"
+            android:text="@string/dashboard"
+            android:textColor="#F4FF81"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck,VisualLintBounds" />
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="850dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:hint="@string/what_do_you_want_to_find"
+            android:textColorHint="@color/white"
+            tools:ignore="VisualLintBounds">
+        </androidx.appcompat.widget.SearchView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/button_background"
+            android:minHeight="48dp"
+            android:text="@string/search"
+            android:textColor="#FFFF8D"
+            android:textStyle="bold"
+            tools:ignore="TextContrastCheck,VisualLintBounds" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>
