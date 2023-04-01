@@ -6,10 +6,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     boolean result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,42 +35,49 @@ public class LoginActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         btn_login.setOnClickListener(view -> {
-            if (!edit_username.getText().toString().equals("") && !edit_password.
-                    getText().toString().equals("")) {
-               if (readDataUsername() && readDataPassword()){
-                   Intent mainIntent=new Intent(this,MainActivity.class);
-                   startActivity(mainIntent);
-               }
-            }
+            if (readDataUsername() && readDataPassword()) {
+                Toast.makeText(this, "Correct username and password"
+                        , Toast.LENGTH_LONG).show();
+                Intent mainIntent = new Intent(this, MainActivity.class);
+                startActivity(mainIntent);
+            } else Toast.makeText(this, "Incorrect username and password"
+                    , Toast.LENGTH_LONG).show();
         });
     }
 
     public boolean readDataUsername() {
-        myRef = database.getReference("account");
-        myRef.child("username").get().addOnCompleteListener(task1 -> {
-            if (!task1.isSuccessful()) {
-                Toast.makeText(this, "Incorrect username", Toast.LENGTH_LONG).show();
-                result=false;
-//                Log.e("firebase", "Error getting data", task.getException());
-            } else {
-                Toast.makeText(this, "Correct username", Toast.LENGTH_LONG).show();
-//                Log.d("firebase", String.valueOf(task.getResult().getValue()));
-              result=true;
+        myRef = FirebaseDatabase.getInstance().getReference().child("account");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String acc = Objects.requireNonNull(snapshot.child("username")
+                        .getValue()).toString();
+                if (acc.equals(edit_username.getText().toString().trim()))
+                    result = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
         return result;
     }
-    public boolean readDataPassword(){
-        myRef = database.getReference("password");
-        myRef.child("username").get().addOnCompleteListener(task1 -> {
-            if (!task1.isSuccessful()) {
-                Toast.makeText(this, "Incorrect password", Toast.LENGTH_LONG).show();
-                result=false;
-//                Log.e("firebase", "Error getting data", task.getException());
-            } else {
-                Toast.makeText(this, "Correct password", Toast.LENGTH_LONG).show();
-//                Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                result=true;
+
+    public boolean readDataPassword() {
+        myRef = FirebaseDatabase.getInstance().getReference().child("account");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String pass = Objects.requireNonNull(snapshot.child("password")
+                        .getValue()).toString();
+                if (pass.equals(edit_password.getText().toString().trim()))
+                    result = true;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
         return result;
