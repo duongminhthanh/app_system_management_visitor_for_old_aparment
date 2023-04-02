@@ -2,6 +2,8 @@ package com.example.app_system_management_visitors_for_old_aparment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,9 +23,10 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edit_username, edit_password;
     Button btn_login;
-    FirebaseDatabase database;
+
     DatabaseReference myRef;
-    boolean checkUsername, checkPassword;
+    boolean checkAcc;
+    String name="",pass="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,65 +35,49 @@ public class LoginActivity extends AppCompatActivity {
         edit_username = findViewById(R.id.edit_name);
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
-        database = FirebaseDatabase.getInstance();
 
-        edit_username.setOnClickListener(view -> edit_username.setText(edit_username.getText()
-                .toString().trim()));
-        edit_password.setOnClickListener(view -> edit_password.setText(edit_password.getText()
-                .toString().trim()));
         btn_login.setOnClickListener(view -> {
-            if (readDataUsername() && readDataPassword()) {
+            edit_username.setText(edit_username.getText().toString().trim());
+            edit_password.setText(edit_password.getText().toString().trim());
+            name = edit_username.getText().toString();
+            pass = edit_password.getText().toString();
+            readDataAccount(name, pass);
+            if (checkAcc == true) {
                 Toast.makeText(LoginActivity.this, "Correct username and password"
                         , Toast.LENGTH_SHORT).show();
-                Intent login = new Intent(LoginActivity.this,LoginActivity.class);
+                Log.d("check acc is ", String.valueOf(checkAcc));
+                Intent login = new Intent(this, MainActivity.class);
                 startActivity(login);
-            }
-            else if (!readDataUsername() || !readDataPassword()) {
-                Toast.makeText(LoginActivity.this, "Incorrect username or password"
+            } else if (checkAcc == false) {
+                Log.d("check acc is ", String.valueOf(checkAcc));
+                Toast.makeText(LoginActivity.this, "Incorrect username and password"
                         , Toast.LENGTH_SHORT).show();
-                Intent login = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(login);
             }
         });
     }
 
-    public boolean readDataUsername() {
-        String name = edit_username.getText().toString();
+    public void readDataAccount(String name,String pass) {
+
         myRef = FirebaseDatabase.getInstance().getReference().child("account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String username = Objects.requireNonNull(snapshot.child("username")
+            public void onDataChange( DataSnapshot snapshot) {
+                String username = snapshot.child("username")
+                        .getValue().toString();
+                String password = (snapshot.child("password")
                         .getValue()).toString();
-               if (name.compareTo(username)==0)checkUsername=true;
-               else if (name.compareTo(username)!=0) checkUsername=false;
-            }
+                Log.d("true or false username", String.valueOf(name.equals(username)));
+                Log.d("true or false password", String.valueOf(pass.equals(password)));
+                checkAcc= (name.equals(username) && pass.equals(password));
+//                Log.d("Check acc is: ", String.valueOf(checkAcc));
 
+            }
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled( DatabaseError error) {
 
             }
         });
-        return checkUsername;
     }
 
-    public boolean readDataPassword() {
-        String pass = edit_password.getText().toString();
-        myRef = FirebaseDatabase.getInstance().getReference().child("account");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String password = (Objects.requireNonNull(snapshot.child("password")
-                        .getValue())).toString();
-                if (pass.compareTo(password)==0)checkPassword=true;
-                else if (pass.compareTo(password)!=0) checkUsername=false;
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return checkPassword;
-    }
 }
