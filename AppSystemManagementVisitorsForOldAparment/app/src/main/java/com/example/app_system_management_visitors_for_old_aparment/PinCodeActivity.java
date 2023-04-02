@@ -3,7 +3,6 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,9 +38,8 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
         ed3.setOnClickListener(this);
         ed4.setOnClickListener(this);
         btnEnter.setOnClickListener(view -> {
-            pin_code=ed1.getText().toString().trim()+ed2.getText().toString().trim()
-                    +ed3.getText().toString().trim()+ed4.getText().toString().trim();
-            Log.d("pin_code value is: ",pin_code);
+            onClick(view);
+//            Log.d("pin_code value is: ",pin_code);
             if (readDataPinCode()) {
                 Toast.makeText(this, "Correct pin code", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, DashboardActivity.class);
@@ -76,7 +74,8 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     public boolean readDataPinCode() {
-
+        pin_code=ed1.getText().toString().trim()+ed2.getText().toString().trim()
+                +ed3.getText().toString().trim()+ed4.getText().toString().trim();
         myRef = FirebaseDatabase.getInstance().getReference().child("account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_login;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    boolean result;
+    boolean checkUsername, checkPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +34,36 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         database = FirebaseDatabase.getInstance();
 
+        edit_username.setOnClickListener(view -> edit_username.setText(edit_username.getText()
+                .toString().trim()));
+        edit_password.setOnClickListener(view -> edit_password.setText(edit_password.getText()
+                .toString().trim()));
         btn_login.setOnClickListener(view -> {
             if (readDataUsername() && readDataPassword()) {
-                Toast.makeText(this, "Correct username and password"
-                        , Toast.LENGTH_LONG).show();
-                Intent mainIntent = new Intent(this, MainActivity.class);
-                startActivity(mainIntent);
-            } else Toast.makeText(this, "Incorrect username and password"
-                    , Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Correct username and password"
+                        , Toast.LENGTH_SHORT).show();
+                Intent login = new Intent(LoginActivity.this,LoginActivity.class);
+                startActivity(login);
+            }
+            else if (!readDataUsername() || !readDataPassword()) {
+                Toast.makeText(LoginActivity.this, "Incorrect username or password"
+                        , Toast.LENGTH_SHORT).show();
+                Intent login = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(login);
+            }
         });
     }
 
     public boolean readDataUsername() {
+        String name = edit_username.getText().toString();
         myRef = FirebaseDatabase.getInstance().getReference().child("account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String acc = Objects.requireNonNull(snapshot.child("username")
+                String username = Objects.requireNonNull(snapshot.child("username")
                         .getValue()).toString();
-                if (acc.equals(edit_username.getText().toString().trim()))
-                    result = true;
+               if (name.compareTo(username)==0)checkUsername=true;
+               else if (name.compareTo(username)!=0) checkUsername=false;
             }
 
             @Override
@@ -61,18 +71,19 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        return result;
+        return checkUsername;
     }
 
     public boolean readDataPassword() {
+        String pass = edit_password.getText().toString();
         myRef = FirebaseDatabase.getInstance().getReference().child("account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String pass = Objects.requireNonNull(snapshot.child("password")
-                        .getValue()).toString();
-                if (pass.equals(edit_password.getText().toString().trim()))
-                    result = true;
+                String password = (Objects.requireNonNull(snapshot.child("password")
+                        .getValue())).toString();
+                if (pass.compareTo(password)==0)checkPassword=true;
+                else if (pass.compareTo(password)!=0) checkUsername=false;
             }
 
             @Override
@@ -80,6 +91,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        return result;
+        return checkPassword;
     }
 }

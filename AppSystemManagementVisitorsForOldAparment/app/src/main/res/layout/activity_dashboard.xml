@@ -51,6 +51,7 @@
                 android:gravity="center"
                 tools:ignore="UseCompoundDrawables">
                 <ImageView
+                    android:id="@+id/image_visitor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="TODO"
@@ -85,6 +86,7 @@
                 android:gravity="center"
                 tools:ignore="UseCompoundDrawables">
                 <ImageView
+                    android:id="@+id/image_apartment"
                     android:src="@drawable/apartments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,6 +121,7 @@
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
+                    android:id="@+id/image_feedbacks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/feedback_128"
@@ -151,6 +154,7 @@
                 android:gravity="center"
                 tools:ignore="UseCompoundDrawables">
                 <ImageView
+                    android:id="@+id/image_logout"
                     android:src="@drawable/log_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
