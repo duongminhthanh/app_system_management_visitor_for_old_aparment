@@ -3,7 +3,6 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,9 +23,8 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
 
     EditText ed1, ed2, ed3, ed4;
     Button btnEnter;
-    String pin_code="";
+    String pin_code = "";
     DatabaseReference myRef;
-    boolean check=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +40,7 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
             pin_code = ed1.getText().toString().trim() + ed2.getText().toString().trim()
                     + ed3.getText().toString().trim() + ed4.getText().toString().trim();
             readDataPinCode(pin_code);
-            Log.d("Check value is", String.valueOf(check));
-            if (check) {
-                Toast.makeText(this, "Correct pin code", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, DashboardActivity.class);
-                startActivity(intent);
-            } else {
-                Toast.makeText(this, "Incorrect pin code", Toast.LENGTH_SHORT).show();
-            }
         });
-
-
     }
 
     public void initView() {
@@ -86,7 +74,16 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String code = Objects.requireNonNull(snapshot.
                         child("pin_code").getValue()).toString();
-                check=pin_code.equals(code);
+                if (pin_code.equals(code)) {
+                    Toast.makeText(PinCodeActivity.this, "Correct pin code"
+                            , Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(PinCodeActivity.this
+                            , DashboardActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(PinCodeActivity.this
+                            , "Incorrect pin code", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
