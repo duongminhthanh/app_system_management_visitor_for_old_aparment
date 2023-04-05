@@ -83,4 +83,13 @@
     <string name="del">Del</string>
     <string name="_0">0</string>
     <string name="enter">Enter</string>
+    <string name="id_card">id card:</string>
+    <string name="_2538545527">2538545527</string>
+    <string name="name">name:</string>
+    <string name="truong_quang_minh">truong quang minh</string>
+    <string name="room_id">room_id:</string>
+    <string name="a125">A125</string>
+    <string name="visit_time">visit_time:</string>
+    <string name="_8_30_am">8:30 AM</string>
+    <string name="visitor_info">visitor_info:</string>
 </resources>
