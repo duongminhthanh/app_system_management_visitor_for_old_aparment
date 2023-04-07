@@ -2,8 +2,10 @@ package com.example.app_system_management_visitors_for_old_aparment;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,12 +26,14 @@ public class ListVisitorActivity extends AppCompatActivity {
     DatabaseReference myRef;
     VisitorAdapter visitorAdapter;
     ArrayList<Visitor> list;
+    Button btnDashboard;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_visitor);
         recyclerView=findViewById(R.id.list_visitor);
+        btnDashboard=findViewById(R.id.button_dashboard);
         myRef= FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
         list=new ArrayList<>();
@@ -53,6 +57,10 @@ public class ListVisitorActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+        btnDashboard.setOnClickListener(view -> {
+            Intent intentDashboard=new Intent(this,DashboardActivity.class);
+            startActivity(intentDashboard);
         });
     }
 }
