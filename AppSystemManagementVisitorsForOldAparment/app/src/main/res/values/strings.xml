@@ -97,4 +97,6 @@
     <string name="password">password</string>
     <string name="pin_code_pass">pin_code</string>
     <string name="username">username</string>
+    <string name="call_phone">Call phone</string>
+    <string name="call_zalo">Call zalo</string>
 </resources>
