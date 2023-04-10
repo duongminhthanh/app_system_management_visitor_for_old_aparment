@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     DatabaseReference myRef;
 
-    String name = "", pass = "", username, password;
+    String name = "", pass = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,32 +41,30 @@ public class LoginActivity extends AppCompatActivity {
             }
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
-            readDataAccount(name, pass);
+//            readDataAccount(name, pass);
+            readDataListAccount(name,pass);
         });
     }
 
-    public void readDataAccount(String name, String pass) {
-
-        myRef = FirebaseDatabase.getInstance().getReference().child("account");
+    public void readDataListAccount(String name, String pass){
+        myRef=FirebaseDatabase.getInstance().getReference().child("list_account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                username = Objects.requireNonNull(snapshot.child("username")
-                        .getValue()).toString();
-                password = (Objects.requireNonNull(snapshot.child("password")
-                        .getValue())).toString();
-
-                if (name.equals(username) && pass.equals(password)) {
-                    Toast.makeText(LoginActivity.this, "Correct username and password"
-                            , Toast.LENGTH_SHORT).show();
-                    Intent login = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(login);
-
-                } else {
-                    Toast.makeText(LoginActivity.this, "Incorrect username and password"
-                            , Toast.LENGTH_SHORT).show();
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    String username= Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
+                    String password= Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
+                    if (name.equals(username)&&pass.equals(password)){
+                        Toast.makeText(LoginActivity.this, "Correct username and password"
+                                , Toast.LENGTH_SHORT).show();
+                        Intent login = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(login);
+                    }
+                    else {
+                        Toast.makeText(LoginActivity.this, "Incorrect username and password"
+                                , Toast.LENGTH_SHORT).show();
+                    }
                 }
-
             }
 
             @Override

@@ -68,21 +68,23 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
 
     public void readDataPinCode(String pin_code) {
 
-        myRef = FirebaseDatabase.getInstance().getReference().child("account");
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String code = Objects.requireNonNull(snapshot.
-                        child("pin_code").getValue()).toString();
-                if (pin_code.equals(code)) {
-                    Toast.makeText(PinCodeActivity.this, "Correct pin code"
-                            , Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(PinCodeActivity.this
-                            , DashboardActivity.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(PinCodeActivity.this
-                            , "Incorrect pin code", Toast.LENGTH_SHORT).show();
+                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    String code = Objects.requireNonNull(dataSnapshot.
+                            child("pin_code").getValue()).toString();
+                    if (pin_code.equals(code)) {
+                        Toast.makeText(PinCodeActivity.this, "Correct pin code"
+                                , Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PinCodeActivity.this
+                                , DashboardActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(PinCodeActivity.this
+                                , "Incorrect pin code", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
