@@ -99,4 +99,6 @@
     <string name="username">username</string>
     <string name="call_phone">Call phone</string>
     <string name="call_zalo">Call zalo</string>
+    <string name="visitor_name">visitor_name</string>
+    <string name="feedbacks_visitor">feedback</string>
 </resources>
