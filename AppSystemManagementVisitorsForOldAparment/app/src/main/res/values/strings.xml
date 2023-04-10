@@ -101,4 +101,6 @@
     <string name="call_zalo">Call zalo</string>
     <string name="visitor_name">visitor_name</string>
     <string name="feedbacks_visitor">feedback</string>
+    <string name="incorrect_username_and_password">Incorrect username and password</string>
+    <string name="correct_username_and_password">Correct username and password</string>
 </resources>
