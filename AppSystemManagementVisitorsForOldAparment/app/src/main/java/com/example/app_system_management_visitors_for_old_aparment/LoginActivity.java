@@ -1,9 +1,14 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,27 +47,24 @@ public class LoginActivity extends AppCompatActivity {
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
 //            readDataAccount(name, pass);
-            readDataListAccount(name,pass);
+            readDataListAccount(name, pass);
         });
     }
 
-    public void readDataListAccount(String name, String pass){
-        myRef=FirebaseDatabase.getInstance().getReference().child("list_account");
+    public void readDataListAccount(String name, String pass) {
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    String username= Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
-                    String password= Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
-                    if (name.equals(username)&&pass.equals(password)){
-                        Toast.makeText(LoginActivity.this, "Correct username and password"
-                                , Toast.LENGTH_SHORT).show();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String username = Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
+                    String password = Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
+                    if (name.equals(username) && pass.equals(password)) {
+                        showSuccessfulToast();
                         Intent login = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(login);
-                    }
-                    else {
-                        Toast.makeText(LoginActivity.this, "Incorrect username and password"
-                                , Toast.LENGTH_SHORT).show();
+                    } else {
+                        showErrorToast();
                     }
                 }
             }
@@ -72,5 +74,31 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void showSuccessfulToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_success, findViewById(R.id.toast_success));
+        TextView toastText = layout.findViewById(R.id.toast_text_success);
+        toastText.setText("Correct username and password");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void showErrorToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
+        TextView toastText = layout.findViewById(R.id.toast_text_error);
+        toastText.setText("Incorrect username and password");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }
