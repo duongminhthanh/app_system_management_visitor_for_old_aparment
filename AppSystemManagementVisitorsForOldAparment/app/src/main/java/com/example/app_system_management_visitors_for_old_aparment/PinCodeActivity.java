@@ -3,9 +3,12 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -76,14 +79,12 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
                     String code = Objects.requireNonNull(dataSnapshot.
                             child("pin_code").getValue()).toString();
                     if (pin_code.equals(code)) {
-                        Toast.makeText(PinCodeActivity.this, "Correct pin code"
-                                , Toast.LENGTH_SHORT).show();
+                        showSuccessfulToast();
                         Intent intent = new Intent(PinCodeActivity.this
                                 , DashboardActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(PinCodeActivity.this
-                                , "Incorrect pin code", Toast.LENGTH_SHORT).show();
+                        showErrorToast();
                     }
                 }
             }
@@ -93,5 +94,30 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+    }
+    @SuppressLint("SetTextI18n")
+    public void showSuccessfulToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_success, findViewById(R.id.toast_success));
+        TextView text=layout.findViewById(R.id.toast_text_success);
+        text.setText("Correct pin code");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void showErrorToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
+        TextView text=layout.findViewById(R.id.toast_text_error);
+        text.setText("Incorrect pin code");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }
