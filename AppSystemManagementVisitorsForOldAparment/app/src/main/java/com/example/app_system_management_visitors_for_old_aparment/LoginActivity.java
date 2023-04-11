@@ -59,7 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String username = Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
                     String password = Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
-                    if (name.equals(username) && pass.equals(password)) {
+                    if (name.equals("admin") && username.compareTo(name) == 0
+                            && pass.equals("admin1234") && password.compareTo(pass) == 0) {
+                        showSuccessfulToast();
+                        Intent dashboardAdmin = new Intent(LoginActivity.this, DashboardAdminActivity.class);
+                        startActivity(dashboardAdmin);
+                    } else if (name.equals(username) && pass.equals(password)) {
                         showSuccessfulToast();
                         Intent login = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(login);
@@ -80,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
     public void showSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_success, findViewById(R.id.toast_success));
-        TextView text=layout.findViewById(R.id.toast_text_success);
+        TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Correct username and password");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -93,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
     public void showErrorToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
-        TextView text=layout.findViewById(R.id.toast_text_error);
+        TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Incorrect username and password");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
