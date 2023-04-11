@@ -12,7 +12,6 @@
         android:id="@+id/toast_text_success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/correct_username_and_password"
         android:textColor="@android:color/white"
         android:textSize="26sp"
         tools:ignore="TextContrastCheck"></TextView>

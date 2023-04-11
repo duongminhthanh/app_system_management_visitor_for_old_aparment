@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -79,6 +80,8 @@ public class LoginActivity extends AppCompatActivity {
     public void showSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_success, findViewById(R.id.toast_success));
+        TextView text=layout.findViewById(R.id.toast_text_success);
+        text.setText("Correct username and password");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
@@ -90,6 +93,8 @@ public class LoginActivity extends AppCompatActivity {
     public void showErrorToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
+        TextView text=layout.findViewById(R.id.toast_text_error);
+        text.setText("Incorrect username and password");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
