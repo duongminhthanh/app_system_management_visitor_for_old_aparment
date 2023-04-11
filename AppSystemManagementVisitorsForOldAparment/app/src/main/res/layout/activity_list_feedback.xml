@@ -41,7 +41,7 @@
             </androidx.appcompat.widget.AppCompatButton>
 
             <androidx.appcompat.widget.SearchView
-                android:layout_width="850dp"
+                android:layout_width="550dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
@@ -66,6 +66,20 @@
                 android:textStyle="bold"
                 tools:ignore="TextContrastCheck,VisualLintBounds">
 
+            </androidx.appcompat.widget.AppCompatButton>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_background"
+                android:minHeight="48dp"
+                android:text="@string/refresh"
+                android:textColor="#FFFF8D"
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck,VisualLintBounds">
             </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>
 
