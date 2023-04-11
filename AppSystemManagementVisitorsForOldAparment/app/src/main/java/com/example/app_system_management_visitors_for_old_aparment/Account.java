@@ -18,6 +18,7 @@ public class Account {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "Apartment{" +

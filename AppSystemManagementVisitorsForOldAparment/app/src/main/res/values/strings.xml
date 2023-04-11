@@ -101,4 +101,6 @@
     <string name="call_zalo">Call zalo</string>
     <string name="visitor_name">visitor_name</string>
     <string name="feedbacks_visitor">feedback</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
 </resources>
