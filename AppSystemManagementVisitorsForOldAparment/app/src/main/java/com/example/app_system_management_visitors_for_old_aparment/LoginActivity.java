@@ -3,6 +3,7 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     DatabaseReference myRef;
 
-    String name = "", pass = "";
+    String name, pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,10 @@ public class LoginActivity extends AppCompatActivity {
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(view -> {
-            if (edit_username.getText().toString().isEmpty() &&
-                    edit_password.getText().toString().isEmpty()) {
-                edit_username.setText(edit_username.getText().toString());
-                edit_password.setText(edit_username.getText().toString());
-            }
+            edit_username.setText(edit_username.getText().toString());
+            edit_password.setText(edit_password.getText().toString());
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
-//            readDataAccount(name, pass);
             readDataListAccount(name, pass);
         });
     }
@@ -59,16 +56,22 @@ public class LoginActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     String username = Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
                     String password = Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
+
                     if (name.equals("admin") && username.compareTo(name) == 0
                             && pass.equals("admin1234") && password.compareTo(pass) == 0) {
                         showSuccessfulToast();
                         Intent dashboardAdmin = new Intent(LoginActivity.this, DashboardAdminActivity.class);
+                        /*put data at data from db*/
+                        dashboardAdmin.putExtra("username", username);
+                        dashboardAdmin.putExtra("password", password);
                         startActivity(dashboardAdmin);
                     } else if (name.equals(username) && pass.equals(password)) {
                         showSuccessfulToast();
+                        Log.d("value", username);
+                        Log.d("value", password);
                         Intent login = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(login);
-                    } else {
+                    } else if (name.isEmpty() && pass.isEmpty()) {
                         showErrorToast();
                     }
                 }
@@ -99,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
         TextView text = layout.findViewById(R.id.toast_text_error);
-        text.setText("Incorrect username and password");
+        text.setText("You must fill username and password");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);

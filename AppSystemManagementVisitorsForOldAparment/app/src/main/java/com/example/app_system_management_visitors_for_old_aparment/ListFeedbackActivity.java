@@ -25,30 +25,41 @@ public class ListFeedbackActivity extends AppCompatActivity {
     FeedbackAdapter feedbackAdapter;
     ArrayList<Feedback> list;
     Button btnDashboard;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_feedback);
-        btnDashboard=findViewById(R.id.button_dashboard);
-        recyclerView=findViewById(R.id.list_feedbacks);
-        myRef= FirebaseDatabase.getInstance().getReference().child("feedbacks");
+        btnDashboard = findViewById(R.id.button_dashboard);
+        recyclerView = findViewById(R.id.list_feedbacks);
+        myRef = FirebaseDatabase.getInstance().getReference().child("feedbacks");
         recyclerView.setHasFixedSize(true);
-        list=new ArrayList<>();
-        feedbackAdapter=new FeedbackAdapter(this,list);
+        list = new ArrayList<>();
+        feedbackAdapter = new FeedbackAdapter(this, list);
         recyclerView.setAdapter(feedbackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard=new Intent(this,DashboardActivity.class);
+            Intent intent = getIntent();
+            /*get data form dashboard admin*/
+            String username = intent.getStringExtra("username");
+            String password = intent.getStringExtra("password");
+            Intent intentDashboard;
+            if (username.equals("admin") && password.equals("admin1234")) {
+                intentDashboard = new Intent(this, DashboardAdminActivity.class);
+            } else {
+                intentDashboard = new Intent(this, DashboardActivity.class);
+            }
             startActivity(intentDashboard);
+
         });
 
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Feedback f=dataSnapshot.getValue(Feedback.class);
-                    Log.d("feedback",String.valueOf(f));
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Feedback f = dataSnapshot.getValue(Feedback.class);
+                    Log.d("feedback", String.valueOf(f));
                     list.add(f);
                 }
                 feedbackAdapter.notifyDataSetChanged();

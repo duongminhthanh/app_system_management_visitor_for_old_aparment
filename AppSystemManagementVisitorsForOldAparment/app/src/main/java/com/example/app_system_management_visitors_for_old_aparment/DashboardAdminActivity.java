@@ -8,19 +8,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DashboardAdminActivity extends AppCompatActivity {
 
-    ImageView imgVisitor,imgApartment,imgFeedback,imgLogOut,imgAccount;
+    ImageView imgVisitor, imgApartment, imgFeedback, imgLogOut, imgAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_admin);
-        imgAccount=findViewById(R.id.image_account);
-        imgApartment=findViewById(R.id.image_apartment);
-        imgFeedback=findViewById(R.id.image_feedbacks);
-        imgVisitor=findViewById(R.id.image_visitor);
-        imgLogOut=findViewById(R.id.image_logout);
+        imgAccount = findViewById(R.id.image_account);
+        imgApartment = findViewById(R.id.image_apartment);
+        imgFeedback = findViewById(R.id.image_feedbacks);
+        imgVisitor = findViewById(R.id.image_visitor);
+        imgLogOut = findViewById(R.id.image_logout);
+        Intent intent = getIntent();
+        /*get data from LoginActivity*/
+        String username = intent.getStringExtra("username");
+
+        String password = intent.getStringExtra("password");
         imgAccount.setOnClickListener(view -> {
-            Intent intent=new Intent(this,ManageListAccountActivity.class);
-            startActivity(intent);
+            Intent intentAcc = new Intent(DashboardAdminActivity.this, ManageListAccountActivity.class);
+            startActivity(intentAcc);
+        });
+        imgFeedback.setOnClickListener(view -> {
+            Intent intentFeedbacks = new Intent(DashboardAdminActivity.this, ListFeedbackActivity.class);
+            /*set data*/
+            intentFeedbacks.putExtra("username", username);
+            intentFeedbacks.putExtra("password", password);
+
+            startActivity(intentFeedbacks);
         });
     }
 }
