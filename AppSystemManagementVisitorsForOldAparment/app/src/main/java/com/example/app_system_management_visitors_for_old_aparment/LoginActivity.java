@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
@@ -32,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
 
     String name, pass;
 
+    ArrayList<Account> list;
+    Account a;
+    Boolean checkAcc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,41 +44,55 @@ public class LoginActivity extends AppCompatActivity {
         edit_username = findViewById(R.id.edit_name);
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
+        list = new ArrayList<>();
         btn_login.setOnClickListener(view -> {
             edit_username.setText(edit_username.getText().toString());
             edit_password.setText(edit_password.getText().toString());
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
+            if (name.equals("admin") && pass.equals("admin1234")) {
+                showSuccessfulToast();
+                Intent dashboardAdmin = new Intent(LoginActivity.this, DashboardAdminActivity.class);
+                /*put data at data from db*/
+                dashboardAdmin.putExtra("username", name);
+                dashboardAdmin.putExtra("password", pass);
+                startActivity(dashboardAdmin);
+            } else if (name.isEmpty() && pass.isEmpty()) {
+                showErrorEmptyToast();
+            }
             readDataListAccount(name, pass);
         });
     }
 
     public void readDataListAccount(String name, String pass) {
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
+        /*get list username*/
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String username = Objects.requireNonNull(dataSnapshot.child("username").getValue()).toString();
-                    String password = Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString();
-
-                    if (name.equals("admin") && username.compareTo(name) == 0
-                            && pass.equals("admin1234") && password.compareTo(pass) == 0) {
+                    int i = list.size();
+                    String username = Objects.requireNonNull(dataSnapshot.child("username")
+                            .getValue()).toString();
+                    String password = Objects.requireNonNull(dataSnapshot.child("password")
+                            .getValue()).toString();
+                    a = new Account(username, password);
+                    Log.d("account", String.valueOf(a));
+                    list.add(a);
+                    checkAcc = list.get(i).getUsername().equals(name)
+                            && list.get(i).getPassword().equals(pass);
+                    if (list.get(i).getUsername().equals(name)
+                            && list.get(i).getPassword().equals(pass)) {
+                        Log.d("username", list.get(i).getUsername());
+                        Log.d("password", list.get(i).getPassword());
                         showSuccessfulToast();
-                        Intent dashboardAdmin = new Intent(LoginActivity.this, DashboardAdminActivity.class);
-                        /*put data at data from db*/
-                        dashboardAdmin.putExtra("username", username);
-                        dashboardAdmin.putExtra("password", password);
-                        startActivity(dashboardAdmin);
-                    } else if (name.equals(username) && pass.equals(password)) {
-                        showSuccessfulToast();
-                        Log.d("value", username);
-                        Log.d("value", password);
-                        Intent login = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(login);
-                    } else if (name.isEmpty() && pass.isEmpty()) {
-                        showErrorToast();
+                        Intent intent = new Intent(LoginActivity.this
+                                , DashboardActivity.class);
+                        startActivity(intent);
                     }
+
+//                        showErrorIncorrectUsernameOrPasswordToast();
+
                 }
             }
 
@@ -87,7 +106,8 @@ public class LoginActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void showSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast_success, findViewById(R.id.toast_success));
+        View layout = inflater.inflate(R.layout.custom_toast_success,
+                findViewById(R.id.toast_success));
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Correct username and password");
         Toast toast = new Toast(getApplicationContext());
@@ -98,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    public void showErrorToast() {
+    public void showErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
         TextView text = layout.findViewById(R.id.toast_text_error);
@@ -109,4 +129,6 @@ public class LoginActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
+
+
 }

@@ -16,7 +16,16 @@ public class Account {
     public String getPin_code() {
         return pin_code;
     }
+    public Account(){}
 
+    public Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Account(String pin_code) {
+        this.pin_code = pin_code;
+    }
 
     @NonNull
     @Override
