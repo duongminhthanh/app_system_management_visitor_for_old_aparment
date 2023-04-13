@@ -20,19 +20,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class PinCodeActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText ed1, ed2, ed3, ed4;
     Button btnEnter;
-    String pin_code = "";
+    String pin_code = "",code;
     DatabaseReference myRef;
+    ArrayList<Account> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_code);
+        list=new ArrayList<>();
         initView();
         ed1.setOnClickListener(this);
         ed2.setOnClickListener(this);
@@ -42,7 +45,10 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
 //            Log.d("pin_code value is: ",pin_code);
             pin_code = ed1.getText().toString().trim() + ed2.getText().toString().trim()
                     + ed3.getText().toString().trim() + ed4.getText().toString().trim();
-            readDataPinCode(pin_code);
+            if (pin_code.isEmpty())showErrorEmptyToast();
+            else {
+                readDataPinCode(pin_code);
+            }
         });
     }
 
@@ -76,15 +82,17 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    String code = Objects.requireNonNull(dataSnapshot.
+                    int i=list.size();
+                    code = Objects.requireNonNull(dataSnapshot.
                             child("pin_code").getValue()).toString();
-                    if (pin_code.equals(code)) {
+                    Account a=new Account(code);
+                    list.add(a);
+                    if (list.get(i).getPin_code().equals(pin_code)) {
+                        code=list.get(i).getPin_code();
                         showSuccessfulToast();
                         Intent intent = new Intent(PinCodeActivity.this
                                 , DashboardActivity.class);
                         startActivity(intent);
-                    } else {
-                        showErrorToast();
                     }
                 }
             }
@@ -108,12 +116,13 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
         toast.show();
     }
 
+
     @SuppressLint("SetTextI18n")
-    public void showErrorToast() {
+    public void showErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
         TextView text=layout.findViewById(R.id.toast_text_error);
-        text.setText("Incorrect pin code");
+        text.setText("You must fill pin code");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);

@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList<Account> list;
     Account a;
-    Boolean checkAcc=false;
+    Boolean checkAcc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
                 showErrorEmptyToast();
             else if (!name.isEmpty() && !pass.isEmpty()) {
                 readDataListAccount(name, pass);
-                if (!name.equals(username)||!pass.equals(password))showErrorIncorrectToast();
             }
 
         });
@@ -84,23 +83,20 @@ public class LoginActivity extends AppCompatActivity {
                     a = new Account(username, password);
                     Log.d("account", String.valueOf(a));
                     list.add(a);
-
                     if (list.get(i).getUsername().equals(name)
                             && list.get(i).getPassword().equals(pass)) {
-                        username = list.get(i).getUsername();
-                        password = list.get(i).getPassword();
+                        username =list.get(i).getUsername();
+                        password =list.get(i).getPassword();
                         //check that username and password is matched
                         checkAcc = name.equals(username) && pass.equals(password);
+                        Log.d("check acc is", String.valueOf(checkAcc));
                         Log.d("username", list.get(i).getUsername());
                         Log.d("password", list.get(i).getPassword());
-                        Log.d("check acc is", String.valueOf(checkAcc));
                         showSuccessfulToast();
                         Intent intent = new Intent(LoginActivity.this
-                                , DashboardActivity.class);
+                                , MainActivity.class);
                         startActivity(intent);
                     }
-
-//                        showErrorIncorrectUsernameOrPasswordToast();
 
                 }
             }
@@ -109,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
+
         });
 
     }
@@ -133,19 +131,6 @@ public class LoginActivity extends AppCompatActivity {
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill username and password");
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(layout);
-        toast.show();
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void showErrorIncorrectToast() {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
-        TextView text = layout.findViewById(R.id.toast_text_error);
-        text.setText("Incorrect username or password");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
