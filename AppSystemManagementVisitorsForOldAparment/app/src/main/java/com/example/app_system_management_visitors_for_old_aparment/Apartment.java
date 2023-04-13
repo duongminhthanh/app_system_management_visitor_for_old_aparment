@@ -1,5 +1,7 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
+import androidx.annotation.NonNull;
+
 public class Apartment {
     String owner_name,owner_phone,room_id;
 
@@ -15,6 +17,7 @@ public class Apartment {
         return room_id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Apartment{" +

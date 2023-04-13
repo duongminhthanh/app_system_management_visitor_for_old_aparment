@@ -16,7 +16,6 @@ public class Account {
     public String getPin_code() {
         return pin_code;
     }
-    public Account(){}
 
     public Account(String username, String password) {
         this.username = username;
@@ -30,7 +29,7 @@ public class Account {
     @NonNull
     @Override
     public String toString() {
-        return "Apartment{" +
+        return "Account{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", pin_code='" + pin_code + '\'' +

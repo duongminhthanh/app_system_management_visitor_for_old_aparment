@@ -30,7 +30,7 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
     String pin_code = "",code;
     DatabaseReference myRef;
     ArrayList<Account> list;
-
+    Boolean checkPinCode=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,12 +89,15 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
                     list.add(a);
                     if (list.get(i).getPin_code().equals(pin_code)) {
                         code=list.get(i).getPin_code();
+                        //check pin code is matched
+                        checkPinCode=pin_code.equals(code);
                         showSuccessfulToast();
                         Intent intent = new Intent(PinCodeActivity.this
                                 , DashboardActivity.class);
                         startActivity(intent);
                     }
                 }
+                if (!checkPinCode)showErrorIncorrectToast();
             }
 
             @Override
@@ -123,6 +126,19 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
         TextView text=layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill pin code");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void showErrorIncorrectToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
+        TextView text=layout.findViewById(R.id.toast_text_error);
+        text.setText("Incorrect pin code");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
