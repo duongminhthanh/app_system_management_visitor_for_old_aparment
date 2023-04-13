@@ -31,11 +31,11 @@ public class LoginActivity extends AppCompatActivity {
 
     DatabaseReference myRef;
 
-    String name, pass;
+    String name, pass, username, password;
 
     ArrayList<Account> list;
     Account a;
-    Boolean checkAcc;
+    Boolean checkAcc=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             edit_password.setText(edit_password.getText().toString());
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
+            //if it is type as username and password of admin
             if (name.equals("admin") && pass.equals("admin1234")) {
                 showSuccessfulToast();
                 Intent dashboardAdmin = new Intent(LoginActivity.this, DashboardAdminActivity.class);
@@ -57,10 +58,14 @@ public class LoginActivity extends AppCompatActivity {
                 dashboardAdmin.putExtra("username", name);
                 dashboardAdmin.putExtra("password", pass);
                 startActivity(dashboardAdmin);
-            } else if (name.isEmpty() && pass.isEmpty()) {
+            }//if username and password is not typed
+            else if (name.isEmpty() && pass.isEmpty())
                 showErrorEmptyToast();
+            else if (!name.isEmpty() && !pass.isEmpty()) {
+                readDataListAccount(name, pass);
+                if (!name.equals(username)||!pass.equals(password))showErrorIncorrectToast();
             }
-            readDataListAccount(name, pass);
+
         });
     }
 
@@ -72,19 +77,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     int i = list.size();
-                    String username = Objects.requireNonNull(dataSnapshot.child("username")
+                    username = Objects.requireNonNull(dataSnapshot.child("username")
                             .getValue()).toString();
-                    String password = Objects.requireNonNull(dataSnapshot.child("password")
+                    password = Objects.requireNonNull(dataSnapshot.child("password")
                             .getValue()).toString();
                     a = new Account(username, password);
                     Log.d("account", String.valueOf(a));
                     list.add(a);
-                    checkAcc = list.get(i).getUsername().equals(name)
-                            && list.get(i).getPassword().equals(pass);
+
                     if (list.get(i).getUsername().equals(name)
                             && list.get(i).getPassword().equals(pass)) {
+                        username = list.get(i).getUsername();
+                        password = list.get(i).getPassword();
+                        //check that username and password is matched
+                        checkAcc = name.equals(username) && pass.equals(password);
                         Log.d("username", list.get(i).getUsername());
                         Log.d("password", list.get(i).getPassword());
+                        Log.d("check acc is", String.valueOf(checkAcc));
                         showSuccessfulToast();
                         Intent intent = new Intent(LoginActivity.this
                                 , DashboardActivity.class);
@@ -101,6 +110,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -130,5 +140,17 @@ public class LoginActivity extends AppCompatActivity {
         toast.show();
     }
 
+    @SuppressLint("SetTextI18n")
+    public void showErrorIncorrectToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
+        TextView text = layout.findViewById(R.id.toast_text_error);
+        text.setText("Incorrect username or password");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
 
 }
