@@ -26,6 +26,9 @@ public class Account {
         this.pin_code = pin_code;
     }
 
+    public Account() {
+    }
+
     @NonNull
     @Override
     public String toString() {

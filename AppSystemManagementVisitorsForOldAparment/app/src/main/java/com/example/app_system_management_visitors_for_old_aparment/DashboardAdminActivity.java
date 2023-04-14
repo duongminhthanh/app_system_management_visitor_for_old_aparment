@@ -22,7 +22,6 @@ public class DashboardAdminActivity extends AppCompatActivity {
         Intent intent = getIntent();
         /*get data from LoginActivity*/
         String username = intent.getStringExtra("username");
-
         String password = intent.getStringExtra("password");
         imgAccount.setOnClickListener(view -> {
             Intent intentAcc = new Intent(DashboardAdminActivity.this, ManageListAccountActivity.class);
@@ -43,13 +42,13 @@ public class DashboardAdminActivity extends AppCompatActivity {
             startActivity(intentLogin);
         });
         imgVisitor.setOnClickListener(view -> {
-            Intent intentVisitor = new Intent(DashboardAdminActivity.this,ListVisitorActivity.class);
+            Intent intentVisitor = new Intent(DashboardAdminActivity.this,ManageListVisitorActivity.class);
             intentVisitor.putExtra("username", username);
             intentVisitor.putExtra("password", password);
             startActivity(intentVisitor);
         });
         imgApartment.setOnClickListener(view -> {
-            Intent intentApartment = new Intent(DashboardAdminActivity.this,ListApartmentActivity.class);
+            Intent intentApartment = new Intent(DashboardAdminActivity.this,ManageListApartmentActivity.class);
             intentApartment.putExtra("username", username);
             intentApartment.putExtra("password", password);
             startActivity(intentApartment);

@@ -39,7 +39,7 @@ public class ManageListAccountActivity extends AppCompatActivity {
         btnDashboard = findViewById(R.id.button_dashboard);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard = new Intent(this, DashboardActivity.class);
+            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
             startActivity(intentDashboard);
         });
         myRef.addValueEventListener(new ValueEventListener() {

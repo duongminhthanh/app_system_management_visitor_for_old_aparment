@@ -18,7 +18,7 @@
             android:name=".ManageListApartmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ManageListVisitorAcitvity"
+            android:name=".ManageListVisitorActivity"
             android:exported="false" />
         <activity
             android:name=".ManageListAccountActivity"

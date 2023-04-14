@@ -45,12 +45,14 @@ public class ListFeedbackActivity extends AppCompatActivity {
             String password = intent.getStringExtra("password");
             Intent intentDashboard;
             if (username.equals("admin") && password.equals("admin1234")) {
-                intentDashboard = new Intent(this, DashboardAdminActivity.class);
+                intentDashboard = new Intent(ListFeedbackActivity.this
+                        , DashboardAdminActivity.class);
+                startActivity(intentDashboard);
             } else {
-                intentDashboard = new Intent(this, DashboardActivity.class);
+                intentDashboard = new Intent(ListFeedbackActivity.this
+                        , DashboardActivity.class);
+                startActivity(intentDashboard);
             }
-            startActivity(intentDashboard);
-
         });
 
         myRef.addValueEventListener(new ValueEventListener() {

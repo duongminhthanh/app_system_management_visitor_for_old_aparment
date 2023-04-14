@@ -19,45 +19,45 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ManageListApartmentActivity extends AppCompatActivity {
+public class ManageListVisitorActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference myRef;
-    ApartmentManagementAdapter apartmentManagementAdapter;
-    ArrayList<Apartment> list;
+    VisitorManagementAdapter visitorManagementAdapter;
+    ArrayList<Visitor> list;
     Button btnDashboard;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_list_apartment);
+        setContentView(R.layout.activity_manage_list_visitor_acitvity);
+        recyclerView=findViewById(R.id.list_visitor);
         btnDashboard=findViewById(R.id.button_dashboard);
-        recyclerView=findViewById(R.id.list_apartment);
-        myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
+        myRef= FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
         list=new ArrayList<>();
-        apartmentManagementAdapter=new ApartmentManagementAdapter(this,list);
-        recyclerView.setAdapter(apartmentManagementAdapter);
+        visitorManagementAdapter=new VisitorManagementAdapter(this,list);
+        recyclerView.setAdapter(visitorManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard=new Intent(this,DashboardAdminActivity.class);
-            startActivity(intentDashboard);
-        });
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Apartment a=dataSnapshot.getValue(Apartment.class);
-                    Log.d("apartment",String.valueOf(a));
-                    list.add(a);
+                    Visitor v=dataSnapshot.getValue(Visitor.class);
+                    Log.d("visitor",String.valueOf(v));
+                    list.add(v);
                 }
-                apartmentManagementAdapter.notifyDataSetChanged();
+                visitorManagementAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        btnDashboard.setOnClickListener(view -> {
+            Intent intentDashboard=new Intent(this,DashboardAdminActivity.class);
+            startActivity(intentDashboard);
         });
     }
 }
