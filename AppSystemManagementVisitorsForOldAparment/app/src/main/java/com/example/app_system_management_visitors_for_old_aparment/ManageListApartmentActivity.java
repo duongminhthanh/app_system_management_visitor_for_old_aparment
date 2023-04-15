@@ -24,36 +24,36 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
     ArrayList<Apartment> list;
-    Button btnDashboard,btnCreate;
+    Button btnDashboard, btnCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_list_apartment);
-        btnDashboard=findViewById(R.id.button_dashboard);
-        recyclerView=findViewById(R.id.list_apartment);
-        myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
+        btnDashboard = findViewById(R.id.button_dashboard);
+        recyclerView = findViewById(R.id.list_apartment);
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         recyclerView.setHasFixedSize(true);
-        list=new ArrayList<>();
-        btnCreate=findViewById(R.id.button_create);
-        apartmentManagementAdapter=new ApartmentManagementAdapter(this,list);
+        list = new ArrayList<>();
+        btnCreate = findViewById(R.id.button_create);
+        apartmentManagementAdapter = new ApartmentManagementAdapter(this, list);
         recyclerView.setAdapter(apartmentManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard=new Intent(this,DashboardAdminActivity.class);
+            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
             startActivity(intentDashboard);
         });
         btnCreate.setOnClickListener(view -> {
-            Intent intentCreate=new Intent(this,AddNewApartmentActivity.class);
+            Intent intentCreate = new Intent(this, AddNewApartmentActivity.class);
             startActivity(intentCreate);
         });
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Apartment a=dataSnapshot.getValue(Apartment.class);
-                    Log.d("apartment",String.valueOf(a));
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Apartment a = dataSnapshot.getValue(Apartment.class);
+                    Log.d("apartment", String.valueOf(a));
                     list.add(a);
                 }
                 apartmentManagementAdapter.notifyDataSetChanged();

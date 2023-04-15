@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,6 +52,7 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.MyVi
             owner_phone=itemView.findViewById(R.id.owner_phone);
             owner_name=itemView.findViewById(R.id.owner_name);
             room_id=itemView.findViewById(R.id.room_id);
+
 
         }
     }

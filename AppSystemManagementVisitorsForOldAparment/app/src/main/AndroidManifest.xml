@@ -42,6 +42,9 @@
             android:name=".EditVisitorActivity"
             android:exported="false" />
         <activity
+            android:name=".EditApartmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddNewVistiorsActivity"
             android:exported="false" />
         <activity
