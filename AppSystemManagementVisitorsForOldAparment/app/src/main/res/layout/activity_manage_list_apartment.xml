@@ -82,6 +82,7 @@
                 tools:ignore="TextContrastCheck,VisualLintBounds">
             </androidx.appcompat.widget.AppCompatButton>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_create"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"

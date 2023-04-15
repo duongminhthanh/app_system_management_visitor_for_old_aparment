@@ -24,7 +24,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
     ArrayList<Apartment> list;
-    Button btnDashboard;
+    Button btnDashboard,btnCreate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,17 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
         recyclerView.setHasFixedSize(true);
         list=new ArrayList<>();
+        btnCreate=findViewById(R.id.button_create);
         apartmentManagementAdapter=new ApartmentManagementAdapter(this,list);
         recyclerView.setAdapter(apartmentManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         btnDashboard.setOnClickListener(view -> {
             Intent intentDashboard=new Intent(this,DashboardAdminActivity.class);
             startActivity(intentDashboard);
+        });
+        btnCreate.setOnClickListener(view -> {
+            Intent intentCreate=new Intent(this,AddNewApartmentActivity.class);
+            startActivity(intentCreate);
         });
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")

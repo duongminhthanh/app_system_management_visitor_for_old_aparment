@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,17 +20,36 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/owner_phone"
-                android:text="@string/owner_phone"
+                android:id="@+id/room_id_title"
+                android:text="room id: "
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/room_id"
+                android:text="@string/room_id"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/owner_name_title"
+                android:text="owner name: "
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,12 +67,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/room_id"
-                android:text="@string/room_id"
+                android:id="@+id/owner_phone_title"
+                android:text="owner phone: "
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/owner_phone"
+                android:text="@string/owner_phone"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
-
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"

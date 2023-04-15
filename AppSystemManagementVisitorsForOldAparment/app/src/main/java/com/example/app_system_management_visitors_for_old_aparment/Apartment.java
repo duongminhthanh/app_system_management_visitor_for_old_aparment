@@ -5,6 +5,9 @@ import androidx.annotation.NonNull;
 public class Apartment {
     String owner_name,owner_phone,room_id;
 
+    public Apartment() {
+    }
+
     public String getOwner_name() {
         return owner_name;
     }
@@ -15,6 +18,18 @@ public class Apartment {
 
     public String getRoom_id() {
         return room_id;
+    }
+
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
+    }
+
+    public void setOwner_phone(String owner_phone) {
+        this.owner_phone = owner_phone;
+    }
+
+    public void setRoom_id(String room_id) {
+        this.room_id = room_id;
     }
 
     @NonNull
