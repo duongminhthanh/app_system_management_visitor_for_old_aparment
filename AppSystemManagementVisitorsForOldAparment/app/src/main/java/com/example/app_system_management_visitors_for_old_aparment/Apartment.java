@@ -6,6 +6,9 @@ public class Apartment {
     String owner_name,owner_phone,room_id;
 
     public Apartment() {
+        this.room_id=getRoom_id();
+        this.owner_name=getOwner_name();
+        this.owner_phone=getOwner_phone();
     }
 
     public String getOwner_name() {

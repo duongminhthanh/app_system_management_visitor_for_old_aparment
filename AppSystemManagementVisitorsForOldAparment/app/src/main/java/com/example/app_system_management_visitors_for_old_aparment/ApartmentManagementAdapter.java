@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +46,7 @@ public class ApartmentManagementAdapter  extends RecyclerView.Adapter<ApartmentM
             Intent intent=new Intent(view.getContext(),EditApartmentActivity.class);
             //get value to compare value is updated
             intent.putExtra("room id",a.getRoom_id());
+            Log.d("room id",a.getRoom_id());
             intent.putExtra("owner name",a.getOwner_name());
             intent.putExtra("owner phone",a.getOwner_phone());
             startActivity(c,intent, Bundle.EMPTY);
