@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".DeleteApartmentActivity">
+    <TextView
+        android:id="@+id/text_title_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_confirm"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edit_new_name"
+        android:background="@drawable/edit_text_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/edit_visitor_name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#01579B"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_form"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/edit_room_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="@string/hint_room_id"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#01579B"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_phone"
+        app:layout_constraintStart_toStartOf="@+id/edit_phone"
+        app:layout_constraintTop_toBottomOf="@+id/edit_phone"
+        tools:ignore="TextContrastCheck" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="160dp" />
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:hint="@string/hint_phone"
+        android:textColorHint="#01579B"
+        android:textSize="30sp"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_new_name"
+        app:layout_constraintStart_toStartOf="@+id/edit_new_name"
+        app:layout_constraintTop_toBottomOf="@+id/edit_new_name"
+        android:autofillHints="" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="468dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/yes"
+        android:text="@string/yes"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
+        tools:ignore="VisualLintBounds,TextContrastCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="468dp"
+        android:background="@drawable/button_background"
+        android:drawableStart="@drawable/no"
+        android:text="@string/no"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
+        tools:ignore="VisualLintBounds,TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

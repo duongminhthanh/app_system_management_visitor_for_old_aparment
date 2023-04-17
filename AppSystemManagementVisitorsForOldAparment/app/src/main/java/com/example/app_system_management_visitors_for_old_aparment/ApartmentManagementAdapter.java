@@ -5,7 +5,6 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class ApartmentManagementAdapter  extends RecyclerView.Adapter<ApartmentManagementAdapter.MyViewHolder>{
+public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentManagementAdapter.MyViewHolder> {
     Context c;
     ArrayList<Apartment> apartments;
 
@@ -31,25 +30,33 @@ public class ApartmentManagementAdapter  extends RecyclerView.Adapter<ApartmentM
     @NonNull
     @Override
     public ApartmentManagementAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.apartment_management_item,parent,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.apartment_management_item, parent, false);
         return new MyViewHolder(v);
     }
 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ApartmentManagementAdapter.MyViewHolder holder, int position) {
-        Apartment a=apartments.get(position);
+        Apartment a = apartments.get(position);
         holder.owner_phone.setText(a.getOwner_phone());
         holder.owner_name.setText(a.getOwner_name());
         holder.room_id.setText(a.getRoom_id());
         holder.btnUpdate.setOnClickListener(view -> {
-            Intent intent=new Intent(view.getContext(),EditApartmentActivity.class);
+            Intent intent = new Intent(view.getContext(), EditApartmentActivity.class);
             //get value to compare value is updated
-            intent.putExtra("room id",a.getRoom_id());
-            Log.d("room id",a.getRoom_id());
-            intent.putExtra("owner name",a.getOwner_name());
-            intent.putExtra("owner phone",a.getOwner_phone());
-            startActivity(c,intent, Bundle.EMPTY);
+            intent.putExtra("room id", a.getRoom_id());
+            Log.d("room id", a.getRoom_id());
+            intent.putExtra("owner name", a.getOwner_name());
+            intent.putExtra("owner phone", a.getOwner_phone());
+            startActivity(c, intent, Bundle.EMPTY);
+        });
+        holder.btnDelete.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), DeleteApartmentActivity.class);
+            intent.putExtra("room id", a.getRoom_id());
+            Log.d("room id", a.getRoom_id());
+            intent.putExtra("owner name", a.getOwner_name());
+            intent.putExtra("owner phone", a.getOwner_phone());
+            startActivity(c, intent, Bundle.EMPTY);
         });
     }
 
@@ -59,16 +66,17 @@ public class ApartmentManagementAdapter  extends RecyclerView.Adapter<ApartmentM
     }
 
 
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView owner_phone, owner_name, room_id;
+        Button btnUpdate, btnDelete;
 
-    public static class MyViewHolder  extends RecyclerView.ViewHolder{
-        TextView owner_phone,owner_name,room_id;
-        Button btnUpdate;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            owner_phone=itemView.findViewById(R.id.owner_phone);
-            owner_name=itemView.findViewById(R.id.owner_name);
-            room_id=itemView.findViewById(R.id.room_id);
-            btnUpdate=itemView.findViewById(R.id.button_update);
+            owner_phone = itemView.findViewById(R.id.owner_phone);
+            owner_name = itemView.findViewById(R.id.owner_name);
+            room_id = itemView.findViewById(R.id.room_id);
+            btnUpdate = itemView.findViewById(R.id.button_update);
+            btnDelete = itemView.findViewById(R.id.button_delete);
         }
 
     }
