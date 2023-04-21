@@ -11,6 +11,12 @@ public class Apartment {
         this.owner_phone=getOwner_phone();
     }
 
+    public Apartment(String owner_name, String owner_phone, String room_id) {
+        this.owner_name = owner_name;
+        this.owner_phone = owner_phone;
+        this.room_id = room_id;
+    }
+
     public String getOwner_name() {
         return owner_name;
     }

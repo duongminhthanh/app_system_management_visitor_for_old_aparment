@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+
 public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentManagementAdapter.MyViewHolder> {
     Context c;
     ArrayList<Apartment> apartments;
@@ -26,6 +27,13 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
         this.c = c;
         this.apartments = apartments;
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setApartments(ArrayList<Apartment> apartments) {
+        this.apartments = apartments;
+        notifyDataSetChanged();
+    }
+
 
     @NonNull
     @Override
@@ -80,4 +88,6 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
         }
 
     }
+
+
 }
