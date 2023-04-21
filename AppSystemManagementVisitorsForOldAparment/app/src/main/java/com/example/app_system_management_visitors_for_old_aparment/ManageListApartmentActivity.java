@@ -30,12 +30,12 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
     ArrayList<Apartment> list;
-    Button btnDashboard, btnCreate, btnSearch,btnRefresh;
+    Button btnDashboard, btnCreate, btnSearch, btnRefresh;
 
     String searchValue, ownerName, ownerPhone, roomId;
     EditText edSearch;
 
-    Boolean checkSearch=false;
+    Boolean checkSearch = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,22 +93,22 @@ public class ManageListApartmentActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     public void searchData(String searchValue) {
-        ArrayList<Apartment> apartments=new ArrayList<>();
+        ArrayList<Apartment> apartments = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            ownerName=list.get(i).getOwner_name();
-            ownerPhone=list.get(i).getOwner_phone();
-            roomId=list.get(i).getRoom_id();
-            if (searchValue.contains(ownerName)||searchValue.contains(ownerPhone)
-                    ||searchValue.contains(roomId)){
-                Apartment a=new Apartment(ownerName,ownerPhone,roomId);
+            ownerName = list.get(i).getOwner_name();
+            ownerPhone = list.get(i).getOwner_phone();
+            roomId = list.get(i).getRoom_id();
+            if (searchValue.contains(ownerName) || searchValue.contains(ownerPhone)
+                    || searchValue.contains(roomId)) {
+                Apartment a = new Apartment(ownerName, ownerPhone, roomId);
                 apartments.add(a);
-                checkSearch=searchValue.contains(ownerName)||searchValue.contains(ownerPhone)
-                        ||searchValue.contains(roomId);
+                checkSearch = searchValue.contains(ownerName) || searchValue.contains(ownerPhone)
+                        || searchValue.contains(roomId);
             }
         }
-        if (searchValue.isEmpty())showSearchErrorEmptyToast();
-        else if (!checkSearch)showSearchFailToast();
-        else{
+        if (searchValue.isEmpty()) showSearchErrorEmptyToast();
+        else if (!checkSearch) showSearchFailToast();
+        else {
             apartmentManagementAdapter.setApartments(apartments);
             showSearchSuccessfulToast();
         }
@@ -129,6 +129,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
+
     @SuppressLint("SetTextI18n")
     public void showSearchFailToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -142,6 +143,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
+
     @SuppressLint("SetTextI18n")
     public void showSearchErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -156,7 +158,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         toast.show();
     }
 
-    public void refresh(){
+    public void refresh() {
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
