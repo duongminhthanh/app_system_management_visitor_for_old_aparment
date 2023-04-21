@@ -30,7 +30,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
     ArrayList<Apartment> list;
-    Button btnDashboard, btnCreate, btnSearch;
+    Button btnDashboard, btnCreate, btnSearch,btnRefresh;
 
     String searchValue, ownerName, ownerPhone, roomId;
     EditText edSearch;
@@ -49,6 +49,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         list = new ArrayList<>();
         btnCreate = findViewById(R.id.button_create);
         btnSearch = findViewById(R.id.button_search);
+        btnRefresh = findViewById(R.id.button_refresh);
         apartmentManagementAdapter = new ApartmentManagementAdapter(this, list);
         recyclerView.setAdapter(apartmentManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -64,6 +65,10 @@ public class ManageListApartmentActivity extends AppCompatActivity {
             edSearch.setText(edSearch.getText().toString());
             searchValue = edSearch.getText().toString();
             searchData(searchValue);
+        });
+        btnRefresh.setOnClickListener(view -> {
+            edSearch.setText("");
+            refresh();
         });
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -149,6 +154,28 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(layout);
         toast.show();
+    }
+
+    public void refresh(){
+        myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Apartment a = dataSnapshot.getValue(Apartment.class);
+                    Log.d("apartment", String.valueOf(a));
+                    list.add(a);
+                }
+                apartmentManagementAdapter.setApartments(list);
+                apartmentManagementAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
 

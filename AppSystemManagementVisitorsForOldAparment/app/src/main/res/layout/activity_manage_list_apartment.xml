@@ -73,6 +73,7 @@
 
             </androidx.appcompat.widget.AppCompatButton>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_refresh"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="10dp"
