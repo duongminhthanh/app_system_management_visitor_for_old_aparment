@@ -1,5 +1,6 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,12 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
     public FeedbackAdapter(Context c, ArrayList<Feedback> feedbacks) {
         this.c = c;
         this.feedbacks = feedbacks;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFeedbacks(ArrayList<Feedback> feedbacks) {
+        this.feedbacks = feedbacks;
+        notifyDataSetChanged();
     }
 
     @NonNull

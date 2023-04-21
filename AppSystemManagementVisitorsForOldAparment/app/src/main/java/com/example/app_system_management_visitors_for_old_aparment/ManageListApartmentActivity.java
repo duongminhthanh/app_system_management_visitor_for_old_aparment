@@ -162,6 +162,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     }
 
     public void refresh() {
+        list.clear();
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
