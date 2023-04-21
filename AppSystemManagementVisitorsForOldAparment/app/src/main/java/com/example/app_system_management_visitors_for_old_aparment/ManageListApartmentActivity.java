@@ -29,7 +29,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
-    ArrayList<Apartment> list;
+    ArrayList<Apartment> list,apartments;
     Button btnDashboard, btnCreate, btnSearch, btnRefresh;
 
     String searchValue, ownerName, ownerPhone, roomId;
@@ -64,9 +64,11 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(view -> {
             edSearch.setText(edSearch.getText().toString());
             searchValue = edSearch.getText().toString();
+            if (searchValue.isEmpty()) showSearchErrorEmptyToast();
             searchData(searchValue);
         });
         btnRefresh.setOnClickListener(view -> {
+            apartments.clear();
             edSearch.setText("");
             refresh();
         });
@@ -93,7 +95,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     public void searchData(String searchValue) {
-        ArrayList<Apartment> apartments = new ArrayList<>();
+        apartments = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             ownerName = list.get(i).getOwner_name();
             ownerPhone = list.get(i).getOwner_phone();
@@ -104,14 +106,15 @@ public class ManageListApartmentActivity extends AppCompatActivity {
                 apartments.add(a);
                 checkSearch = searchValue.contains(ownerName) || searchValue.contains(ownerPhone)
                         || searchValue.contains(roomId);
+
+                showSearchSuccessfulToast();
+                apartmentManagementAdapter.setApartments(apartments);
+                break;
             }
+
         }
-        if (searchValue.isEmpty()) showSearchErrorEmptyToast();
-        else if (!checkSearch) showSearchFailToast();
-        else {
-            apartmentManagementAdapter.setApartments(apartments);
-            showSearchSuccessfulToast();
-        }
+
+        if (!checkSearch) showSearchFailToast();
 
 
     }
