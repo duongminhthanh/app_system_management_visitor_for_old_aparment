@@ -12,6 +12,9 @@
         android:theme="@style/Theme.App_System_Management_Visitors_For_Old_Aparment"
         tools:targetApi="31">
         <activity
+            android:name=".DeleteVisitorActivity"
+            android:exported="false" />
+        <activity
             android:name=".DeleteApartmentActivity"
             android:exported="false" />
         <activity
@@ -48,7 +51,7 @@
             android:name=".EditApartmentActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewVistiorsActivity"
+            android:name=".AddNewVisitorActivity"
             android:exported="false" />
         <activity
             android:name=".AddNewApartmentActivity"

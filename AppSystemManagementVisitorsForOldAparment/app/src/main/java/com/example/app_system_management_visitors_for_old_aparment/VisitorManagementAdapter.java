@@ -1,10 +1,15 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +24,12 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
     public VisitorManagementAdapter(Context c, ArrayList<Visitor> visitors) {
         this.c = c;
         this.visitors = visitors;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setVisitors(ArrayList<Visitor> visitors) {
+        this.visitors = visitors;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -38,7 +49,22 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
         holder.visit_time.setText(v.getVisit_time());
-
+        holder.btnUpdate.setOnClickListener(view -> {
+            Intent intent=new Intent(view.getContext(),EditVisitorActivity.class);
+            intent.putExtra("name",v.getName());
+            intent.putExtra("id_card",v.getId_card());
+            intent.putExtra("room_id",v.getRoom_id());
+            intent.putExtra("visit_time",v.getVisit_time());
+            startActivity(c, intent, Bundle.EMPTY);
+        });
+        holder.btnDelete.setOnClickListener(view -> {
+            Intent intent=new Intent(view.getContext(),DeleteVisitorActivity.class);
+            intent.putExtra("name",v.getName());
+            intent.putExtra("id_card",v.getId_card());
+            intent.putExtra("room_id",v.getRoom_id());
+            intent.putExtra("visit_time",v.getVisit_time());
+            startActivity(c, intent, Bundle.EMPTY);
+        });
     }
 
 
@@ -52,6 +78,7 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
 
     public static class MyViewHolder  extends RecyclerView.ViewHolder{
         TextView id_card,name,room_id,visit_time;
+        Button btnUpdate, btnDelete;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +86,8 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
             name=itemView.findViewById(R.id.visitorName);
             room_id=itemView.findViewById(R.id.roomID);
             visit_time=itemView.findViewById(R.id.visitTime);
+            btnUpdate=itemView.findViewById(R.id.button_update);
+            btnDelete = itemView.findViewById(R.id.button_delete);
         }
     }
 }

@@ -88,7 +88,7 @@
         android:hint="@string/edit_time"
         android:textColorHint="#01579B"
         android:textSize="30sp"
-        android:inputType="time"
+        android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="@+id/edit_room_id"
         app:layout_constraintHorizontal_bias="0.0"
