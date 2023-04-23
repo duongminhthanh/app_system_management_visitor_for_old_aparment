@@ -21,6 +21,12 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
         this.visitors = visitors;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void setVisitors(ArrayList<Visitor> visitors) {
+        this.visitors = visitors;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     /*Define Item layouts and initialize Holder.*/

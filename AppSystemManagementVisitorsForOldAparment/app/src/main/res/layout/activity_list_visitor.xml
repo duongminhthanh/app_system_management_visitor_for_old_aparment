@@ -40,19 +40,25 @@
 
             </androidx.appcompat.widget.AppCompatButton>
 
-            <androidx.appcompat.widget.SearchView
+            <EditText
+                android:id="@+id/edit_search"
                 android:layout_width="550dp"
-                android:layout_height="48dp"
+                android:layout_height="60dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/search_view_background"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:drawableStart="@drawable/loupe"
                 android:hint="@string/what_do_you_want_to_find"
-                android:src="@drawable/loupe"
-                android:textColorHint="@color/white"
-                tools:ignore="VisualLintBounds"></androidx.appcompat.widget.SearchView>
+                android:minHeight="48dp"
+                android:textColorHint="#F4FF81"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_search"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"
@@ -68,6 +74,7 @@
 
             </androidx.appcompat.widget.AppCompatButton>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_refresh"
                 android:layout_width="150dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="10dp"

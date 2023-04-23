@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +21,11 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.MyVi
         this.apartments = apartments;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void setApartments(ArrayList<Apartment> apartments) {
+        this.apartments = apartments;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
