@@ -42,17 +42,20 @@
     <string name="visiting_register_form">Visiting register form</string>
     <string name="edit_time">Time</string>
     <string name="edit_id_card">ID card</string>
+    <string name="edit_id_acc">ID acc</string>
     <string name="edit_visitor_name">Name</string>
     <string name="register">Register</string>
     <string name="button">Button</string>
     <string name="drop_down">Select room ID</string>
-    <string name="satisfy">Your satistify level is: </string>
+    <string name="satisfy">Your satisfy level is: </string>
     <string name="pleas_rate_the_service_level">Please rate the service level</string>
     <string name="submit">Submit</string>
     <string name="write_your_feedback_here">Write your feedback here</string>
     <string name="send">Send</string>
-    <string name="new_vistior_form">New vistior form</string>
-    <string name="edit_vistior_form">Edit vistior form</string>
+    <string name="new_visitor_form">New visitor form</string>
+    <string name="new_account_form">New account form</string>
+    <string name="edit_account_form">Edit account form</string>
+    <string name="edit_visitor_form">Edit visitor form</string>
     <string name="save">Save</string>
     <string name="new_apartment_form">New apartment form</string>
     <string name="edit_apartment_form">Edit apartment form</string>
@@ -94,9 +97,10 @@
     <string name="owner_phone">owner phone</string>
     <string name="owner_name">owner name</string>
     <string name="room_id">room id: </string>
-    <string name="password">password</string>
-    <string name="pin_code_pass">pin_code</string>
-    <string name="username">username</string>
+    <string name="acc_id">acc id: </string>
+    <string name="password">password: </string>
+    <string name="pin_code_pass">pin_code: </string>
+    <string name="username">username: </string>
     <string name="call_phone">Call phone</string>
     <string name="call_zalo">Call zalo</string>
     <string name="visitor_name">visitor_name</string>
@@ -105,4 +109,7 @@
     <string name="delete">delete</string>
     <string name="refresh">Refresh</string>
     <string name="create">Create</string>
+    <string name="edit_username">Username</string>
+    <string name="edit_password">Password</string>
+    <string name="edit_pin_code">Pin code</string>
 </resources>

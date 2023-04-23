@@ -3,7 +3,11 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import androidx.annotation.NonNull;
 
 public class Account {
-    String username,password,pin_code;
+    String acc_id,username,password,pin_code;
+
+    public String getAcc_id() {
+        return acc_id;
+    }
 
     public String getUsername() {
         return username;
@@ -15,6 +19,22 @@ public class Account {
 
     public String getPin_code() {
         return pin_code;
+    }
+
+    public void setAcc_id(String acc_id) {
+        this.acc_id = acc_id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPin_code(String pin_code) {
+        this.pin_code = pin_code;
     }
 
     public Account(String username, String password) {
@@ -29,11 +49,19 @@ public class Account {
     public Account() {
     }
 
+    public Account(String acc_id, String username, String password, String pin_code) {
+        this.acc_id = acc_id;
+        this.username = username;
+        this.password = password;
+        this.pin_code = pin_code;
+    }
+
     @NonNull
     @Override
     public String toString() {
         return "Account{" +
-                "username='" + username + '\'' +
+                "acc_id='" + acc_id + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", pin_code='" + pin_code + '\'' +
                 '}';

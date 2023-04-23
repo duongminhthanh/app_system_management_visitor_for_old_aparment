@@ -6,6 +6,7 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
     android:layout_margin="16dp">
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,6 +17,35 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acc_id"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/acc_id"
+                android:text="@string/acc_id"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,6 +64,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/password"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/password"
                 android:text="@string/password"
                 android:textColor="@color/black"
@@ -49,6 +86,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/pin_code_pass"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/pin_code"
                 android:text="@string/pin_code_pass"
                 android:textColor="@color/black"
@@ -61,6 +105,7 @@
         android:layout_gravity="center_vertical"
         android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_update"
             android:background="@drawable/button_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,6 +118,7 @@
 
         </androidx.appcompat.widget.AppCompatButton>
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_delete"
             android:background="@drawable/button_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
