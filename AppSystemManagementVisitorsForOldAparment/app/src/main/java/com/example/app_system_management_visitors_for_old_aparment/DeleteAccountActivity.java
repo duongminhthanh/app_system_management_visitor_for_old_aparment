@@ -22,27 +22,28 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DeleteAccountActivity extends AppCompatActivity {
     Button btnYes, btnNo;
-    EditText edIdAcc,edUsername,edPassword,edPinCode;
+    EditText edIdAcc, edUsername, edPassword, edPinCode;
     Intent intent;
-    String idAcc,username,password,pin_code;
+    String idAcc, username, password, pin_code;
     DatabaseReference myRef;
     Account a;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_account);
-        btnYes=findViewById(R.id.button_yes);
-        btnNo=findViewById(R.id.button_no);
-        edIdAcc=findViewById(R.id.edit_acc_id);
-        edUsername=findViewById(R.id.edit_username);
-        edPassword=findViewById(R.id.edit_password);
-        edPinCode=findViewById(R.id.edit_pin_code);
+        btnYes = findViewById(R.id.button_yes);
+        btnNo = findViewById(R.id.button_no);
+        edIdAcc = findViewById(R.id.edit_acc_id);
+        edUsername = findViewById(R.id.edit_username);
+        edPassword = findViewById(R.id.edit_password);
+        edPinCode = findViewById(R.id.edit_pin_code);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
-        intent=getIntent();
-        idAcc=intent.getStringExtra("acc_id");
-        username= intent.getStringExtra("username");
-        password= intent.getStringExtra("password");
-        pin_code= intent.getStringExtra("pin_code");
+        intent = getIntent();
+        idAcc = intent.getStringExtra("acc_id");
+        username = intent.getStringExtra("username");
+        password = intent.getStringExtra("password");
+        pin_code = intent.getStringExtra("pin_code");
         edIdAcc.setText(idAcc);
         edUsername.setText(username);
         edPassword.setText(password);
@@ -51,7 +52,7 @@ public class DeleteAccountActivity extends AppCompatActivity {
         btnYes.setOnClickListener(view -> myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                a=new Account();
+                a = new Account();
                 myRef.child(idAcc).removeValue();
                 Intent intentManagement = new Intent(DeleteAccountActivity.this
                         , ManageListAccountActivity.class);
@@ -65,6 +66,7 @@ public class DeleteAccountActivity extends AppCompatActivity {
             }
         }));
     }
+
     @SuppressLint("SetTextI18n")
     public void showDeleteSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();

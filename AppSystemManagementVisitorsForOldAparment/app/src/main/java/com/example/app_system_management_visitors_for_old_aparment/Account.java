@@ -3,7 +3,7 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import androidx.annotation.NonNull;
 
 public class Account {
-    String acc_id,username,password,pin_code;
+    String acc_id, username, password, pin_code;
 
     public String getAcc_id() {
         return acc_id;
