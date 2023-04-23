@@ -12,7 +12,7 @@
         android:id="@+id/text_title_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_vistior_form"
+        android:text="@string/new_visitor_form"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"

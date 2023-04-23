@@ -25,7 +25,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     @Override
     /*Define Item layouts and initialize Holder.*/
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.visitor_item,parent,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.visitor_item, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -33,7 +33,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     @Override
     /*Set the properties of the View and the data.*/
     public void onBindViewHolder(@NonNull VisitorAdapter.MyViewHolder holder, int position) {
-        Visitor v=visitors.get(position);
+        Visitor v = visitors.get(position);
         holder.id_card.setText(v.getId_card());
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
@@ -42,23 +42,21 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     }
 
 
-
-
     @Override
     /*Đếm số Item trong List Data*/
     public int getItemCount() {
         return visitors.size();
     }
 
-    public static class MyViewHolder  extends RecyclerView.ViewHolder{
-        TextView id_card,name,room_id,visit_time;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView id_card, name, room_id, visit_time;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            id_card=itemView.findViewById(R.id.idCard);
-            name=itemView.findViewById(R.id.visitorName);
-            room_id=itemView.findViewById(R.id.roomID);
-            visit_time=itemView.findViewById(R.id.visitTime);
+            id_card = itemView.findViewById(R.id.idCard);
+            name = itemView.findViewById(R.id.visitorName);
+            room_id = itemView.findViewById(R.id.roomID);
+            visit_time = itemView.findViewById(R.id.visitTime);
         }
     }
 }

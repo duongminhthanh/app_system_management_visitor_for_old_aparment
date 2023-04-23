@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManagementAdapter.MyViewHolder>{
+public class VisitorManagementAdapter extends RecyclerView.Adapter<VisitorManagementAdapter.MyViewHolder> {
     Context c;
     ArrayList<Visitor> visitors;
 
@@ -36,7 +36,7 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
     @Override
     /*Define Item layouts and initialize Holder.*/
     public VisitorManagementAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.visitor_management_item,parent,false);
+        View v = LayoutInflater.from(c).inflate(R.layout.visitor_management_item, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -44,30 +44,28 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
     @Override
     /*Set the properties of the View and the data.*/
     public void onBindViewHolder(@NonNull VisitorManagementAdapter.MyViewHolder holder, int position) {
-        Visitor v=visitors.get(position);
+        Visitor v = visitors.get(position);
         holder.id_card.setText(v.getId_card());
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
         holder.visit_time.setText(v.getVisit_time());
         holder.btnUpdate.setOnClickListener(view -> {
-            Intent intent=new Intent(view.getContext(),EditVisitorActivity.class);
-            intent.putExtra("name",v.getName());
-            intent.putExtra("id_card",v.getId_card());
-            intent.putExtra("room_id",v.getRoom_id());
-            intent.putExtra("visit_time",v.getVisit_time());
+            Intent intent = new Intent(view.getContext(), EditVisitorActivity.class);
+            intent.putExtra("name", v.getName());
+            intent.putExtra("id_card", v.getId_card());
+            intent.putExtra("room_id", v.getRoom_id());
+            intent.putExtra("visit_time", v.getVisit_time());
             startActivity(c, intent, Bundle.EMPTY);
         });
         holder.btnDelete.setOnClickListener(view -> {
-            Intent intent=new Intent(view.getContext(),DeleteVisitorActivity.class);
-            intent.putExtra("name",v.getName());
-            intent.putExtra("id_card",v.getId_card());
-            intent.putExtra("room_id",v.getRoom_id());
-            intent.putExtra("visit_time",v.getVisit_time());
+            Intent intent = new Intent(view.getContext(), DeleteVisitorActivity.class);
+            intent.putExtra("name", v.getName());
+            intent.putExtra("id_card", v.getId_card());
+            intent.putExtra("room_id", v.getRoom_id());
+            intent.putExtra("visit_time", v.getVisit_time());
             startActivity(c, intent, Bundle.EMPTY);
         });
     }
-
-
 
 
     @Override
@@ -76,17 +74,17 @@ public class VisitorManagementAdapter  extends RecyclerView.Adapter<VisitorManag
         return visitors.size();
     }
 
-    public static class MyViewHolder  extends RecyclerView.ViewHolder{
-        TextView id_card,name,room_id,visit_time;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView id_card, name, room_id, visit_time;
         Button btnUpdate, btnDelete;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            id_card=itemView.findViewById(R.id.idCard);
-            name=itemView.findViewById(R.id.visitorName);
-            room_id=itemView.findViewById(R.id.roomID);
-            visit_time=itemView.findViewById(R.id.visitTime);
-            btnUpdate=itemView.findViewById(R.id.button_update);
+            id_card = itemView.findViewById(R.id.idCard);
+            name = itemView.findViewById(R.id.visitorName);
+            room_id = itemView.findViewById(R.id.roomID);
+            visit_time = itemView.findViewById(R.id.visitTime);
+            btnUpdate = itemView.findViewById(R.id.button_update);
             btnDelete = itemView.findViewById(R.id.button_delete);
         }
     }

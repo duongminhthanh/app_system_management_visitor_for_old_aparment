@@ -3,7 +3,7 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import androidx.annotation.NonNull;
 
 public class Visitor {
-    String name,room_id,visit_time,id_card;
+    String name, room_id, visit_time, id_card;
     /*getter*/
 
     public Visitor() {

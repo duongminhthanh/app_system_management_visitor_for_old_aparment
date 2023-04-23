@@ -3,12 +3,12 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import androidx.annotation.NonNull;
 
 public class Apartment {
-    String owner_name,owner_phone,room_id;
+    String owner_name, owner_phone, room_id;
 
     public Apartment() {
-        this.room_id=getRoom_id();
-        this.owner_name=getOwner_name();
-        this.owner_phone=getOwner_phone();
+        this.room_id = getRoom_id();
+        this.owner_name = getOwner_name();
+        this.owner_phone = getOwner_phone();
     }
 
     public Apartment(String owner_name, String owner_phone, String room_id) {

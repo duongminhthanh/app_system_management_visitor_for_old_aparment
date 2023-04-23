@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/edit_vistior_form"
+        android:text="@string/edit_visitor_form"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
