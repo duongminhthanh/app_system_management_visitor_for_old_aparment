@@ -29,7 +29,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
-    ArrayList<Apartment> list,apartments;
+    ArrayList<Apartment> list, apartments;
     Button btnDashboard, btnCreate, btnSearch, btnRefresh;
 
     String searchValue, ownerName, ownerPhone, roomId;

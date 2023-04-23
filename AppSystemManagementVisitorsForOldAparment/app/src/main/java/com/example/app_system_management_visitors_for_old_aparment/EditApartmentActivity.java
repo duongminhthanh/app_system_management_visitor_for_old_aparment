@@ -22,12 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-
 public class EditApartmentActivity extends AppCompatActivity {
 
-    EditText ownerName,ownerPhone,roomId;
+    EditText ownerName, ownerPhone, roomId;
     DatabaseReference myRef;
-    String name,phone,id,dataName,dataPhone,dataId;
+    String name, phone, id, dataName, dataPhone, dataId;
     Button btnSave;
     Intent intent;
     Apartment a;
@@ -36,48 +35,49 @@ public class EditApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_apartment);
-        ownerName=findViewById(R.id.edit_new_name);
-        ownerPhone=findViewById(R.id.edit_phone);
-        roomId=findViewById(R.id.edit_room_id);
-        myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
-        btnSave=findViewById(R.id.btn_save);
-        intent=getIntent();
-        dataName=intent.getStringExtra("owner name");
-        dataPhone=intent.getStringExtra("owner phone");
-        dataId=intent.getStringExtra("room id");
-        Log.d("room id",dataId);
+        ownerName = findViewById(R.id.edit_new_name);
+        ownerPhone = findViewById(R.id.edit_phone);
+        roomId = findViewById(R.id.edit_room_id);
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
+        btnSave = findViewById(R.id.btn_save);
+        intent = getIntent();
+        dataName = intent.getStringExtra("owner name");
+        dataPhone = intent.getStringExtra("owner phone");
+        dataId = intent.getStringExtra("room id");
+        Log.d("room id", dataId);
         roomId.setText(dataId);
         btnSave.setOnClickListener(view -> {
             //get data from management screen
 
-            Log.d("room id",dataId);
+            Log.d("room id", dataId);
             ownerName.setText(ownerName.getText().toString());
             ownerPhone.setText(ownerPhone.getText().toString());
 
-            name=ownerName.getText().toString();
-            phone=ownerPhone.getText().toString();
-            id=dataId;
+            name = ownerName.getText().toString();
+            phone = ownerPhone.getText().toString();
+            id = dataId;
 
-            if (name.isEmpty()||phone.isEmpty())showErrorEmptyToast();
-            else if (name.equals(dataName)&&phone.equals(dataPhone))
+            if (name.isEmpty() || phone.isEmpty()) showErrorEmptyToast();
+            else if (name.equals(dataName) && phone.equals(dataPhone))
                 showErrorSameDataToast();
             else
-                editData(id,name,phone);
+                editData(id, name, phone);
         });
     }
-    public void editData(String id,String name,String phone){
+
+    public void editData(String id, String name, String phone) {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    a=new Apartment();
-                    a.setRoom_id(id);
-                    a.setOwner_name(name);
-                    a.setOwner_phone(phone);
-                    myRef.child(id).setValue(a);
-                    showUpdateSuccessfulToast();
-                    Intent intent=new Intent(EditApartmentActivity.this
-                            ,ManageListApartmentActivity.class);
-                    startActivity(intent);
+                a = new Apartment();
+                a.setRoom_id(id);
+                a.setOwner_name(name);
+                a.setOwner_phone(phone);
+                myRef.child(id).setValue(a);
+                showUpdateSuccessfulToast();
+                Intent intent = new Intent(EditApartmentActivity.this
+                        , ManageListApartmentActivity.class);
+                startActivity(intent);
 
             }
 
@@ -102,6 +102,7 @@ public class EditApartmentActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
+
     @SuppressLint("SetTextI18n")
     public void showErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();

@@ -22,27 +22,28 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DeleteApartmentActivity extends AppCompatActivity {
 
-    Button btnYes,btnNo;
-    EditText editOwnerName,editOwnerPhone,editRoomId;
+    Button btnYes, btnNo;
+    EditText editOwnerName, editOwnerPhone, editRoomId;
     Intent intent;
-    String ownerName,ownerPhone,roomId;
+    String ownerName, ownerPhone, roomId;
     DatabaseReference myRef;
     Apartment a;
+
     @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_apartment);
-        btnYes=findViewById(R.id.button_yes);
-        btnNo=findViewById(R.id.button_no);
-        editOwnerName=findViewById(R.id.edit_new_name);
-        editOwnerPhone=findViewById(R.id.edit_phone);
-        editRoomId=findViewById(R.id.edit_room_id);
-        myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
-        intent=getIntent();
-        ownerName=intent.getStringExtra("owner name");
-        ownerPhone=intent.getStringExtra("owner phone");
-        roomId=intent.getStringExtra("room id");
+        btnYes = findViewById(R.id.button_yes);
+        btnNo = findViewById(R.id.button_no);
+        editOwnerName = findViewById(R.id.edit_new_name);
+        editOwnerPhone = findViewById(R.id.edit_phone);
+        editRoomId = findViewById(R.id.edit_room_id);
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
+        intent = getIntent();
+        ownerName = intent.getStringExtra("owner name");
+        ownerPhone = intent.getStringExtra("owner phone");
+        roomId = intent.getStringExtra("room id");
         editOwnerName.setText(ownerName);
         editOwnerPhone.setText(ownerPhone);
         editRoomId.setText(roomId);
@@ -50,11 +51,11 @@ public class DeleteApartmentActivity extends AppCompatActivity {
         btnYes.setOnClickListener(view -> myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                a=new Apartment();
+                a = new Apartment();
                 myRef.child(roomId).removeValue();
                 showDeleteSuccessfulToast();
-                Intent intentManagement=new Intent(DeleteApartmentActivity.this
-                        ,ManageListApartmentActivity.class);
+                Intent intentManagement = new Intent(DeleteApartmentActivity.this
+                        , ManageListApartmentActivity.class);
                 startActivity(intentManagement);
             }
 
@@ -64,6 +65,7 @@ public class DeleteApartmentActivity extends AppCompatActivity {
             }
         }));
     }
+
     @SuppressLint("SetTextI18n")
     public void showDeleteSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -77,6 +79,7 @@ public class DeleteApartmentActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
+
     @SuppressLint("SetTextI18n")
     public void showErrorDeleteToast() {
         LayoutInflater inflater = getLayoutInflater();
