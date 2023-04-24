@@ -33,60 +33,68 @@
 
   <EditText
       android:id="@+id/edit_name_visitor"
-      android:background="@drawable/edit_text_background"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:layout_height="60dp"
+      android:layout_marginStart="16dp"
       android:layout_marginTop="32dp"
+      android:layout_marginEnd="16dp"
       android:autofillHints=""
+      android:background="@drawable/edit_text_background"
       android:ems="10"
       android:hint="@string/edit_visitor_name"
       android:inputType="textPersonName"
       android:minHeight="48dp"
+      android:textSize="40sp"
       android:textColorHint="#212121"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="@+id/guideline3"
-      tools:ignore="TextContrastCheck" />
+      tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
   <EditText
       android:id="@+id/edit_id_card"
-      android:background="@drawable/edit_text_background"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="0dp"
+      android:layout_height="60dp"
       android:layout_marginTop="32dp"
       android:autofillHints=""
+      android:background="@drawable/edit_text_background"
       android:ems="10"
       android:hint="@string/edit_id_card"
       android:inputType="textPersonName"
       android:minHeight="48dp"
+      android:textSize="40sp"
       android:textColorHint="#212121"
       app:layout_constraintEnd_toEndOf="@+id/edit_name_visitor"
       app:layout_constraintStart_toStartOf="@+id/edit_name_visitor"
       app:layout_constraintTop_toBottomOf="@+id/edit_name_visitor"
-      tools:ignore="TextContrastCheck" />
+      tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
   <EditText
       android:id="@+id/edit_time"
-      android:background="@drawable/edit_text_background"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="0dp"
+      android:layout_height="60dp"
       android:layout_marginTop="32dp"
       android:autofillHints=""
+      android:background="@drawable/edit_text_background"
       android:ems="10"
       android:hint="@string/edit_time"
       android:inputType="time"
       android:minHeight="48dp"
+      android:textSize="40sp"
       android:textColorHint="#212121"
       app:layout_constraintEnd_toEndOf="@+id/edit_id_card"
       app:layout_constraintStart_toStartOf="@+id/edit_id_card"
       app:layout_constraintTop_toBottomOf="@+id/edit_id_card"
-      tools:ignore="TextContrastCheck" />
+      tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
   <Spinner
-      android:id="@+id/spinner_arpartment_id"
-      android:layout_width="209dp"
-      android:layout_height="48dp"
+      android:id="@+id/spinner_apartment_id"
+      android:background="@drawable/style_spinner"
+      android:layout_width="0dp"
+      android:layout_height="60dp"
       android:layout_marginTop="32dp"
+      android:text="@string/apartment_id"
+      android:spinnerMode="dropdown"
       android:contentDescription="@string/drop_down"
       app:layout_constraintEnd_toEndOf="@+id/edit_time"
       app:layout_constraintHorizontal_bias="0.0"
@@ -104,7 +112,7 @@
       android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/spinner_arpartment_id"
+      app:layout_constraintTop_toBottomOf="@+id/spinner_apartment_id"
       tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

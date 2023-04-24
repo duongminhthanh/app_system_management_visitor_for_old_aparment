@@ -15,11 +15,12 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.2" />
 
+
     <TextView
         android:id="@+id/text_feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="16dp"
         android:text="@string/feedback"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
@@ -27,29 +28,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-
     <EditText
         android:id="@+id/edit_feedback"
         android:layout_width="match_parent"
-        android:layout_height="344dp"
-        android:layout_marginTop="68dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/write_your_feedback_here"
         android:inputType="textMultiLine"
-        android:textColorHint="#01579B"
+        android:textColorHint="@color/black"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_feedback"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         tools:ignore="VisualLintTextFieldSize,TextContrastCheck,VisualLintBounds" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button_background"
         android:drawableLeft="@drawable/send"
         android:text="@string/send"
@@ -57,10 +62,32 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_feedback"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.556"
         tools:ignore="RtlHardcoded,VisualLintOverlap,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:background="@drawable/edit_text_background"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/name_visitor"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_feedback"
+        android:autofillHints=""
+        tools:ignore="VisualLintTextFieldSize" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

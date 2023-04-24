@@ -50,11 +50,13 @@ public class ListFeedbackActivity extends AppCompatActivity {
         feedbackAdapter = new FeedbackAdapter(this, list);
         recyclerView.setAdapter(feedbackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Intent intent = getIntent();
+        /*get data form dashboard admin*/
+        String username = intent.getStringExtra("username");
+        Log.d("username",username);
+        String password = intent.getStringExtra("password");
+        Log.d("password",password);
         btnDashboard.setOnClickListener(view -> {
-            Intent intent = getIntent();
-            /*get data form dashboard admin*/
-            String username = intent.getStringExtra("username");
-            String password = intent.getStringExtra("password");
             Intent intentDashboard;
             if (username.equals("admin") && password.equals("admin1234")) {
                 intentDashboard = new Intent(ListFeedbackActivity.this

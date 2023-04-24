@@ -25,19 +25,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/text_dashboard"
-        android:layout_marginTop="20dp"
-        android:layout_margin="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:columnCount="2"
         android:rowCount="3">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_row="0"
+            android:layout_rowWeight="1"
             android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true"
@@ -46,10 +48,11 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
+                android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
+
                 <ImageView
                     android:id="@+id/image_visitor"
                     android:layout_width="wrap_content"
@@ -57,116 +60,164 @@
                     android:contentDescription="TODO"
                     android:src="@drawable/people"
                     tools:ignore="ContentDescription,HardcodedText" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/visitor"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
             android:layout_row="0"
+            android:layout_rowWeight="1"
             android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true"
             tools:ignore="VisualLintBounds">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
+                android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
+
                 <ImageView
                     android:id="@+id/image_apartment"
-                    android:src="@drawable/apartments"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/apartments_64"
                     tools:ignore="ContentDescription" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/apartment"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
             android:layout_row="1"
+            android:layout_rowWeight="1"
             android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true"
             tools:ignore="VisualLintBounds">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
+                android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/image_feedbacks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/feedback_128"
+                    android:src="@drawable/feedback_64"
                     tools:ignore="ContentDescription,ImageContrastCheck" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/feedbacks"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
             android:layout_row="1"
+            android:layout_rowWeight="1"
             android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true"
             tools:ignore="VisualLintBounds">
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center"
+                android:orientation="vertical"
                 tools:ignore="UseCompoundDrawables">
+
                 <ImageView
                     android:id="@+id/image_logout"
-                    android:src="@drawable/log_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/log_out_64"
                     tools:ignore="ContentDescription" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/log_out"
-                    android:textSize="30sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            tools:ignore="VisualLintBounds">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/image_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_icon"
+                    tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home"
+                    android:textColor="@color/black"
+                    android:textSize="35sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </GridLayout>
 
 </RelativeLayout>
