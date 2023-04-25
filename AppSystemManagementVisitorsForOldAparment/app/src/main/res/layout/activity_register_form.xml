@@ -78,7 +78,7 @@
       android:background="@drawable/edit_text_background"
       android:ems="10"
       android:hint="@string/edit_time"
-      android:inputType="time"
+      android:inputType="text"
       android:minHeight="48dp"
       android:textSize="40sp"
       android:textColorHint="#212121"

@@ -44,7 +44,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
         holder.visit_time.setText(v.getVisit_time());
-
+        holder.date.setText(v.getDate());
     }
 
 
@@ -55,7 +55,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView id_card, name, room_id, visit_time;
+        TextView id_card, name, room_id, visit_time,date;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +63,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
             name = itemView.findViewById(R.id.visitorName);
             room_id = itemView.findViewById(R.id.roomID);
             visit_time = itemView.findViewById(R.id.visitTime);
+            date = itemView.findViewById(R.id.date);
         }
     }
 }

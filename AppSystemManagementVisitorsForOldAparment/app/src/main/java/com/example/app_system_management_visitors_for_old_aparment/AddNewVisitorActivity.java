@@ -83,7 +83,7 @@ public class AddNewVisitorActivity extends AppCompatActivity {
         View layout = inflater.inflate(R.layout.custom_toast_success,
                 findViewById(R.id.toast_success));
         TextView text = layout.findViewById(R.id.toast_text_success);
-        text.setText("Add new apartment successfully");
+        text.setText("Add new visitor successfully");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);

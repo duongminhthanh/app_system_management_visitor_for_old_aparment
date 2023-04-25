@@ -11,7 +11,7 @@ public class Visitor {
     String name, room_id, visit_time, id_card,date;
 
     public String getDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss aa", Locale.getDefault());
         Date d=  Calendar.getInstance().getTime();
         //format date to date string
         date=formatter.format(d);

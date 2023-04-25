@@ -1,10 +1,19 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,53 +28,137 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class RegisterFormActivity extends AppCompatActivity {
-    EditText edName,edIdCard,edTime;
+    EditText edName, edIdCard, edTime;
     Spinner spinner;
-    ArrayList <Apartment> list;
-    ArrayList <String> apartmentId;
+    ArrayList<Apartment> list;
+    ArrayList<String> apartmentId;
     ArrayAdapter<String> roomIdAdapter;
-    DatabaseReference apartmentRef;
+    DatabaseReference apartmentRef, visitorRef;
+    String name, idCard, time, roomId;
+    Visitor v;
+    Button btnSend;
+    Intent intent;
+    Bundle bundle;
+    String username,password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_form);
-        edName=findViewById(R.id.edit_name_visitor);
-        edIdCard=findViewById(R.id.edit_id_card);
-        edTime=findViewById(R.id.edit_time);
-        spinner=findViewById(R.id.spinner_apartment_id);
-        list=new ArrayList<>();
-        apartmentId=new ArrayList<>();
-        apartmentRef= FirebaseDatabase.getInstance().getReference().
+        edName = findViewById(R.id.edit_name_visitor);
+        edIdCard = findViewById(R.id.edit_id_card);
+        edTime = findViewById(R.id.edit_time);
+        spinner = findViewById(R.id.spinner_apartment_id);
+        btnSend=findViewById(R.id.button);
+        intent = getIntent();
+        bundle = intent.getExtras();
+        username = bundle.getString("username");
+        password = bundle.getString("password");
+        Log.d("username",username);
+        Log.d("password",password);
+        list = new ArrayList<>();
+        apartmentId = new ArrayList<>();
+        apartmentRef = FirebaseDatabase.getInstance().getReference().
                 child("list_apartment");
-        edName.setText(edName.getText().toString());
-        edTime.setText(edTime.getText().toString());
-        edIdCard.setText(edIdCard.getText().toString());
-        apartmentRef.addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Apartment a = dataSnapshot.getValue(Apartment.class);
-                            String roomID= Objects.requireNonNull(dataSnapshot.child("room_id")
-                                    .getValue()).toString();
-                            Log.d("apartment", String.valueOf(a));
-                            Log.d("room_id",roomID);
-                            list.add(a);
+        visitorRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
+        apartmentRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Apartment a = dataSnapshot.getValue(Apartment.class);
+                    String roomID = Objects.requireNonNull(dataSnapshot.child("room_id")
+                            .getValue()).toString();
+                    Log.d("apartment", String.valueOf(a));
+                    Log.d("room_id", roomID);
+                    list.add(a);
 
-                            apartmentId.add(roomID);
-                            roomIdAdapter=new ArrayAdapter<>
-                                    (RegisterFormActivity.this,R.layout.style_spinner,apartmentId);
-                            spinner.setAdapter(roomIdAdapter);
-                            roomIdAdapter.notifyDataSetChanged();
+                    apartmentId.add(roomID);
+                    roomIdAdapter = new ArrayAdapter<>
+                            (RegisterFormActivity.this, R.layout.style_spinner, apartmentId);
+                    spinner.setAdapter(roomIdAdapter);
+                    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            roomId= String.valueOf(adapterView.getSelectedItem());
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
 
-                    }
-                });
+                        }
+                    });
+                    roomIdAdapter.notifyDataSetChanged();
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        btnSend.setOnClickListener(view -> {
+            edName.setText(edName.getText().toString());
+            edTime.setText(edTime.getText().toString());
+            edIdCard.setText(edIdCard.getText().toString());
+            name = edName.getText().toString();
+            idCard = edTime.getText().toString();
+            time = edTime.getText().toString();
+            if (name.isEmpty()||idCard.isEmpty()||time.isEmpty())showErrorEmptyToast();
+            else readData(name, idCard, time, roomId);
+        });
+
+    }
+
+    public void readData(String name, String idCard, String time, String roomId) {
+        visitorRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                v = new Visitor();
+                v.setName(name);
+                v.setId_card(idCard);
+                v.setRoom_id(roomId);
+                v.setVisit_time(time);
+                v.setDate(v.getDate());
+                visitorRef.child(name).setValue(v);
+                showAddSuccessfulToast();
+                Intent intent=new Intent(RegisterFormActivity.this,MainActivity.class);
+                bundle.putString("username", username);
+                bundle.putString("password", password);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+    @SuppressLint("SetTextI18n")
+    public void showAddSuccessfulToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_success,
+                findViewById(R.id.toast_success));
+        TextView text = layout.findViewById(R.id.toast_text_success);
+        text.setText("Register successfully");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void showErrorEmptyToast() {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
+        TextView text = layout.findViewById(R.id.toast_text_error);
+        text.setText("You must fill all data");
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 }

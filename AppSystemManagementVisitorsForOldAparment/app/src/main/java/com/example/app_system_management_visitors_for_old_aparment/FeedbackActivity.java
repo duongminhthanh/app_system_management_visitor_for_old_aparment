@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,9 @@ public class FeedbackActivity extends AppCompatActivity {
     DatabaseReference myRef;
     String name, feedback;
     Feedback f;
-
+    Intent intent;
+    Bundle bundle;
+    String username,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,12 @@ public class FeedbackActivity extends AppCompatActivity {
         editName = findViewById(R.id.edit_visitor_name);
         editFeedback = findViewById(R.id.edit_feedback);
         btnSend = findViewById(R.id.btn_send);
+        intent = getIntent();
+        bundle = intent.getExtras();
+        username = bundle.getString("username");
+        password = bundle.getString("password");
+        Log.d("username",username);
+        Log.d("password",password);
         myRef = FirebaseDatabase.getInstance().getReference().child("feedbacks");
         btnSend.setOnClickListener(view -> {
             editName.setText(editName.getText().toString());
@@ -55,6 +64,9 @@ public class FeedbackActivity extends AppCompatActivity {
                 myRef.child(name).setValue(f);
                 showSuccessfulToast();
                 Intent intent = new Intent(FeedbackActivity.this, MainActivity.class);
+                bundle.putString("username", username);
+                bundle.putString("password", password);
+                intent.putExtras(bundle);
                 startActivity(intent);
 
             }
