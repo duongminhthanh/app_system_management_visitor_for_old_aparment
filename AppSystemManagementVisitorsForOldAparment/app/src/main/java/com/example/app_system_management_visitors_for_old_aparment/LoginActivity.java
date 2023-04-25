@@ -55,9 +55,11 @@ public class LoginActivity extends AppCompatActivity {
                 showSuccessfulToast();
                 Intent dashboardAdmin = new Intent(LoginActivity.this, DashboardAdminActivity.class);
                 /*put data at data from db*/
-                dashboardAdmin.putExtra("username", name);
-                dashboardAdmin.putExtra("password", pass);
-                startActivity(dashboardAdmin);
+                Bundle bundle = new Bundle();
+                bundle.putString("username", name);
+                bundle.putString("password", pass);
+                dashboardAdmin.putExtras(bundle);
+                LoginActivity.this.startActivity(dashboardAdmin);
             }//if username and password is not typed
             else if (name.isEmpty() && pass.isEmpty())
                 showErrorEmptyToast();
@@ -95,7 +97,11 @@ public class LoginActivity extends AppCompatActivity {
                         showSuccessfulToast();
                         Intent intent = new Intent(LoginActivity.this
                                 , MainActivity.class);
-                        startActivity(intent);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("username", name);
+                        bundle.putString("password", pass);
+                        intent.putExtras(bundle);
+                        LoginActivity.this.startActivity(intent);
                     }
 
                 }

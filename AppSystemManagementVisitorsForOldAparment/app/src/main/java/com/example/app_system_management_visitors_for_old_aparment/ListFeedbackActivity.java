@@ -34,6 +34,9 @@ public class ListFeedbackActivity extends AppCompatActivity {
     String name,feedback,searchValue;
     EditText edSearch;
     Boolean checkSearch=false;
+    String username,password;
+    Intent intent;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +53,31 @@ public class ListFeedbackActivity extends AppCompatActivity {
         feedbackAdapter = new FeedbackAdapter(this, list);
         recyclerView.setAdapter(feedbackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Intent intent = getIntent();
+        intent = getIntent();
+        bundle = intent.getExtras();
         /*get data form dashboard admin*/
-        String username = intent.getStringExtra("username");
-        Log.d("username",username);
-        String password = intent.getStringExtra("password");
-        Log.d("password",password);
+        if (bundle!=null){
+            username = bundle.getString("username");
+            password = bundle.getString("password");
+            Log.d("username",username);
+            Log.d("password",password);
+        }
+
+
         btnDashboard.setOnClickListener(view -> {
             Intent intentDashboard;
             if (username.equals("admin") && password.equals("admin1234")) {
                 intentDashboard = new Intent(ListFeedbackActivity.this
                         , DashboardAdminActivity.class);
-                startActivity(intentDashboard);
             } else {
                 intentDashboard = new Intent(ListFeedbackActivity.this
                         , DashboardActivity.class);
-                startActivity(intentDashboard);
             }
+            bundle =new Bundle();
+            bundle.putString("username",username);
+            bundle.putString("password",password);
+            intentDashboard.putExtras(bundle);
+            ListFeedbackActivity.this.startActivity(intentDashboard);
         });
         btnSearch.setOnClickListener(view -> {
             edSearch.setText(edSearch.getText().toString());

@@ -2,6 +2,7 @@ package com.example.app_system_management_visitors_for_old_aparment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DashboardAdminActivity extends AppCompatActivity {
 
     ImageView imgVisitor, imgApartment, imgFeedback, imgLogOut, imgAccount;
-
+    Bundle bundle;
+    String username,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,22 +22,29 @@ public class DashboardAdminActivity extends AppCompatActivity {
         imgVisitor = findViewById(R.id.image_visitor);
         imgLogOut = findViewById(R.id.image_logout);
         Intent intent = getIntent();
-        /*get data from LoginActivity*/
-        String username = intent.getStringExtra("username");
-        String password = intent.getStringExtra("password");
+        bundle = intent.getExtras();
+        if (bundle!=null){
+            /*get data from LoginActivity*/
+            username = bundle.getString("username");
+            password = bundle.getString("password");
+            Log.d("username",username);
+            Log.d("password",password);
+        }
+
         imgAccount.setOnClickListener(view -> {
             Intent intentAcc = new Intent(DashboardAdminActivity.this, ManageListAccountActivity.class);
-            intentAcc.putExtra("username", username);
-            intentAcc.putExtra("password", password);
             startActivity(intentAcc);
         });
         imgFeedback.setOnClickListener(view -> {
             Intent intentFeedbacks = new Intent(DashboardAdminActivity.this, ListFeedbackActivity.class);
+            intentFeedbacks.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             /*set data*/
-            intentFeedbacks.putExtra("username", username);
-            intentFeedbacks.putExtra("password", password);
-
-            startActivity(intentFeedbacks);
+            if (bundle!=null){
+                bundle.putString("username", username);
+                bundle.putString("password", password);
+            }
+            intentFeedbacks.putExtras(bundle);
+            DashboardAdminActivity.this.startActivity(intentFeedbacks);
         });
         imgLogOut.setOnClickListener(view -> {
             Intent intentLogin=new Intent(DashboardAdminActivity.this,LoginActivity.class);

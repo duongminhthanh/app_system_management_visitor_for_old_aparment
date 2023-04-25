@@ -13,14 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.1" />
 
 
     <TextView
         android:id="@+id/text_feedback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/feedback"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="48sp"
@@ -46,14 +46,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_visitor_name"
         tools:ignore="VisualLintTextFieldSize,TextContrastCheck,VisualLintBounds" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/button_background"
         android:drawableLeft="@drawable/send"
@@ -69,7 +69,7 @@
         tools:ignore="RtlHardcoded,VisualLintOverlap,TextContrastCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/edit_visitor_name"
         android:background="@drawable/edit_text_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -80,8 +80,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/name_visitor"
-        android:textColor="@color/black"
+        android:hint="@string/name_visitor"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"

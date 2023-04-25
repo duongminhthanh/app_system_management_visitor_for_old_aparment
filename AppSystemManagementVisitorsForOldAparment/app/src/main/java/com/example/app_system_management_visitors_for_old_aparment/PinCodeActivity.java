@@ -3,6 +3,7 @@ package com.example.app_system_management_visitors_for_old_aparment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,25 +28,33 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
 
     EditText ed1, ed2, ed3, ed4;
     Button btnEnter;
-    String pin_code = "",code;
+    String pin_code = "", code;
     DatabaseReference myRef;
     ArrayList<Account> list;
-    Boolean checkPinCode=false;
+    Boolean checkPinCode = false;
+    String username = "", password = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_code);
-        list=new ArrayList<>();
+        list = new ArrayList<>();
         initView();
         ed1.setOnClickListener(this);
         ed2.setOnClickListener(this);
         ed3.setOnClickListener(this);
         ed4.setOnClickListener(this);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        username = bundle.getString("username");
+        password = bundle.getString("password");
+        Log.d("username",username);
+        Log.d("password",password);
         btnEnter.setOnClickListener(view -> {
 //            Log.d("pin_code value is: ",pin_code);
             pin_code = ed1.getText().toString().trim() + ed2.getText().toString().trim()
                     + ed3.getText().toString().trim() + ed4.getText().toString().trim();
-            if (pin_code.isEmpty())showErrorEmptyToast();
+            if (pin_code.isEmpty()) showErrorEmptyToast();
             else {
                 readDataPinCode(pin_code);
             }
@@ -81,23 +90,27 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    int i=list.size();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    int i = list.size();
                     code = Objects.requireNonNull(dataSnapshot.
                             child("pin_code").getValue()).toString();
-                    Account a=new Account(code);
+                    Account a = new Account(code);
                     list.add(a);
                     if (list.get(i).getPin_code().equals(pin_code)) {
-                        code=list.get(i).getPin_code();
+                        code = list.get(i).getPin_code();
                         //check pin code is matched
-                        checkPinCode=pin_code.equals(code);
+                        checkPinCode = pin_code.equals(code);
                         showSuccessfulToast();
                         Intent intent = new Intent(PinCodeActivity.this
                                 , DashboardActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("username", username);
+                        bundle.putString("password", password);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                 }
-                if (!checkPinCode)showErrorIncorrectToast();
+                if (!checkPinCode) showErrorIncorrectToast();
             }
 
             @Override
@@ -106,11 +119,12 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
+
     @SuppressLint("SetTextI18n")
     public void showSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_success, findViewById(R.id.toast_success));
-        TextView text=layout.findViewById(R.id.toast_text_success);
+        TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Correct pin code");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -124,7 +138,7 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
     public void showErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
-        TextView text=layout.findViewById(R.id.toast_text_error);
+        TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill pin code");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
@@ -137,7 +151,7 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
     public void showErrorIncorrectToast() {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
-        TextView text=layout.findViewById(R.id.toast_text_error);
+        TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Incorrect pin code");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);

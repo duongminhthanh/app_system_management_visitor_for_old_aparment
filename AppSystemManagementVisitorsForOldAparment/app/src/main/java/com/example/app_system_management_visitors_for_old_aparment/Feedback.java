@@ -21,6 +21,14 @@ public class Feedback {
         return feedback;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
     @Override
     public String toString() {
         return "Feedback{" +

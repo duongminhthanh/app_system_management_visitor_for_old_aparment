@@ -1,8 +1,5 @@
 package com.example.app_system_management_visitors_for_old_aparment;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +27,7 @@ public class AddNewVisitorActivity extends AppCompatActivity {
     String name, idCard, roomId, time;
     Visitor v;
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,7 @@ public class AddNewVisitorActivity extends AppCompatActivity {
                 v.setId_card(idCard);
                 v.setRoom_id(roomId);
                 v.setVisit_time(time);
+                v.setDate(v.getDate());
                 myRef.child(name).setValue(v);
                 showAddSuccessfulToast();
                 Intent intent = new Intent(AddNewVisitorActivity.this

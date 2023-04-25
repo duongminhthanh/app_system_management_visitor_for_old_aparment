@@ -2,10 +2,27 @@ package com.example.app_system_management_visitors_for_old_aparment;
 
 import androidx.annotation.NonNull;
 
-public class Visitor {
-    String name, room_id, visit_time, id_card;
-    /*getter*/
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
+public class Visitor {
+    String name, room_id, visit_time, id_card,date;
+
+    public String getDate() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        Date d=  Calendar.getInstance().getTime();
+        //format date to date string
+        date=formatter.format(d);
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    /*getter*/
     public Visitor() {
     }
 
@@ -52,10 +69,11 @@ public class Visitor {
     @Override
     public String toString() {
         return "Visitor{" +
-                "id_card='" + id_card + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", room_id='" + room_id + '\'' +
                 ", visit_time='" + visit_time + '\'' +
+                ", id_card='" + id_card + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
