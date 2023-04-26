@@ -116,4 +116,6 @@
     <string name="home">Home</string>
     <string name="name_visitor">Name</string>
     <string name="date">date:</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
 </resources>

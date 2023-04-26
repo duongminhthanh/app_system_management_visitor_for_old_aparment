@@ -34,8 +34,8 @@ public class ListVisitorActivity extends AppCompatActivity {
     VisitorAdapter visitorAdapter;
     ArrayList<Visitor> list, visitors;
     Button btnDashboard, btnSearch, btnRefresh;
-    EditText edSearch;
-    String searchValue, name, roomId, visitTime, idCard;
+    EditText edFrom,edTo;
+    String from,to, name, roomId, visitTime, idCard,date;
     Boolean checkSearch = false;
 
     @Override
@@ -48,7 +48,8 @@ public class ListVisitorActivity extends AppCompatActivity {
         btnRefresh = findViewById(R.id.button_refresh);
         myRef= FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
-        edSearch = findViewById(R.id.edit_search);
+        edFrom = findViewById(R.id.edit_from);
+        edTo =findViewById(R.id.edit_to);
         list=new ArrayList<>();
         visitorAdapter=new VisitorAdapter(this,list);
         recyclerView.setAdapter(visitorAdapter);
@@ -87,14 +88,17 @@ public class ListVisitorActivity extends AppCompatActivity {
             startActivity(intentDashboard);
         });
         btnSearch.setOnClickListener(view -> {
-            edSearch.setText(edSearch.getText().toString());
-            searchValue = edSearch.getText().toString();
-            if (searchValue.isEmpty()) showSearchErrorEmptyToast();
-            searchData(searchValue);
+            edFrom.setText(edFrom.getText().toString());
+            edTo.setText(edTo.getText().toString());
+            from = edFrom.getText().toString();
+            to = edTo.getText().toString();
+            if (from.isEmpty()||to.isEmpty()) showSearchErrorEmptyToast();
+            searchData(from,to);
         });
         btnRefresh.setOnClickListener(view -> {
             visitors.clear();
-            edSearch.setText("");
+            edFrom.setText("");
+            edTo.setText("");
             refresh();
         });
     }
@@ -120,25 +124,23 @@ public class ListVisitorActivity extends AppCompatActivity {
         });
     }
 
-    public void searchData(String searchValue) {
+    public void searchData(String from,String to) {
         visitors = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             name = list.get(i).getName();
             roomId = list.get(i).getRoom_id();
             visitTime = list.get(i).getVisit_time();
             idCard = list.get(i).getId_card();
-            if (searchValue.contains(name) || searchValue.contains(roomId)
-                    || searchValue.contains(visitTime) || searchValue.contains(idCard)) {
-                Visitor v = new Visitor(name, roomId, visitTime, idCard);
+            date =list.get(i).getDateValue();
+            if (date.contains(from)||date.contains(to)) {
+                Visitor v = new Visitor(name, roomId, visitTime, idCard,date);
                 visitors.add(v);
-                checkSearch = searchValue.contains(name) || searchValue.contains(roomId)
-                        || searchValue.contains(visitTime) || searchValue.contains(idCard);
-                showSearchSuccessfulToast();
-                visitorAdapter.setVisitors(visitors);
-                break;
+                checkSearch = date.contains(from)||date.contains(to);
             }
         }
+        visitorAdapter.setVisitors(visitors);
         if (!checkSearch) showSearchFailToast();
+        else  showSearchSuccessfulToast();
 
     }
 
