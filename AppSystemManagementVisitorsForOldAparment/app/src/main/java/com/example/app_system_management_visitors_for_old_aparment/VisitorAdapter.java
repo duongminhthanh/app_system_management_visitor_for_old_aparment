@@ -44,7 +44,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
         holder.visit_time.setText(v.getVisit_time());
-        holder.date.setText(v.getDate());
+        holder.date.setText(v.getDateValue());
     }
 
 

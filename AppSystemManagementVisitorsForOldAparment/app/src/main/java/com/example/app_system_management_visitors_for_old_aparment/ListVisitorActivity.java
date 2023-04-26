@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class ListVisitorActivity extends AppCompatActivity {
@@ -52,16 +53,27 @@ public class ListVisitorActivity extends AppCompatActivity {
         visitorAdapter=new VisitorAdapter(this,list);
         recyclerView.setAdapter(visitorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren()){
                     Visitor v=dataSnapshot.getValue(Visitor.class);
+                    String name= Objects.requireNonNull(dataSnapshot.child("name")
+                            .getValue()).toString();
+                    String roomId= Objects.requireNonNull(dataSnapshot.child("room_id")
+                            .getValue()).toString();
+                    String visitTime= Objects.requireNonNull(dataSnapshot.child("visit_time")
+                            .getValue()).toString();
+                    String idCard= Objects.requireNonNull(dataSnapshot.child("id_card")
+                            .getValue()).toString();
+                    String date= Objects.requireNonNull(dataSnapshot.child("date")
+                            .getValue()).toString();
                     Log.d("visitor",String.valueOf(v));
-                    list.add(v);
+                    list.add(new Visitor(name,roomId,visitTime,idCard,date));
 
                 }
+                visitorAdapter.setVisitors(list);
                 visitorAdapter.notifyDataSetChanged();
             }
 
@@ -88,7 +100,7 @@ public class ListVisitorActivity extends AppCompatActivity {
     }
     public void refresh() {
         list.clear();
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
