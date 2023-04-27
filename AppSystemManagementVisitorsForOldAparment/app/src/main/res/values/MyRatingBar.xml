@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:minHeight">100dp</item>
+        <item name="android:maxHeight">100dp</item>
+        <item name="colorControlNormal">@color/gray_400</item>
+
+    </style>
+</resources>

@@ -19,17 +19,17 @@
       app:drawableStartCompat="@drawable/form"
       app:layout_constraintBottom_toTopOf="@+id/guideline3"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.519"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.813" />
+      app:layout_constraintVertical_bias="0.584"
+      tools:ignore="TextContrastCheck" />
 
   <androidx.constraintlayout.widget.Guideline
       android:id="@+id/guideline3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      app:layout_constraintGuide_percent="0.3" />
+      app:layout_constraintGuide_percent="0.2" />
 
   <EditText
       android:id="@+id/edit_name_visitor"
@@ -44,9 +44,10 @@
       android:hint="@string/edit_visitor_name"
       android:inputType="textPersonName"
       android:minHeight="48dp"
-      android:textSize="40sp"
       android:textColorHint="#212121"
+      android:textSize="40sp"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="@+id/guideline3"
       tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
@@ -82,37 +83,37 @@
       android:minHeight="48dp"
       android:textSize="40sp"
       android:textColorHint="#212121"
-      app:layout_constraintEnd_toEndOf="@+id/edit_id_card"
-      app:layout_constraintStart_toStartOf="@+id/edit_id_card"
-      app:layout_constraintTop_toBottomOf="@+id/edit_id_card"
+      app:layout_constraintEnd_toEndOf="@+id/spinner_apartment_id"
+      app:layout_constraintStart_toStartOf="@+id/spinner_apartment_id"
+      app:layout_constraintTop_toBottomOf="@+id/spinner_apartment_id"
       tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
   <Spinner
       android:id="@+id/spinner_apartment_id"
-      android:background="@drawable/style_spinner"
       android:layout_width="0dp"
       android:layout_height="60dp"
-      android:layout_marginTop="32dp"
-      android:text="@string/apartment_id"
-      android:spinnerMode="dropdown"
+      android:layout_marginTop="36dp"
+      android:background="@drawable/style_spinner"
       android:contentDescription="@string/drop_down"
-      app:layout_constraintEnd_toEndOf="@+id/edit_time"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="@+id/edit_time"
-      app:layout_constraintTop_toBottomOf="@+id/edit_time" />
+      android:spinnerMode="dropdown"
+      android:text="@string/apartment_id"
+      app:layout_constraintEnd_toEndOf="@+id/edit_id_card"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="@+id/edit_id_card"
+      app:layout_constraintTop_toBottomOf="@+id/edit_id_card" />
 
   <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="32dp"
+      android:layout_marginTop="60dp"
       android:background="@drawable/button_background"
       android:hint="@string/register"
       android:text="@string/register"
       android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/spinner_apartment_id"
+      app:layout_constraintTop_toBottomOf="@+id/edit_time"
       tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

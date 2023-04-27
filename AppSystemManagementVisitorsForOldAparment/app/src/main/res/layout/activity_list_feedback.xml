@@ -10,6 +10,7 @@
     android:scrollbarThumbVertical="@drawable/scroll_thumb"
     android:scrollbarTrackVertical="@drawable/scroll_track"
     android:scrollbars="vertical"
+    android:orientation="horizontal"
     tools:context=".ListVisitorActivity">
     <LinearLayout
         android:orientation="vertical"

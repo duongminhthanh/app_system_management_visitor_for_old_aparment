@@ -92,6 +92,7 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/call_phone"
                 android:background="@drawable/button_background"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -101,6 +102,7 @@
                 android:drawableStart="@drawable/phone_call">
             </androidx.appcompat.widget.AppCompatButton>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/call_zalo"
                 android:background="@drawable/button_background"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

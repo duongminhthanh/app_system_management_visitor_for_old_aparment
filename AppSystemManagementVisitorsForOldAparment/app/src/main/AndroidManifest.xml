@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -40,58 +40,62 @@
             android:exported="false" />
         <activity
             android:name=".ListApartmentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ListVisitorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DashboardAdminActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PinCodeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditVisitorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditApartmentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddNewVisitorActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AddNewApartmentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FeedbackActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RatingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterFormActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.CALL"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+    <activity
+        android:name=".ListVisitorActivity"
+        android:exported="false" />
+    <activity
+        android:name=".DashboardAdminActivity"
+        android:exported="false" />
+    <activity
+        android:name=".DashboardActivity"
+        android:exported="false" />
+    <activity
+        android:name=".PinCodeActivity"
+        android:exported="false" />
+    <activity
+        android:name=".EditVisitorActivity"
+        android:exported="false" />
+    <activity
+        android:name=".EditApartmentActivity"
+        android:exported="false" />
+    <activity
+        android:name=".AddNewVisitorActivity"
+        android:exported="false" />
+    <activity
+        android:name=".AddNewApartmentActivity"
+        android:exported="false" />
+    <activity
+        android:name=".FeedbackActivity"
+        android:exported="false" />
+    <activity
+        android:name=".RatingActivity"
+        android:exported="false" />
+    <activity
+        android:name=".RegisterFormActivity"
+        android:exported="false" />
+    <activity
+        android:name=".LoginActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-    </application>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity
+        android:name=".MainActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-</manifest>
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
+</application>
+
+    </manifest>

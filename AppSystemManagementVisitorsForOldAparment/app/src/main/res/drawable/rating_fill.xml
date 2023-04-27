@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/sad" tools:ignore="StateListReachable" />
+    <item android:state_focused="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/sad"/>
+    <item android:state_focused="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/happiness"/>
+    <item android:state_focused="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/happiness"/>
+    <item android:state_focused="true"
+        android:state_window_focused="true"
+        android:drawable="@drawable/rating_face"/>
+</selector>
