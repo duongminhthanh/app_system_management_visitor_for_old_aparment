@@ -2,10 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg"
+    android:background="@drawable/wave"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DashboardAdminActivity">
+
     <TextView
         android:id="@+id/text_dashboard"
         android:layout_width="wrap_content"
@@ -18,7 +19,8 @@
         android:text="@string/dashboard"
         android:textColor="@color/white"
         android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <GridLayout
         android:layout_width="match_parent"

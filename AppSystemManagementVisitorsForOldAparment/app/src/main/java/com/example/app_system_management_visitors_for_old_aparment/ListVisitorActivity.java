@@ -24,7 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -34,44 +38,46 @@ public class ListVisitorActivity extends AppCompatActivity {
     VisitorAdapter visitorAdapter;
     ArrayList<Visitor> list, visitors;
     Button btnDashboard, btnSearch, btnRefresh;
-    EditText edFrom,edTo;
-    String from,to, name, roomId, visitTime, idCard,date;
-    Boolean checkSearch = false;
+    EditText edFrom, edTo;
+    String from, to, name, roomId, visitTime, idCard, date;
+    Date d1=null,d2=null;
+    Timestamp t1,t2;
 
+    @SuppressLint("SimpleDateFormat")
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_visitor);
-        recyclerView=findViewById(R.id.list_visitor);
-        btnDashboard=findViewById(R.id.button_dashboard);
+        recyclerView = findViewById(R.id.list_visitor);
+        btnDashboard = findViewById(R.id.button_dashboard);
         btnSearch = findViewById(R.id.button_search);
         btnRefresh = findViewById(R.id.button_refresh);
-        myRef= FirebaseDatabase.getInstance().getReference().child("list_visitor");
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
         edFrom = findViewById(R.id.edit_from);
-        edTo =findViewById(R.id.edit_to);
-        list=new ArrayList<>();
-        visitorAdapter=new VisitorAdapter(this,list);
+        edTo = findViewById(R.id.edit_to);
+        list = new ArrayList<>();
+        visitorAdapter = new VisitorAdapter(this, list);
         recyclerView.setAdapter(visitorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    Visitor v=dataSnapshot.getValue(Visitor.class);
-                    String name= Objects.requireNonNull(dataSnapshot.child("name")
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Visitor v = dataSnapshot.getValue(Visitor.class);
+                    name = Objects.requireNonNull(dataSnapshot.child("name")
                             .getValue()).toString();
-                    String roomId= Objects.requireNonNull(dataSnapshot.child("room_id")
+                    roomId = Objects.requireNonNull(dataSnapshot.child("room_id")
                             .getValue()).toString();
-                    String visitTime= Objects.requireNonNull(dataSnapshot.child("visit_time")
+                    visitTime = Objects.requireNonNull(dataSnapshot.child("visit_time")
                             .getValue()).toString();
-                    String idCard= Objects.requireNonNull(dataSnapshot.child("id_card")
+                    idCard = Objects.requireNonNull(dataSnapshot.child("id_card")
                             .getValue()).toString();
-                    String date= Objects.requireNonNull(dataSnapshot.child("date")
+                    date = Objects.requireNonNull(dataSnapshot.child("date")
                             .getValue()).toString();
-                    Log.d("visitor",String.valueOf(v));
-                    list.add(new Visitor(name,roomId,visitTime,idCard,date));
+                    Log.d("visitor", String.valueOf(v));
+                    list.add(new Visitor(name, roomId, visitTime, idCard, date));
 
                 }
                 visitorAdapter.setVisitors(list);
@@ -84,7 +90,7 @@ public class ListVisitorActivity extends AppCompatActivity {
             }
         });
         btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard=new Intent(this,DashboardActivity.class);
+            Intent intentDashboard = new Intent(this, DashboardActivity.class);
             startActivity(intentDashboard);
         });
         btnSearch.setOnClickListener(view -> {
@@ -92,8 +98,22 @@ public class ListVisitorActivity extends AppCompatActivity {
             edTo.setText(edTo.getText().toString());
             from = edFrom.getText().toString();
             to = edTo.getText().toString();
-            if (from.isEmpty()||to.isEmpty()) showSearchErrorEmptyToast();
-            searchData(from,to);
+            if (from.isEmpty() || to.isEmpty()) showSearchErrorEmptyToast();
+            else{
+                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    d1= dateFormat.parse(from);
+                    d2= dateFormat.parse(to);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                t1=new Timestamp(d1.getTime());
+                t2=new Timestamp(d2.getTime());
+                Log.d("t1",t1.toString());
+                Log.d("t2",t2.toString());
+                searchData(t1.toString(), t2.toString());
+
+            }
         });
         btnRefresh.setOnClickListener(view -> {
             visitors.clear();
@@ -102,6 +122,7 @@ public class ListVisitorActivity extends AppCompatActivity {
             refresh();
         });
     }
+
     public void refresh() {
         list.clear();
         myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
@@ -124,23 +145,40 @@ public class ListVisitorActivity extends AppCompatActivity {
         });
     }
 
-    public void searchData(String from,String to) {
+    @SuppressLint("NotifyDataSetChanged")
+    public void searchData(String from, String to) {
         visitors = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            name = list.get(i).getName();
-            roomId = list.get(i).getRoom_id();
-            visitTime = list.get(i).getVisit_time();
-            idCard = list.get(i).getId_card();
-            date =list.get(i).getDateValue();
-            if (date.contains(from)||date.contains(to)) {
-                Visitor v = new Visitor(name, roomId, visitTime, idCard,date);
-                visitors.add(v);
-                checkSearch = date.contains(from)||date.contains(to);
-            }
-        }
-        visitorAdapter.setVisitors(visitors);
-        if (!checkSearch) showSearchFailToast();
-        else  showSearchSuccessfulToast();
+        myRef.orderByChild("date").startAt(from).endAt(to)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Visitor v = dataSnapshot.getValue(Visitor.class);
+                            name = Objects.requireNonNull(dataSnapshot.child("name")
+                                    .getValue()).toString();
+                            roomId = Objects.requireNonNull(dataSnapshot.child("room_id")
+                                    .getValue()).toString();
+                            visitTime = Objects.requireNonNull(dataSnapshot.child("visit_time")
+                                    .getValue()).toString();
+                            idCard = Objects.requireNonNull(dataSnapshot.child("id_card")
+                                    .getValue()).toString();
+                            date = Objects.requireNonNull(dataSnapshot.child("date")
+                                    .getValue()).toString();
+                            Log.d("visitor", String.valueOf(v));
+                            visitors.add(new Visitor(name, roomId, visitTime, idCard, date));
+                        }
+                        visitorAdapter.setVisitors(visitors);
+                        visitorAdapter.notifyDataSetChanged();
+                        showSearchSuccessfulToast();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
     }
 
@@ -151,20 +189,6 @@ public class ListVisitorActivity extends AppCompatActivity {
                 findViewById(R.id.toast_success));
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Search data successfully");
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setView(layout);
-        toast.show();
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void showSearchFailToast() {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.custom_toast_error,
-                findViewById(R.id.toast_success));
-        TextView text = layout.findViewById(R.id.toast_text_error);
-        text.setText("Search data fail");
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
