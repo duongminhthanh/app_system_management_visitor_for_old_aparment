@@ -7,55 +7,59 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class DashboardActivity extends AppCompatActivity  {
+public class DashboardActivity extends AppCompatActivity {
 
-    ImageView imgVisitor,imgApartment,imgFeedbacks,imgLogout,imgHome;
-    String username,password;
+    ImageView imgVisitor, imgApartment, imgFeedbacks, imgLogout, imgHome;
+    String username, password;
     Intent intent;
     Bundle bundle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         intent = getIntent();
         bundle = intent.getExtras();
-        if (bundle!=null){
-            username=bundle.getString("username");
-            password=bundle.getString("password");
-            Log.d("username",username);
-            Log.d("password",password);
+        if (bundle != null) {
+            username = bundle.getString("username");
+            password = bundle.getString("password");
+            Log.d("username", username);
+            Log.d("password", password);
         }
 
         createView();
     }
-    public void createView(){
-        imgApartment=findViewById(R.id.image_apartment);
+
+    public void createView() {
+        imgApartment = findViewById(R.id.image_apartment);
         imgApartment.setOnClickListener(view -> {
-            Intent listApartment=new Intent(this,ListApartmentActivity.class);
+            Intent listApartment = new Intent(this, ListApartmentActivity.class);
             startActivity(listApartment);
         });
-        imgFeedbacks=findViewById(R.id.image_feedbacks);
+        imgFeedbacks = findViewById(R.id.image_feedbacks);
         imgFeedbacks.setOnClickListener(view -> {
-            Intent listFeedbacks=new Intent(this,ListFeedbackActivity.class);
-            listFeedbacks.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            bundle.putString("username",username);
-            bundle.putString("password",password);
+            Intent listFeedbacks = new Intent(this, ListFeedbackActivity.class);
+            bundle.putString("username", username);
+            bundle.putString("password", password);
             listFeedbacks.putExtras(bundle);
-            DashboardActivity.this.startActivity(listFeedbacks);
+            startActivity(listFeedbacks);
         });
-        imgLogout=findViewById(R.id.image_logout);
+        imgLogout = findViewById(R.id.image_logout);
         imgLogout.setOnClickListener(view -> {
-            Intent login=new Intent(this,LoginActivity.class);
+            Intent login = new Intent(this, LoginActivity.class);
             startActivity(login);
         });
-        imgVisitor=findViewById(R.id.image_visitor);
+        imgVisitor = findViewById(R.id.image_visitor);
         imgVisitor.setOnClickListener(view -> {
-            Intent listVisitor=new Intent(this,ListVisitorActivity.class);
+            Intent listVisitor = new Intent(this, ListVisitorActivity.class);
             startActivity(listVisitor);
         });
-        imgHome=findViewById(R.id.image_home);
+        imgHome = findViewById(R.id.image_home);
         imgHome.setOnClickListener(view -> {
-            Intent home=new Intent(this,MainActivity.class);
+            Intent home = new Intent(this, MainActivity.class);
+            bundle.putString("username", username);
+            bundle.putString("password", password);
+            home.putExtras(bundle);
             startActivity(home);
         });
     }

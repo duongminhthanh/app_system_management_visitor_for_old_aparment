@@ -24,7 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 public class RegisterFormActivity extends AppCompatActivity {
@@ -40,7 +44,8 @@ public class RegisterFormActivity extends AppCompatActivity {
     Intent intent;
     Bundle bundle;
     String username,password;
-
+    Date d=null;
+    Timestamp t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +106,7 @@ public class RegisterFormActivity extends AppCompatActivity {
             edTime.setText(edTime.getText().toString());
             edIdCard.setText(edIdCard.getText().toString());
             name = edName.getText().toString();
-            idCard = edTime.getText().toString();
+            idCard = edIdCard.getText().toString();
             time = edTime.getText().toString();
             if (name.isEmpty()||idCard.isEmpty()||time.isEmpty())showErrorEmptyToast();
             else readData(name, idCard, time, roomId);
@@ -118,7 +123,14 @@ public class RegisterFormActivity extends AppCompatActivity {
                 v.setId_card(idCard);
                 v.setRoom_id(roomId);
                 v.setVisit_time(time);
-                v.setDate(v.getDate());
+                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                try {
+                    d=format.parse(v.getDate());
+                    t=new Timestamp(d.getTime());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                v.setDate(t.toString());
                 visitorRef.child(name).setValue(v);
                 showAddSuccessfulToast();
                 Intent intent=new Intent(RegisterFormActivity.this,MainActivity.class);

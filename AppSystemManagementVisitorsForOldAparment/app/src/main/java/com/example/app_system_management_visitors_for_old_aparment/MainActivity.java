@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         String password = bundle.getString("password");
         Log.d("username",username);
         Log.d("password",password);
+
         btnRegisterVisitingForm.setOnClickListener(view -> {
             intent = new Intent(this, RegisterFormActivity.class);
             bundle.putString("username", username);
@@ -58,5 +59,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtras(bundle);
             startActivity(intent);
         });
+
     }
+
 }
