@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/wave"
     android:orientation="horizontal"
     tools:context=".FeedbackActivity">
 
@@ -26,7 +26,8 @@
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/edit_feedback"
@@ -41,8 +42,9 @@
         android:gravity="start|top"
         android:hint="@string/write_your_feedback_here"
         android:inputType="textMultiLine"
-        android:textColorHint="@color/black"
+        android:textColorHint="#01579B"
         android:textSize="30sp"
+        android:textColor="#01579B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +83,8 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:hint="@string/name_visitor"
-        android:textColorHint="@color/black"
+        android:textColorHint="#01579B"
+        android:textColor="#01579B"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"

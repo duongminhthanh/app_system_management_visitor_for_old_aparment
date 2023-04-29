@@ -19,7 +19,8 @@
         android:text="@string/dashboard"
         android:textColor="@color/white"
         android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <GridLayout
         android:layout_width="match_parent"
@@ -65,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/visitor"
-                    android:textColor="@color/black"
+                    android:textColor="#01579B"
                     android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -102,7 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/apartment"
-                    android:textColor="@color/black"
+                    android:textColor="#01579B"
                     android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -139,7 +140,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/feedbacks"
-                    android:textColor="@color/black"
+                    android:textColor="#01579B"
                     android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -176,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/log_out"
-                    android:textColor="@color/black"
+                    android:textColor="#01579B"
                     android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -213,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home"
-                    android:textColor="@color/black"
+                    android:textColor="#01579B"
                     android:textSize="35sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

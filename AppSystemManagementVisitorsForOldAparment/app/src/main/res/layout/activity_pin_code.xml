@@ -29,11 +29,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enter_your_pin_code_here"
-                android:gravity="center"
                 android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/enter_your_pin_code_here"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp"/>
+                android:textSize="30sp"
+                tools:ignore="TextContrastCheck" />
 
         </LinearLayout>
         <LinearLayout
@@ -56,7 +57,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/white"
+                android:textColor="#01579B"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck,TextFields" />
@@ -71,7 +72,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/white"
+                android:textColor="#01579B"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
@@ -86,7 +87,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/white"
+                android:textColor="#01579B"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
@@ -101,7 +102,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textColor="@color/white"
+                android:textColor="#01579B"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck,TextFields" />
