@@ -63,12 +63,13 @@ public class Visitor {
         this.id_card = id_card;
     }
     public String getDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         Date d=  Calendar.getInstance().getTime();
         //format date to date string
         date=formatter.format(d);
         return date;
     }
+
     public String getDateValue(){
         return date;
     }

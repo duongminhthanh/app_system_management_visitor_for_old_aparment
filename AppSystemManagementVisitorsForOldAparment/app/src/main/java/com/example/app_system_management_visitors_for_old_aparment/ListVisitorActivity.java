@@ -100,7 +100,7 @@ public class ListVisitorActivity extends AppCompatActivity {
             to = edTo.getText().toString();
             if (from.isEmpty() || to.isEmpty()) showSearchErrorEmptyToast();
             else{
-                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
                     d1= dateFormat.parse(from);
                     d2= dateFormat.parse(to);

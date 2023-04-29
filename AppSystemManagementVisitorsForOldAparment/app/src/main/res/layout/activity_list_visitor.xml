@@ -47,28 +47,28 @@
                 android:layout_width="300dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="29dp"
                 android:layout_marginBottom="20dp"
                 android:autofillHints=""
                 android:background="@drawable/edit_text_background"
                 android:hint="@string/from"
                 android:minHeight="48dp"
                 android:textColorHint="@color/black"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
             <EditText
                 android:id="@+id/edit_to"
                 android:layout_width="300dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="29dp"
                 android:layout_marginBottom="20dp"
                 android:autofillHints=""
                 android:background="@drawable/edit_text_background"
                 android:hint="@string/to"
                 android:minHeight="48dp"
                 android:textColorHint="@color/black"
-                android:textSize="40sp"
+                android:textSize="30sp"
                 tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
 
             <androidx.appcompat.widget.AppCompatButton
