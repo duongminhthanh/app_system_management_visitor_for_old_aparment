@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-02T02:38:01.176Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="OxenopR6yki3FXV6krXe" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-02T02:50:37.847Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="sOsml5C_reRnFiMuzBrH" version="21.2.3" type="github">
   <diagram name="Page-1" id="Dg8eEz2HgzWtZS1r751G">
     <mxGraphModel dx="1050" dy="549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -30,6 +30,12 @@
         </mxCell>
         <mxCell id="fbs9RgWbE8Qr5iZF0D_h-3" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;App system&lt;/font&gt;" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
           <mxGeometry x="250" y="190" width="140" height="76" as="geometry" />
+        </mxCell>
+        <mxCell id="fbs9RgWbE8Qr5iZF0D_h-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.782;entryY=0.954;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="fbs9RgWbE8Qr5iZF0D_h-10" target="fbs9RgWbE8Qr5iZF0D_h-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fbs9RgWbE8Qr5iZF0D_h-10" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="490" y="170" width="30" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
