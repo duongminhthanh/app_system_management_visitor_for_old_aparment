@@ -15,74 +15,65 @@
         android:theme="@style/Theme.App_System_Management_Visitors_For_Old_Aparment"
         tools:targetApi="31">
         <activity
-            android:name=".DeleteAccountActivity"
+            android:name=".crud.DeleteAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".EditAccountActivity"
+            android:name=".crud.EditAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewAccountActivity"
+            android:name=".crud.AddNewAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".DeleteVisitorActivity"
+            android:name=".crud.DeleteApartmentActivity"
             android:exported="false" />
         <activity
-            android:name=".DeleteApartmentActivity"
+            android:name=".list.ListFeedbackActivity"
             android:exported="false" />
         <activity
-            android:name=".ListFeedbackActivity"
+            android:name=".list.ManageListApartmentActivity"
             android:exported="false" />
         <activity
-            android:name=".ManageListApartmentActivity"
+            android:name=".list.ManageListVisitorActivity"
             android:exported="false" />
         <activity
-            android:name=".ManageListVisitorActivity"
+            android:name=".list.ManageListAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ManageListAccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ListApartmentActivity"
+            android:name=".list.ListApartmentActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ListVisitorActivity"
+            android:name=".list.ListVisitorActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardAdminActivity"
+            android:name=".dashboard.DashboardAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".dashboard.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".PinCodeActivity"
+            android:name=".authentication.PinCodeActivity"
             android:exported="false" />
         <activity
-            android:name=".EditVisitorActivity"
+            android:name=".crud.EditApartmentActivity"
             android:exported="false" />
         <activity
-            android:name=".EditApartmentActivity"
+            android:name=".crud.AddNewApartmentActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewVisitorActivity"
+            android:name=".main_activity.FeedbackActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewApartmentActivity"
+            android:name=".main_activity.RatingActivity"
             android:exported="false" />
         <activity
-            android:name=".FeedbackActivity"
+            android:name=".main_activity.RegisterFormActivity"
             android:exported="false" />
         <activity
-            android:name=".RatingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterFormActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name=".authentication.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -91,7 +82,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main_activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:orientation="horizontal"
-    tools:context=".RatingActivity">
+    tools:context=".main_activity.RatingActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -56,11 +56,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
         android:background="@drawable/button_background"
-        android:drawableLeft="@drawable/submit"
         android:text="@string/submit"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -69,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rating_start"
         app:layout_constraintVertical_bias="0.176"
-        tools:ignore="RtlHardcoded,TextContrastCheck" />
+        tools:ignore="RtlHardcoded,TextContrastCheck,TextSizeCheck" />
 
     <View
         android:id="@+id/view2"

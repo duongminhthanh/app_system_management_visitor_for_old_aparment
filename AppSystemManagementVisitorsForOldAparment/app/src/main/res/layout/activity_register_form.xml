@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/wave"
     android:orientation="horizontal"
-    tools:context=".RegisterFormActivity">
+    tools:context=".main_activity.RegisterFormActivity">
 
   <TextView
       android:id="@+id/register_form_title"
@@ -108,13 +108,13 @@
 
   <androidx.appcompat.widget.AppCompatButton
       android:id="@+id/button"
-      android:layout_width="wrap_content"
+      android:layout_width="150dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="60dp"
       android:background="@drawable/button_background"
       android:hint="@string/register"
       android:text="@string/register"
-      android:textSize="20sp"
+      android:textSize="30sp"
       android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"

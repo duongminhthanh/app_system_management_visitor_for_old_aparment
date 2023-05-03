@@ -104,17 +104,7 @@
                 android:textSize="20sp"
                 tools:ignore="TextContrastCheck"></androidx.appcompat.widget.AppCompatButton>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/call_zalo"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/button_background"
-                android:drawableStart="@drawable/zalo_call"
-                android:text="@string/call_zalo"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                tools:ignore="TextContrastCheck"></androidx.appcompat.widget.AppCompatButton>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -122,41 +122,5 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/button_background"
-                android:drawableStart="@drawable/edit_1"
-                android:text="@string/update"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck">
-
-            </androidx.appcompat.widget.AppCompatButton>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/button_background"
-                android:drawableStart="@drawable/delete"
-                android:text="@string/delete"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck">
-
-            </androidx.appcompat.widget.AppCompatButton>
-        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

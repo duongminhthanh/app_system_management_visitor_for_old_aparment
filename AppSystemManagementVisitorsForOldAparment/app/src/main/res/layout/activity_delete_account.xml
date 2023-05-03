@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/wave"
     android:orientation="horizontal"
-    tools:context=".DeleteAccountActivity">
+    tools:context=".crud.DeleteAccountActivity">
 
     <TextView
         android:id="@+id/text_title_form"
