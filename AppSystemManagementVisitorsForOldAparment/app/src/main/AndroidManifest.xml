@@ -81,6 +81,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.zing.zalo.zalosdk.appID"
+            android:value="@string/appID" />
         <activity
             android:name=".main_activity.MainActivity"
             android:exported="true">
