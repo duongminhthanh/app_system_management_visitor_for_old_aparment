@@ -1,3 +1,4 @@
 <resources>
-    <dimen name="activity_horizontal_margin">48dp</dimen>
+    <dimen name="activity_horizontal_margin">100dp</dimen>
+    <bool name="portrait_only">false</bool>
 </resources>

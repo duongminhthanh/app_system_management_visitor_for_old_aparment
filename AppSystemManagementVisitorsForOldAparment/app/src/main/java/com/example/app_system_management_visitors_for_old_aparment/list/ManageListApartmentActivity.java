@@ -9,11 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +46,9 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     String username,password;
     Intent intent;
     Bundle bundle;
-
+    NestedScrollView scrollView;
+    int count=0;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,8 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         edSearch = findViewById(R.id.edit_search);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         recyclerView.setHasFixedSize(true);
+        scrollView=findViewById(R.id.scroll);
+        progressBar=findViewById(R.id.loading);
         list = new ArrayList<>();
         btnCreate = findViewById(R.id.button_create);
         btnSearch = findViewById(R.id.button_search);
@@ -70,6 +76,23 @@ public class ManageListApartmentActivity extends AppCompatActivity {
             Log.d("username",username);
             Log.d("password",password);
         }
+        getData();
+        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
+                (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                        // in this method we are incrementing page number,
+                        // making progress bar visible and calling get data method.
+                        count++;
+                        // on below line we are making our progress bar visible.
+                        progressBar.setVisibility(View.VISIBLE);
+                        if (count < 20) {
+                            // on below line we are again calling
+                            // a method to load data in our array list.
+                            getData();
+                        }
+                    }
+                });
+
         btnDashboard.setOnClickListener(view -> {
             Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
             bundle =new Bundle();
@@ -93,6 +116,10 @@ public class ManageListApartmentActivity extends AppCompatActivity {
             edSearch.setText("");
             refresh();
         });
+
+    }
+
+    public void getData() {
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -110,7 +137,6 @@ public class ManageListApartmentActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 

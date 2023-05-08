@@ -1,12 +1,8 @@
 package com.example.app_system_management_visitors_for_old_aparment.list;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,8 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app_system_management_visitors_for_old_aparment.R;
 import com.example.app_system_management_visitors_for_old_aparment.adapter.ApartmentAdapter;
@@ -42,6 +45,9 @@ public class ListApartmentActivity extends AppCompatActivity {
     String username,password;
     Intent intent;
     Bundle bundle;
+    NestedScrollView scrollView;
+    int count=0;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +59,25 @@ public class ListApartmentActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.list_apartment);
         myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
         recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
+        scrollView=findViewById(R.id.scroll);
+        progressBar=findViewById(R.id.loading);
+        getData();
+        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
+                (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                        // in this method we are incrementing page number,
+                        // making progress bar visible and calling get data method.
+                        count++;
+                        // on below line we are making our progress bar visible.
+                        progressBar.setVisibility(View.VISIBLE);
+                        if (count < 20) {
+                            // on below line we are again calling
+                            // a method to load data in our array list.
+                            getData();
+                        }
+                    }
+                });
         list=new ArrayList<>();
         apartmentAdapter=new ApartmentAdapter(this,list);
         recyclerView.setAdapter(apartmentAdapter);
@@ -66,6 +91,12 @@ public class ListApartmentActivity extends AppCompatActivity {
             Log.d("username",username);
             Log.d("password",password);
         }
+        //If build is tablet honeycomb or greater sdk such as 12, or 13
+        if(getResources().getBoolean(R.bool.portrait_only)){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+
+
         btnDashboard.setOnClickListener(view -> {
             Intent intentDashboard=new Intent(this, DashboardActivity.class);
             bundle =new Bundle();
@@ -85,6 +116,9 @@ public class ListApartmentActivity extends AppCompatActivity {
             edSearch.setText("");
             refresh();
         });
+    }
+
+    public void getData() {
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -102,7 +136,9 @@ public class ListApartmentActivity extends AppCompatActivity {
 
             }
         });
+
     }
+
     @SuppressLint("NotifyDataSetChanged")
     public void searchData(String searchValue) {
         apartments = new ArrayList<>();

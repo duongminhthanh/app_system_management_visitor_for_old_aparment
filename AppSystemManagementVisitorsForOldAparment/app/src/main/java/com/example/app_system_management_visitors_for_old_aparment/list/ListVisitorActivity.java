@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,7 +51,9 @@ public class ListVisitorActivity extends AppCompatActivity {
     String username,password;
     Intent intent;
     Bundle bundle;
-
+    NestedScrollView scrollView;
+    int count=0;
+    ProgressBar progressBar;
     @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,9 @@ public class ListVisitorActivity extends AppCompatActivity {
         btnRefresh = findViewById(R.id.button_refresh);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
+        scrollView=findViewById(R.id.scroll);
+        progressBar=findViewById(R.id.loading);
         edFrom = findViewById(R.id.edit_from);
         edTo = findViewById(R.id.edit_to);
         list = new ArrayList<>();
@@ -76,35 +83,22 @@ public class ListVisitorActivity extends AppCompatActivity {
             Log.d("username",username);
             Log.d("password",password);
         }
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Visitor v = dataSnapshot.getValue(Visitor.class);
-                    name = Objects.requireNonNull(dataSnapshot.child("name")
-                            .getValue()).toString();
-                    roomId = Objects.requireNonNull(dataSnapshot.child("room_id")
-                            .getValue()).toString();
-                    visitTime = Objects.requireNonNull(dataSnapshot.child("visit_time")
-                            .getValue()).toString();
-                    idCard = Objects.requireNonNull(dataSnapshot.child("id_card")
-                            .getValue()).toString();
-                    date = Objects.requireNonNull(dataSnapshot.child("date")
-                            .getValue()).toString();
-                    Log.d("visitor", String.valueOf(v));
-                    list.add(new Visitor(name, roomId, visitTime, idCard, date));
-
-                }
-                visitorAdapter.setVisitors(list);
-                visitorAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        getData();
+        scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
+                (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+                    if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                        // in this method we are incrementing page number,
+                        // making progress bar visible and calling get data method.
+                        count++;
+                        // on below line we are making our progress bar visible.
+                        progressBar.setVisibility(View.VISIBLE);
+                        if (count < 20) {
+                            // on below line we are again calling
+                            // a method to load data in our array list.
+                            getData();
+                        }
+                    }
+                });
         btnDashboard.setOnClickListener(view -> {
             Intent intentDashboard = new Intent(this, DashboardActivity.class);
             bundle =new Bundle();
@@ -141,6 +135,39 @@ public class ListVisitorActivity extends AppCompatActivity {
             edTo.setText("");
             refresh();
         });
+    }
+
+    public void getData() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Visitor v = dataSnapshot.getValue(Visitor.class);
+                    name = Objects.requireNonNull(dataSnapshot.child("name")
+                            .getValue()).toString();
+                    roomId = Objects.requireNonNull(dataSnapshot.child("room_id")
+                            .getValue()).toString();
+                    visitTime = Objects.requireNonNull(dataSnapshot.child("visit_time")
+                            .getValue()).toString();
+                    idCard = Objects.requireNonNull(dataSnapshot.child("id_card")
+                            .getValue()).toString();
+                    date = Objects.requireNonNull(dataSnapshot.child("date")
+                            .getValue()).toString();
+                    Log.d("visitor", String.valueOf(v));
+                    list.add(new Visitor(name, roomId, visitTime, idCard, date));
+
+                }
+                visitorAdapter.setVisitors(list);
+                visitorAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     public void refresh() {

@@ -88,35 +88,25 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_update"
+            <ImageView
+                android:id="@+id/img_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/button_background"
-                android:drawableStart="@drawable/edit_1"
-                android:text="@string/update"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck">
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/edit_64"
+                tools:ignore="ContentDescription">
 
-            </androidx.appcompat.widget.AppCompatButton>
+            </ImageView>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_delete"
+            <ImageView
+                android:id="@+id/img_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/button_background"
-                android:drawableStart="@drawable/delete"
-                android:text="@string/delete"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck">
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/delete_64"
+                tools:ignore="ContentDescription,ImageContrastCheck">
 
-            </androidx.appcompat.widget.AppCompatButton>
+            </ImageView>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

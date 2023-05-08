@@ -10,15 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.app_system_management_visitors_for_old_aparment.R;
 import com.example.app_system_management_visitors_for_old_aparment.crud.DeleteApartmentActivity;
 import com.example.app_system_management_visitors_for_old_aparment.crud.EditApartmentActivity;
-import com.example.app_system_management_visitors_for_old_aparment.R;
 import com.example.app_system_management_visitors_for_old_aparment.model.Apartment;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
         holder.owner_phone.setText(a.getOwner_phone());
         holder.owner_name.setText(a.getOwner_name());
         holder.room_id.setText(a.getRoom_id());
-        holder.btnUpdate.setOnClickListener(view -> {
+        holder.imgUpdate.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), EditApartmentActivity.class);
             //get value to compare value is updated
             intent.putExtra("room id", a.getRoom_id());
@@ -63,7 +64,7 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
             intent.putExtra("owner phone", a.getOwner_phone());
             startActivity(c, intent, Bundle.EMPTY);
         });
-        holder.btnDelete.setOnClickListener(view -> {
+        holder.imgDelete.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), DeleteApartmentActivity.class);
             intent.putExtra("room id", a.getRoom_id());
             Log.d("room id", a.getRoom_id());
@@ -81,17 +82,16 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView owner_phone, owner_name, room_id;
-        Button btnUpdate, btnDelete;
-
+        ImageView imgUpdate,imgDelete;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             owner_phone = itemView.findViewById(R.id.owner_phone);
             owner_name = itemView.findViewById(R.id.owner_name);
             room_id = itemView.findViewById(R.id.room_id);
-            btnUpdate = itemView.findViewById(R.id.button_update);
-            btnDelete = itemView.findViewById(R.id.button_delete);
-        }
+            imgUpdate = itemView.findViewById(R.id.img_update);
+            imgDelete = itemView.findViewById(R.id.img_delete);
 
+        }
     }
 
 
