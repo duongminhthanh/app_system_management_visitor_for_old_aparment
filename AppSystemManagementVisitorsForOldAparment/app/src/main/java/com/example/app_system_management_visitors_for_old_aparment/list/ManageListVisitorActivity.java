@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -136,7 +137,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     }
 
     public void getData() {
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -158,6 +159,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                 }
                 visitorManagementAdapter.setVisitors(list);
                 visitorManagementAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -169,7 +171,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
 
     public void refresh() {
         list.clear();
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -215,6 +217,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                         visitorManagementAdapter.setVisitors(visitors);
                         visitorManagementAdapter.notifyDataSetChanged();
                         showSearchSuccessfulToast();
+                        scrollView.stopNestedScroll(ViewCompat.TYPE_NON_TOUCH);
                     }
 
                     @Override

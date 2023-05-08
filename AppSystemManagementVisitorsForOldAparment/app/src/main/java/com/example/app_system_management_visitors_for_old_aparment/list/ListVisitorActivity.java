@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -218,6 +219,7 @@ public class ListVisitorActivity extends AppCompatActivity {
                         visitorAdapter.setVisitors(visitors);
                         visitorAdapter.notifyDataSetChanged();
                         showSearchSuccessfulToast();
+                        scrollView.stopNestedScroll(ViewCompat.TYPE_NON_TOUCH);
                     }
 
                     @Override
