@@ -61,16 +61,15 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.MyVi
             String phone = a.getOwner_phone();
             StringBuilder builder=new StringBuilder(phone);
             builder.setCharAt(0,' ');
+            builder.toString().trim();
             String s="https://zalo.me/84"+builder.toString().trim();
             Log.d("s",s);
-            goToUrl(s);
+            Uri uri=Uri.parse(s);
+            Log.d("uri",uri.toString());
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+            startActivity(c, intent, Bundle.EMPTY);
         });
-    }
-    public void goToUrl(String s) {
-        Uri uri=Uri.parse(s);
-        Log.d("uri",uri.toString());
-        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
-        startActivity(c, intent, Bundle.EMPTY);
+
     }
     @Override
     public int getItemCount() {

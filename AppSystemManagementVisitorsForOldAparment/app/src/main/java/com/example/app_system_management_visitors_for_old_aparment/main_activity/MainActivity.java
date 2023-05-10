@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     ImageView img_pinCode;
     Bundle bundle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         bundle = intent.getExtras();
         String username = bundle.getString("username");
         String password = bundle.getString("password");
-        Log.d("username",username);
-        Log.d("password",password);
+        Log.d("username", username);
+        Log.d("password", password);
 
         btnRegisterVisitingForm.setOnClickListener(view -> {
             intent = new Intent(this, RegisterFormActivity.class);
@@ -63,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+
+
     }
+
 
 }
