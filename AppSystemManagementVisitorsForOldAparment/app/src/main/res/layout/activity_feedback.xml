@@ -24,16 +24,18 @@
         android:textSize="45sp"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toEndOf="@+id/topView"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/text_feedback"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/feedback_64" />
+
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="1234dp"
@@ -92,7 +94,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/first_ll"
         app:layout_constraintTop_toBottomOf="@id/first_ll">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
+            android:id="@+id/btn_send"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

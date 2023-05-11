@@ -14,26 +14,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/text_feedback"
+        android:id="@+id/text_rating_title"
         android:layout_width="814dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
-        android:text="@string/feedback"
+        android:text="@string/rating"
         android:textColor="@color/white"
         android:textSize="45sp"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="60dp"
         app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/text_feedback"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toEndOf="@+id/text_rating_title"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/feedback_64" />
+        app:srcCompat="@drawable/rating" />
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="1234dp"
@@ -41,7 +42,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/shape_login_pannel"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,40 +50,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topView"
         app:layout_constraintVertical_bias="0.375">
-        <EditText
-            android:id="@+id/edit_visitor_name"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_rating"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginEnd="32dp"
-            android:autofillHints="Provide your email"
-            android:background="@drawable/round_border"
-            android:ems="10"
-            android:hint="Name"
-            android:inputType="text"
-            android:padding="16dp"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-        <EditText
-            android:id="@+id/edit_feedback"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/round_bounder_2"
-            android:ems="10"
-            android:gravity="start|top"
-            android:padding="16dp"
-            android:hint="@string/write_your_feedback_here"
-            android:inputType="textMultiLine"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginTop="100dp"
+            android:text="@string/pleas_rate_the_service_level"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/light_blue_600"
+            android:textSize="45sp" />
+
+        <RatingBar
+            android:id="@+id/rating_start"
+            style="@style/MyRatingBar"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="68dp"
+            android:contentDescription="@string/satisfy"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressTint="@color/yellow"
+            android:rating="3" />
 
     </LinearLayout>
     <LinearLayout
@@ -92,7 +82,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/first_ll"
         app:layout_constraintTop_toBottomOf="@id/first_ll">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_send"
+            android:id="@+id/btn_submit"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -100,10 +90,11 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/round_bg"
             android:ems="10"
-            android:text="SEND"
+            android:text="SUBMIT"
             android:textColor="@android:color/white"
             android:textSize="50sp"
             android:textStyle="bold"
             tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

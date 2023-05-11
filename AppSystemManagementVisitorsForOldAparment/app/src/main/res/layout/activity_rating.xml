@@ -1,83 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:orientation="horizontal"
-    tools:context=".main_activity.RatingActivity">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.51" />
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/wave">
+    <View
+        android:id="@+id/topView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <TextView
-        android:id="@+id/text_rating"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_rating_title"
+        android:layout_width="814dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="@string/pleas_rate_the_service_level"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/light_blue_600"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <RatingBar
-        android:id="@+id/rating_start"
-        style="@style/MyRatingBar"
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:contentDescription="@string/satisfy"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:progressTint="@color/yellow"
-        android:rating="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="416dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_submit"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
-        android:background="@drawable/button_background"
-        android:text="@string/submit"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/rating"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="45sp"
+        app:layout_constraintStart_toStartOf="@+id/topView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="60dp"
+        app:layout_constraintEnd_toEndOf="@+id/topView"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toEndOf="@+id/text_rating_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rating" />
+    <LinearLayout
+        android:id="@+id/first_ll"
+        android:layout_width="1234dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/shape_login_pannel"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rating_start"
-        app:layout_constraintVertical_bias="0.176"
-        tools:ignore="RtlHardcoded,TextContrastCheck,TextSizeCheck" />
+        app:layout_constraintTop_toBottomOf="@id/topView"
+        app:layout_constraintVertical_bias="0.375">
+        <TextView
+            android:id="@+id/text_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="@string/pleas_rate_the_service_level"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textColor="@color/light_blue_600"
+            android:textSize="45sp" />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="1279dp"
-        android:layout_height="235dp"
-        android:background="@drawable/wave"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="VisualLintBounds" />
+        <RatingBar
+            android:id="@+id/rating_start"
+            style="@style/MyRatingBar"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="68dp"
+            android:contentDescription="@string/satisfy"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressTint="@color/yellow"
+            android:rating="3" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/first_ll"
+        app:layout_constraintTop_toBottomOf="@id/first_ll">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_submit"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round_bg"
+            android:ems="10"
+            android:text="SUBMIT"
+            android:textColor="@android:color/white"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            tools:ignore="VisualLintButtonSize" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
