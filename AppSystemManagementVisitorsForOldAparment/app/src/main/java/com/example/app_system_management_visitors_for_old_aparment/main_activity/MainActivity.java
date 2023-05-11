@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     ImageView img_pinCode;
     Bundle bundle;
+    TextView usernameStaff;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
         btnFeedback = findViewById(R.id.btn_feedback);
         btnRating = findViewById(R.id.btn_rating);
         img_pinCode = findViewById(R.id.image_pin_code);
+        usernameStaff = findViewById(R.id.text_username);
         intent = getIntent();
         bundle = intent.getExtras();
         String username = bundle.getString("username");
         String password = bundle.getString("password");
         Log.d("username", username);
         Log.d("password", password);
-
+        usernameStaff.setText(username);
         btnRegisterVisitingForm.setOnClickListener(view -> {
             intent = new Intent(this, RegisterFormActivity.class);
             bundle.putString("username", username);
