@@ -1,152 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/wave"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".authentication.PinCodeActivity">
-    <RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/wave">
+    <View
+        android:id="@+id/topView"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="814dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/pin_code_title"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="@+id/topView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_pin_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639"
+        app:srcCompat="@drawable/secure_64" />
+
+    <LinearLayout
+        android:id="@+id/first_ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="UselessParent">
-        <LinearLayout
-            android:id="@+id/first_ll"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/shape_login_pannel"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topView"
+        app:layout_constraintVertical_bias="0.375">
+
+        <TextView
+            android:id="@+id/enter_pin_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="vertical">
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/enter_your_pin_code_here"
+            android:textColor="@color/light_blue_600"
+            android:textSize="35sp"
+            tools:ignore="TextContrastCheck" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/pin_code_title"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="40sp"
-                tools:ignore="TextContrastCheck" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="@string/enter_your_pin_code_here"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp"
-                tools:ignore="TextContrastCheck" />
-
-        </LinearLayout>
         <LinearLayout
-            android:id="@+id/second_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/first_ll"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:layout_marginTop="60dp">
+            android:layout_below="@+id/enter_pin_code"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp">
 
             <EditText
                 android:id="@+id/ed_1"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/round_bounder_2"
                 android:gravity="center"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:maxLength="1"
                 android:textColor="#01579B"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck,TextFields" />
 
             <EditText
                 android:id="@+id/ed_2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/round_bounder_2"
                 android:gravity="center"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:maxLength="1"
                 android:textColor="#01579B"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/ed_3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/round_bounder_2"
                 android:gravity="center"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:maxLength="1"
                 android:textColor="#01579B"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/ed_4"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
-                android:background="@drawable/edit_text_background"
+                android:background="@drawable/round_bounder_2"
                 android:gravity="center"
-                android:inputType="number"
+                android:inputType="numberPassword"
                 android:maxLength="1"
                 android:textColor="#01579B"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck,TextFields" />
         </LinearLayout>
-        <LinearLayout
-            android:id="@+id/third_ll"
-            android:layout_width="wrap_content"
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/first_ll"
+        app:layout_constraintTop_toBottomOf="@id/first_ll">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_enter"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/second_ll"
-            android:layout_marginTop="40dp"
-            android:layout_centerHorizontal="true">
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round_bg"
+            android:ems="10"
+            android:text="ENTER"
+            android:textColor="@android:color/white"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            tools:ignore="VisualLintButtonSize" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_enter"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="200dp"
-                android:background="@drawable/button_background"
-                android:text="@string/enter"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                tools:ignore="TextContrastCheck,TextSizeCheck">
+    </LinearLayout>
 
-            </androidx.appcompat.widget.AppCompatButton>
-        </LinearLayout>
-
-        <!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/second_ll"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_marginTop="300dp">-->
-<!--            <androidx.appcompat.widget.AppCompatButton-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="@drawable/button_background"-->
-<!--                android:text="@string/verify"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textStyle="bold"-->
-<!--                tools:ignore="TextContrastCheck" />-->
-<!--        </LinearLayout>-->
-
-
-    </RelativeLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
