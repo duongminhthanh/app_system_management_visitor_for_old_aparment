@@ -7,32 +7,38 @@
     android:background="@drawable/wave"
     tools:context=".authentication.LoginActivity">
 
+
     <View
         android:id="@+id/topView"
         android:layout_width="0dp"
         android:layout_height="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintEnd_toEndOf="@+id/topView"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888"
         app:srcCompat="@drawable/user"
         tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/topText"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
         android:text="@string/login_title"
         android:textColor="@android:color/white"
         android:textSize="45sp"
@@ -45,9 +51,8 @@
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="match_parent"
-        android:layout_height="328dp"
+        android:layout_height="384dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="52dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="180dp"
         android:background="@drawable/shape_login_pannel"
@@ -56,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5">
+        app:layout_constraintTop_toBottomOf="@+id/topView">
 
         <EditText
             android:id="@+id/edit_name"
@@ -100,23 +105,13 @@
             app:layout_constraintTop_toBottomOf="@+id/edit_name"
             tools:ignore="VisualLintTextFieldSize" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/first_ll"
-        app:layout_constraintTop_toBottomOf="@id/first_ll">
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/round_bg"
             android:ems="10"
             android:text="LOGIN"
@@ -124,6 +119,7 @@
             android:textSize="50sp"
             android:textStyle="bold"
             tools:ignore="VisualLintButtonSize" />
+
 
     </LinearLayout>
 

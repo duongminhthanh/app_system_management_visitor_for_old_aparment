@@ -10,23 +10,27 @@
         android:id="@+id/topView"
         android:layout_width="0dp"
         android:layout_height="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_username"
-        android:layout_width="814dp"
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
-        android:text="Name"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/home"
         android:textColor="@android:color/white"
         android:textSize="45sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintStart_toStartOf="@+id/topView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.933" />
 
     <LinearLayout
         android:id="@+id/first_ll"
@@ -57,8 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp">
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_register_visit"
                 android:layout_width="250dp"
@@ -98,13 +102,12 @@
         android:id="@+id/image_dashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/first_ll"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toEndOf="@+id/text_username"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/secure_64" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
