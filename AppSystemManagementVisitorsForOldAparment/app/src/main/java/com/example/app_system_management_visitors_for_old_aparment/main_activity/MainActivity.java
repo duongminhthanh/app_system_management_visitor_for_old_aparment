@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegisterVisitingForm = findViewById(R.id.btn_register_visit);
         btnFeedback = findViewById(R.id.btn_feedback);
         btnRating = findViewById(R.id.btn_rating);
-        img_pinCode = findViewById(R.id.image_dashboard);
+        img_pinCode = findViewById(R.id.image_pin_code);
         intent = getIntent();
         bundle = intent.getExtras();
         String username = bundle.getString("username");

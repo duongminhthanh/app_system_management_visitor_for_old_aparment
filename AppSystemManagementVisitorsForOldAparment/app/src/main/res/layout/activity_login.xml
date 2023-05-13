@@ -15,45 +15,36 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/first_ll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/topView"
-        app:layout_constraintEnd_toEndOf="@+id/topView"
-        app:layout_constraintHorizontal_bias="0.985"
-        app:layout_constraintStart_toEndOf="@+id/topText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371"
-        app:srcCompat="@drawable/user"
-        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
         android:id="@+id/topText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:drawableStart="@drawable/user_49"
+        android:drawablePadding="16dp"
         android:text="@string/login_title"
         android:textColor="@android:color/white"
-        android:textSize="45sp"
+        android:textSize="49sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39999998" />
+        app:layout_constraintVertical_bias="0.19" />
 
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="match_parent"
         android:layout_height="384dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="180dp"
         android:background="@drawable/shape_login_pannel"
@@ -117,7 +108,7 @@
             android:ems="10"
             android:text="LOGIN"
             android:textColor="@android:color/white"
-            android:textSize="50sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             tools:ignore="VisualLintButtonSize" />
 

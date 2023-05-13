@@ -8,11 +8,12 @@
                     <padding android:right="10dp" />
                     <stroke
                         android:width="2dp"
-                        android:color="#0099ff" />
+                        android:color="@color/light_blue_600" />
                 </shape>
             </item>
             <item android:drawable="@drawable/drop_down"
-                  android:gravity="end"/>
+                  android:left="16dp"
+                  android:gravity="start"/>
 
         </layer-list>
     </item>
