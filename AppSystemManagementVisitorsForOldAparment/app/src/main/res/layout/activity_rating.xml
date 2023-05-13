@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/topView"
         app:layout_constraintStart_toStartOf="@+id/topView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toEndOf="@+id/text_rating_title"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rating" />
 
     <LinearLayout
