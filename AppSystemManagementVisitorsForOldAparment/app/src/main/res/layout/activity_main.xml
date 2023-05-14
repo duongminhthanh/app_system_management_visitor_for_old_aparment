@@ -21,7 +21,6 @@
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:drawableStart="@drawable/house_49"
         android:drawablePadding="16dp"
@@ -76,7 +75,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_register_visit"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_bg"
@@ -87,7 +86,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_rating"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_bg"
@@ -98,7 +97,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_feedback"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
