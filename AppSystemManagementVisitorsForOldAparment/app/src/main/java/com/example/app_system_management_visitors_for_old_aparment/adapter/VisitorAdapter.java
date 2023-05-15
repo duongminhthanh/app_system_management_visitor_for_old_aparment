@@ -2,9 +2,11 @@ package com.example.app_system_management_visitors_for_old_aparment.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app_system_management_visitors_for_old_aparment.R;
 import com.example.app_system_management_visitors_for_old_aparment.model.Visitor;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHolder> {
     Context c;
     ArrayList<Visitor> visitors;
-
+    static ProgressBar progressBar;
     public VisitorAdapter(Context c, ArrayList<Visitor> visitors) {
         this.c = c;
         this.visitors = visitors;
@@ -43,6 +47,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     /*Set the properties of the View and the data.*/
     public void onBindViewHolder(@NonNull VisitorAdapter.MyViewHolder holder, int position) {
         Visitor v = visitors.get(position);
+        holder.cardView.setCardBackgroundColor(getRandomColorCode());
         holder.id_card.setText(v.getId_card());
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
@@ -50,7 +55,13 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
         holder.date.setText(v.getDateValue());
     }
 
+    public int getRandomColorCode(){
 
+        Random random = new Random();
+
+        return Color.argb(255, random.nextInt(256), random.nextInt(256),     random.nextInt(256));
+
+    }
     @Override
     /*Đếm số Item trong List Data*/
     public int getItemCount() {
@@ -58,16 +69,26 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView id_card, name, room_id, visit_time,date;
+        TextView id_card, name, room_id, visit_time, date;
+        MaterialCardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card_view);
             id_card = itemView.findViewById(R.id.idCard);
             name = itemView.findViewById(R.id.visitorName);
             room_id = itemView.findViewById(R.id.roomID);
             visit_time = itemView.findViewById(R.id.visitTime);
             date = itemView.findViewById(R.id.date);
+            progressBar = itemView.findViewById(R.id.loading);
+        }
+    }
+    public void onDataChange() {
+        if(progressBar != null){
+            progressBar.setVisibility(View.GONE);
         }
     }
 }
+
+
 

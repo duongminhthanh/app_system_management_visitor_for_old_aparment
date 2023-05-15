@@ -16,13 +16,6 @@ public class Visitor {
     public Visitor() {
     }
 
-    public Visitor(String name, String room_id, String visit_time, String id_card) {
-        this.name = name;
-        this.room_id = room_id;
-        this.visit_time = visit_time;
-        this.id_card = id_card;
-    }
-
     public Visitor(String name, String room_id, String visit_time, String id_card, String date) {
         this.name = name;
         this.room_id = room_id;
@@ -63,7 +56,7 @@ public class Visitor {
         this.id_card = id_card;
     }
     public String getDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date d=  Calendar.getInstance().getTime();
         //format date to date string
         date=formatter.format(d);
