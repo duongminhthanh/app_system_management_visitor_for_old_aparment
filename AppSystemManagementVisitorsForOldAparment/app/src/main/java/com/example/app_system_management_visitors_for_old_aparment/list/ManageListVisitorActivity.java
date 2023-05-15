@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app_system_management_visitors_for_old_aparment.R;
 import com.example.app_system_management_visitors_for_old_aparment.adapter.VisitorManagementAdapter;
-import com.example.app_system_management_visitors_for_old_aparment.dashboard.DashboardAdminActivity;
+import com.example.app_system_management_visitors_for_old_aparment.dashboard.DashboardActivity;
 import com.example.app_system_management_visitors_for_old_aparment.model.Visitor;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +42,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     DatabaseReference myRef;
     VisitorManagementAdapter visitorManagementAdapter;
     ArrayList<Visitor> list, visitors;
-    Button btnDashboard, btnSearch, btnRefresh;
+    ImageView imgDashboard, imgSearch, imgRefresh;
     EditText edFrom, edTo;
     String from, to, name, roomId, visitTime, idCard, date;
     Date d1=null,d2=null;
@@ -58,9 +58,9 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_list_visitor_acitvity);
         recyclerView = findViewById(R.id.list_visitor);
-        btnDashboard = findViewById(R.id.button_dashboard);
-        btnSearch = findViewById(R.id.button_search);
-        btnRefresh = findViewById(R.id.button_refresh);
+        imgDashboard = findViewById(R.id.img_dashboard);
+        imgSearch = findViewById(R.id.img_search);
+        imgRefresh = findViewById(R.id.img_refresh);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
         scrollView=findViewById(R.id.scroll);
@@ -69,8 +69,9 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         edTo = findViewById(R.id.edit_to);
         list = new ArrayList<>();
         visitorManagementAdapter = new VisitorManagementAdapter(this, list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(visitorManagementAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
@@ -83,29 +84,28 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         getData();
         scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
                 (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
-                // in this method we are incrementing page number,
-                // making progress bar visible and calling get data method.
-                count++;
-                // on below line we are making our progress bar visible.
-                progressBar.setVisibility(View.VISIBLE);
-                if (count < 20) {
-                    // on below line we are again calling
-                    // a method to load data in our array list.
-                    getData();
-                }
-            }
-        });
-
-        btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
+                    if (scrollX == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                        // in this method we are incrementing page number,
+                        // making progress bar visible and calling get data method.
+                        count++;
+                        // on below line we are making our progress bar visible.
+                        progressBar.setVisibility(View.VISIBLE);
+                        if (count < 20) {
+                            // on below line we are again calling
+                            // a method to load data in our array list.
+                            getData();
+                        }
+                    }
+                });
+        imgDashboard.setOnClickListener(view -> {
+            Intent intentDashboard = new Intent(this, DashboardActivity.class);
             bundle =new Bundle();
             bundle.putString("username",username);
             bundle.putString("password",password);
             intentDashboard.putExtras(bundle);
             startActivity(intentDashboard);
         });
-        btnSearch.setOnClickListener(view -> {
+        imgSearch.setOnClickListener(view -> {
             edFrom.setText(edFrom.getText().toString());
             edTo.setText(edTo.getText().toString());
             from = edFrom.getText().toString();
@@ -113,7 +113,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
             if (from.isEmpty() || to.isEmpty()) showSearchErrorEmptyToast();
             else{
                 @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     d1= dateFormat.parse(from);
                     d2= dateFormat.parse(to);
@@ -124,11 +124,11 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                 t2=new Timestamp(d2.getTime());
                 Log.d("t1",t1.toString());
                 Log.d("t2",t2.toString());
-                searchData(t1.toString(), t2.toString());
+                searchData(from,to);
 
             }
         });
-        btnRefresh.setOnClickListener(view -> {
+        imgRefresh.setOnClickListener(view -> {
             visitors.clear();
             edFrom.setText("");
             edTo.setText("");
@@ -137,7 +137,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     }
 
     public void getData() {
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -159,7 +159,6 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                 }
                 visitorManagementAdapter.setVisitors(list);
                 visitorManagementAdapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -171,7 +170,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
 
     public void refresh() {
         list.clear();
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -216,8 +215,8 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                         }
                         visitorManagementAdapter.setVisitors(visitors);
                         visitorManagementAdapter.notifyDataSetChanged();
+                        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
                         showSearchSuccessfulToast();
-                        scrollView.stopNestedScroll(ViewCompat.TYPE_NON_TOUCH);
                     }
 
                     @Override

@@ -55,8 +55,8 @@
                 android:drawableStart="@drawable/loupe"
                 android:hint="@string/what_do_you_want_to_find"
                 android:minHeight="48dp"
-                android:textColorHint="#01579B"
-                android:textColor="#01579B"
+                android:textColorHint="@color/light_blue_600"
+                android:textColor="@color/light_blue_600"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>

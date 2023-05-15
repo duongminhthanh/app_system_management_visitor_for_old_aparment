@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +44,7 @@ public class ListVisitorActivity extends AppCompatActivity {
     DatabaseReference myRef;
     VisitorAdapter visitorAdapter;
     ArrayList<Visitor> list, visitors;
-    Button btnDashboard, btnSearch, btnRefresh;
+    ImageView imgDashboard, imgSearch, imgRefresh;
     EditText edFrom, edTo;
     String from, to, name, roomId, visitTime, idCard, date;
     Date d1=null,d2=null;
@@ -61,20 +61,21 @@ public class ListVisitorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_visitor);
         recyclerView = findViewById(R.id.list_visitor);
-        btnDashboard = findViewById(R.id.button_dashboard);
-        btnSearch = findViewById(R.id.button_search);
-        btnRefresh = findViewById(R.id.button_refresh);
+        imgDashboard = findViewById(R.id.img_dashboard);
+        imgSearch = findViewById(R.id.img_search);
+        imgRefresh = findViewById(R.id.img_refresh);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
-        recyclerView.setHasFixedSize(true);
         recyclerView.setHasFixedSize(true);
         scrollView=findViewById(R.id.scroll);
         progressBar=findViewById(R.id.loading);
         edFrom = findViewById(R.id.edit_from);
         edTo = findViewById(R.id.edit_to);
+        progressBar.setVisibility(View.VISIBLE);
         list = new ArrayList<>();
         visitorAdapter = new VisitorAdapter(this, list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(visitorAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
@@ -87,7 +88,7 @@ public class ListVisitorActivity extends AppCompatActivity {
         getData();
         scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
                 (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-                    if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
+                    if (scrollX == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
                         // in this method we are incrementing page number,
                         // making progress bar visible and calling get data method.
                         count++;
@@ -100,7 +101,7 @@ public class ListVisitorActivity extends AppCompatActivity {
                         }
                     }
                 });
-        btnDashboard.setOnClickListener(view -> {
+        imgDashboard.setOnClickListener(view -> {
             Intent intentDashboard = new Intent(this, DashboardActivity.class);
             bundle =new Bundle();
             bundle.putString("username",username);
@@ -108,14 +109,14 @@ public class ListVisitorActivity extends AppCompatActivity {
             intentDashboard.putExtras(bundle);
             startActivity(intentDashboard);
         });
-        btnSearch.setOnClickListener(view -> {
+        imgSearch.setOnClickListener(view -> {
             edFrom.setText(edFrom.getText().toString());
             edTo.setText(edTo.getText().toString());
             from = edFrom.getText().toString();
             to = edTo.getText().toString();
             if (from.isEmpty() || to.isEmpty()) showSearchErrorEmptyToast();
             else{
-                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     d1= dateFormat.parse(from);
                     d2= dateFormat.parse(to);
@@ -126,17 +127,18 @@ public class ListVisitorActivity extends AppCompatActivity {
                 t2=new Timestamp(d2.getTime());
                 Log.d("t1",t1.toString());
                 Log.d("t2",t2.toString());
-                searchData(t1.toString(), t2.toString());
+                searchData(from,to);
 
             }
         });
-        btnRefresh.setOnClickListener(view -> {
+        imgRefresh.setOnClickListener(view -> {
             visitors.clear();
             edFrom.setText("");
             edTo.setText("");
             refresh();
         });
     }
+
 
     public void getData() {
         myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
@@ -161,6 +163,7 @@ public class ListVisitorActivity extends AppCompatActivity {
                 }
                 visitorAdapter.setVisitors(list);
                 visitorAdapter.notifyDataSetChanged();
+
             }
 
             @Override
@@ -218,8 +221,8 @@ public class ListVisitorActivity extends AppCompatActivity {
                         }
                         visitorAdapter.setVisitors(visitors);
                         visitorAdapter.notifyDataSetChanged();
+                        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
                         showSearchSuccessfulToast();
-                        scrollView.stopNestedScroll(ViewCompat.TYPE_NON_TOUCH);
                     }
 
                     @Override

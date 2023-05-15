@@ -127,7 +127,7 @@ public class RegisterFormActivity extends AppCompatActivity {
                 v.setRoom_id(roomId);
                 v.setVisit_time(time);
                 @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
                 try {
                     d=format.parse(v.getDate());
                     t=new Timestamp(Objects.requireNonNull(d).getTime());

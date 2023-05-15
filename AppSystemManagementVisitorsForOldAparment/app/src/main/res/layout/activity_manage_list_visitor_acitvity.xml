@@ -1,134 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll"
-    android:background="@drawable/wave"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never"
-    android:scrollbarSize="20dp"
-    android:scrollbarThumbVertical="@drawable/scroll_thumb"
-    android:scrollbarTrackVertical="@drawable/scroll_track"
-    android:scrollbars="vertical"
-    tools:context=".list.ListVisitorActivity">
+    android:background="@drawable/wave">
+
+
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/first_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="4">
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/shape_panel_2"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998">
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="-6dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:layout_weight="1">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_dashboard"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/dashboard"
-                android:textColor="#F4FF81"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck,VisualLintBounds,TouchTargetSizeCheck,TextSizeCheck">
-
-            </androidx.appcompat.widget.AppCompatButton>
-
-            <EditText
-                android:id="@+id/edit_from"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="20dp"
-                android:autofillHints=""
-                android:background="@drawable/edit_text_background"
-                android:hint="@string/from"
-                android:minHeight="48dp"
-                android:textColorHint="#01579B"
-                android:textColor="#01579B"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
-            <EditText
-                android:id="@+id/edit_to"
-                android:layout_width="300dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="20dp"
-                android:autofillHints=""
-                android:background="@drawable/edit_text_background"
-                android:hint="@string/to"
-                android:minHeight="48dp"
-                android:textColorHint="#01579B"
-                android:textColor="#01579B"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_search"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/search"
-                android:textColor="#FFFF8D"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                tools:ignore="TextContrastCheck,VisualLintBounds">
-
-            </androidx.appcompat.widget.AppCompatButton>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_refresh"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/refresh"
-                android:textColor="#FFFF8D"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                tools:ignore="TextContrastCheck,VisualLintBounds">
-            </androidx.appcompat.widget.AppCompatButton>
+            <ImageView
+                android:id="@+id/img_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:src="@drawable/previous_49" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edit_from"
+                android:layout_width="330dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_border_3"
+                android:hint="@string/from"
+                android:padding="16dp"
+                android:textSize="30sp"
+                tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edit_to"
+                android:layout_width="330dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/round_border_3"
+                android:hint="@string/to"
+                android:padding="16dp"
+                android:textSize="30sp"
+                tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:padding="16dp"
+                android:src="@drawable/loupe_49" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/img_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:padding="16dp"
+                android:src="@drawable/refresh" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:overScrollMode="never"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_ll"
+        app:layout_constraintVertical_bias="0.19999999">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
             android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_visitor"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="wrap_content"
+                ></androidx.recyclerview.widget.RecyclerView>
+            <ProgressBar
+                android:id="@+id/loading"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <ProgressBar
-            android:id="@+id/loading"
-            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"></ProgressBar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/scroll"
+        app:layout_constraintStart_toStartOf="@+id/scroll"
+        app:layout_constraintTop_toBottomOf="@+id/scroll">
+
 
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
