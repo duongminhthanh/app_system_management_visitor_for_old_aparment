@@ -35,18 +35,18 @@
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="match_parent"
-        android:layout_height="470dp"
-        android:layout_marginStart="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="160dp"
         android:background="@drawable/shape_login_pannel"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView"
-        app:layout_constraintVertical_bias="0.375">
+        app:layout_constraintTop_toBottomOf="@id/topView">
+
         <EditText
             android:id="@+id/edit_visitor_name"
             android:layout_width="match_parent"
@@ -54,10 +54,10 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="75dp"
             android:layout_marginEnd="32dp"
-            android:drawableStart="@drawable/username"
-            android:drawablePadding="16dp"
             android:autofillHints="Provide your email"
             android:background="@drawable/round_border"
+            android:drawableStart="@drawable/username"
+            android:drawablePadding="16dp"
             android:ems="10"
             android:hint="Name"
             android:inputType="text"
@@ -66,47 +66,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/round_bounder_2">
+            android:background="@drawable/round_bounder_2"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="18dp"
-                android:src="@drawable/feedback_32"
-                android:scaleType="fitStart"/>
+                android:layout_marginTop="10dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/feedback_32" />
 
             <EditText
                 android:id="@+id/edit_feedback"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@null"
-                android:padding="4dp"
-                android:hint="@string/write_your_feedback_here"
-                android:textSize="30sp"
                 android:layout_marginStart="11dp"
-                android:inputType="textMultiLine"
+                android:layout_weight="1"
+                android:background="@null"
                 android:gravity="top"
-                android:layout_weight="1" />
+                android:hint="@string/write_your_feedback_here"
+                android:inputType="textMultiLine"
+                android:padding="4dp"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_send"
             android:layout_width="250dp"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/round_bg"
             android:ems="10"
             android:text="SEND"
-            android:background="@drawable/round_bg"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textStyle="bold"

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "457963869340",
+    "project_id": "apartmentmanagementsyste-d8b7f",
+    "storage_bucket": "apartmentmanagementsyste-d8b7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457963869340:android:4088fd33490d21e0894959",
+        "android_client_info": {
+          "package_name": "com.example.ApartmentManagementSystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457963869340-sn60ggtlj0kr8iulgbqr5okis9sgj7oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzAm0CKZWc04Yf6sFAOgp9n8Q2J-QtzXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "457963869340-sn60ggtlj0kr8iulgbqr5okis9sgj7oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

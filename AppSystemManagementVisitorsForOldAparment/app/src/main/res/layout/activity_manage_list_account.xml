@@ -1,136 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll"
-    android:background="@drawable/wave"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never"
-    android:scrollbarSize="20dp"
-    android:scrollbarThumbVertical="@drawable/scroll_thumb"
-    android:scrollbarTrackVertical="@drawable/scroll_track"
-    android:scrollbars="vertical"
-    tools:context=".list.ListVisitorActivity">
+    android:focusableInTouchMode="true"
+    android:background="@drawable/wave">
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/first_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="4">
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="3dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_dashboard"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/light_blue_600"
+            android:src="@drawable/dashboard_48px"/>
+
+        <EditText
+            android:id="@+id/edit_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="-6dp"
-            tools:layout_editor_absoluteY="1dp">
+            android:background="@drawable/shape_login_pannel"
+            android:ems="10"
+            android:hint="@string/what_do_you_want_to_find"
+            android:inputType="text"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textSize="30sp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/light_blue_600"
+            android:src="@drawable/search_48px"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            app:backgroundTint="@color/light_blue_600"
+            android:src="@drawable/refresh_48px">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            app:backgroundTint="@color/light_blue_600"
+            android:src="@drawable/add_48px">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_dashboard"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/dashboard"
-                android:textColor="#F4FF81"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck,VisualLintBounds,TouchTargetSizeCheck,TextSizeCheck">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-            </androidx.appcompat.widget.AppCompatButton>
-
-            <EditText
-                android:id="@+id/edit_search"
-                android:layout_width="550dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginEnd="20dp"
-                android:autofillHints=""
-                android:background="@drawable/edit_text_background"
-                android:drawableStart="@drawable/loupe"
-                android:hint="@string/what_do_you_want_to_find"
-                android:minHeight="48dp"
-                android:textColorHint="@color/light_blue_600"
-                android:textColor="@color/light_blue_600"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="LabelFor,TextFields,VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck"></EditText>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_search"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/search"
-                android:textSize="20sp"
-                android:textColor="#FFFF8D"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck,VisualLintBounds">
-
-            </androidx.appcompat.widget.AppCompatButton>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_refresh"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/refresh"
-                android:textSize="20sp"
-                android:textColor="#FFFF8D"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck,VisualLintBounds">
-            </androidx.appcompat.widget.AppCompatButton>
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_create"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_background"
-                android:minHeight="48dp"
-                android:text="@string/create"
-                android:textSize="20sp"
-                android:textColor="#FFFF8D"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck,VisualLintBounds">
-            </androidx.appcompat.widget.AppCompatButton>
-        </LinearLayout>
-
+    </LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/first_ll">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_manage_account"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
-        <ProgressBar
-            android:id="@+id/loading"
-            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"></ProgressBar>
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                ></androidx.recyclerview.widget.RecyclerView>
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+            <ProgressBar
+                android:id="@+id/loading"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

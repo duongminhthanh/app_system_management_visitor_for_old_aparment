@@ -1,114 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="8dp"
-    android:layout_margin="16dp">
-
+    android:layout_margin="2dp">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical">
-        <LinearLayout
+        android:background="@drawable/shape_panel_2"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/room_id_title"
-                android:text="room id: "
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/room_id"
-                android:text="@string/room_id"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-        <LinearLayout
+            android:layout_marginStart="2dp"
+            android:id="@+id/room_id"
+            android:text="@string/room_id"
+            android:textColor="@color/light_blue_600"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/owner_name_title"
-                android:text="owner name: "
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/owner_name"
-                android:text="@string/owner_name"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
+            android:layout_marginStart="2dp"
+            android:id="@+id/owner_name"
+            android:text="@string/owner_name"
+            android:textColor="@color/light_blue_600"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/owner_phone_title"
-                android:text="owner phone: "
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/owner_phone"
-                android:text="@string/owner_phone"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
+            android:layout_marginStart="2dp"
+            android:id="@+id/owner_phone"
+            android:text="@string/owner_phone"
+            android:textColor="@color/light_blue_600"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/img_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/phone_call_64"
-                tools:ignore="ContentDescription">
-            </ImageView>
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="32dp"
+                android:background="@color/green"
+                android:src="@drawable/call_48px"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-            <ImageView
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/img_zalo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
+                android:backgroundTint="@color/light_blue_600"
                 android:src="@drawable/zalo_icon"
-                tools:ignore="ContentDescription">
-            </ImageView>
+                tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

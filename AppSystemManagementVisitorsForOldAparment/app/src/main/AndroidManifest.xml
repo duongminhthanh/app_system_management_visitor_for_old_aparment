@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:screenOrientation="landscape"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App_System_Management_Visitors_For_Old_Aparment"
+        android:theme="@style/Theme.ApartmentManagementSystem"
         tools:targetApi="31">
         <activity
             android:name=".crud.DeleteAccountActivity"
@@ -76,7 +76,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

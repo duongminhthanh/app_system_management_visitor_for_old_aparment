@@ -19,4 +19,6 @@
     <color name="clr_otp_bg">#535288</color>
     <color name="lavender">#8692f7</color>
     <color name="yellow">#FFD700</color>
+    <color name="red">#FF0000</color>
+    <color name="light_red">#ff4e4e</color>
 </resources>

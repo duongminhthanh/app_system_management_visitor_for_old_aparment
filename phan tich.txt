@@ -1,9 +1,0 @@
-app android
-1 register form,button register and notification
-1 screen watch request (visitir)
-1 list request visit for security to check
-1 screen for security call zalo or phone
-admin page
-page dashboard statistic amount of visitors by months,years,etc
-page list visitor information
-page list vistor and status

@@ -6,47 +6,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/wave">
 
-    <View
-        android:id="@+id/topView"
-        android:layout_width="0dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:drawableStart="@drawable/secure_49"
-        android:drawablePadding="16dp"
-        android:text="@string/pin_code_title"
-        android:textColor="@color/white"
-        android:textSize="49sp"
-        app:layout_constraintBottom_toBottomOf="@+id/topView"
-        app:layout_constraintStart_toStartOf="@+id/topView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:background="@drawable/shape_login_pannel"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topView"
-        app:layout_constraintVertical_bias="0.119">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/enter_pin_code"
@@ -60,98 +32,79 @@
             tools:ignore="TextContrastCheck" />
 
         <LinearLayout
-            android:id="@+id/second_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/enter_pin_code"
             android:layout_gravity="center"
-            android:layout_marginTop="32dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/ed_1"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:background="@drawable/round_bounder_2"
                 android:gravity="center"
                 android:inputType="numberPassword"
                 android:maxLength="1"
-                android:textColor="@color/light_blue_600"
-                android:textSize="50sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck,TextFields" />
 
             <EditText
                 android:id="@+id/ed_2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:background="@drawable/round_bounder_2"
                 android:gravity="center"
                 android:inputType="numberPassword"
                 android:maxLength="1"
-                android:textColor="@color/light_blue_600"
-                android:textSize="50sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/ed_3"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:background="@drawable/round_bounder_2"
                 android:gravity="center"
                 android:inputType="numberPassword"
                 android:maxLength="1"
-                android:textColor="@color/light_blue_600"
-                android:textSize="50sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:id="@+id/ed_4"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:background="@drawable/round_bounder_2"
                 android:gravity="center"
                 android:inputType="numberPassword"
                 android:maxLength="1"
-                android:textColor="@color/light_blue_600"
-                android:textSize="50sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
                 tools:ignore="LabelFor,SpeakableTextPresentCheck,TextFields" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/second_ll"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_enter"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/round_bg"
+            android:ems="10"
+            android:text="ENTER"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:ignore="VisualLintButtonSize" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_enter"
-                android:layout_width="250dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/round_bg"
-                android:ems="10"
-                android:text="ENTER"
-                android:textColor="@android:color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                tools:ignore="VisualLintButtonSize" />
-
-        </LinearLayout>
 
     </LinearLayout>
 

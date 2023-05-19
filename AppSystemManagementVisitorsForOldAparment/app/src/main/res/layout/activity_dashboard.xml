@@ -35,8 +35,10 @@
         android:id="@+id/first_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/people_128" />
+                    android:src="@drawable/people_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/apartments" />
+                    android:src="@drawable/apartments_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -119,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/feedback_128" />
+                    android:src="@drawable/feedback_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,7 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/home_icon_128" />
+                    android:src="@drawable/home_icon_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -164,6 +166,7 @@
                     android:textColor="@color/light_blue_600"
                     android:textSize="25sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/bar_chart" />
+                    android:src="@drawable/bar_chart_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -206,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/log_out" />
+                    android:src="@drawable/log_out_64" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -217,7 +220,6 @@
                     android:textColor="@color/light_blue_600"
                     android:textSize="25sp" />
             </LinearLayout>
-
 
 
         </LinearLayout>

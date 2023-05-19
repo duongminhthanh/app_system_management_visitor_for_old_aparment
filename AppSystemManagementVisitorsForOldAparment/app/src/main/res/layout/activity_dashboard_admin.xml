@@ -65,15 +65,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/people_128" />
+                    android:src="@drawable/people_64" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
                     android:text="@string/visitor"
+                    android:textAlignment="center"
                     android:textColor="@color/light_blue_600"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,15 +90,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/apartments" />
+                    android:src="@drawable/apartments_64" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
                     android:text="@string/apartment"
+                    android:textAlignment="center"
                     android:textColor="@color/light_blue_600"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,15 +115,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/feedback_128" />
+                    android:src="@drawable/feedback_64" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginBottom="16dp"
                     android:text="@string/feedbacks"
                     android:textColor="@color/light_blue_600"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -144,15 +146,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/account" />
+                    android:src="@drawable/account_64" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginBottom="16dp"
                     android:text="@string/accounts"
                     android:textColor="@color/light_blue_600"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -168,15 +170,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/bar_chart" />
+                    android:src="@drawable/bar_chart_64" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginBottom="16dp"
                     android:text="@string/chart"
                     android:textColor="@color/light_blue_600"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -192,15 +194,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
-                    android:src="@drawable/log_out" />
+                    android:src="@drawable/log_out_64" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:textAlignment="center"
                     android:layout_marginBottom="16dp"
                     android:text="@string/log_out"
                     android:textColor="@color/light_blue_600"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
         </LinearLayout>
