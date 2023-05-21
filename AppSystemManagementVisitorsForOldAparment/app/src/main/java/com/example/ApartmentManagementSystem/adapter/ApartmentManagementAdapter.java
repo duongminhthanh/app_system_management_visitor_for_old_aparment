@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 
 public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentManagementAdapter.MyViewHolder> {
-    private final int VIEW_ITEM_BASE = 1;
-    private final int VIEW_PROG = 0;
     Context c;
     ArrayList<Apartment> apartments;
 
@@ -46,14 +44,8 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
     @NonNull
     @Override
     public ApartmentManagementAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType == VIEW_ITEM_BASE){
-            View v = LayoutInflater.from(c).inflate(R.layout.apartment_management_item, parent, false);
-            return new MyViewHolder(v);
-        }
-        else {
-            View v = LayoutInflater.from(c).inflate(R.layout.progress_item, parent, false);
-            return new MyViewHolder(v);
-        }
+        View v = LayoutInflater.from(c).inflate(R.layout.apartment_management_item, parent, false);
+        return new MyViewHolder(v);
     }
 
     @SuppressLint("SetTextI18n")
@@ -74,6 +66,7 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
         });
         holder.btnDelete.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), DeleteApartmentActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtra("room id", a.getRoom_id());
             Log.d("room id", a.getRoom_id());
             intent.putExtra("owner name", a.getOwner_name());
@@ -85,11 +78,6 @@ public class ApartmentManagementAdapter extends RecyclerView.Adapter<ApartmentMa
     @Override
     public int getItemCount() {
         return apartments.size();
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return (apartments.get(position) != null) ? VIEW_ITEM_BASE : VIEW_PROG;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

@@ -55,7 +55,6 @@ public class ManageListAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_list_account);
         recyclerView = findViewById(R.id.list_manage_account);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
-        recyclerView.setHasFixedSize(true);
         scrollView=findViewById(R.id.scroll);
         progressBar=findViewById(R.id.loading);
         list = new ArrayList<>();
@@ -115,6 +114,7 @@ public class ManageListAccountActivity extends AppCompatActivity {
             edSearch.setText("");
             refresh();
         });
+
     }
 
     public void getData() {

@@ -38,7 +38,7 @@ public class EditApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_apartment);
-        ownerName = findViewById(R.id.edit_new_name);
+        ownerName = findViewById(R.id.edit_owner_name);
         ownerPhone = findViewById(R.id.edit_phone);
         roomId = findViewById(R.id.edit_room_id);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");

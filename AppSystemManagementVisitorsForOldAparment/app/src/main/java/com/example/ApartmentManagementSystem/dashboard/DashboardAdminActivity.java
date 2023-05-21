@@ -34,9 +34,6 @@ public class DashboardAdminActivity extends AppCompatActivity {
         /*get data from LoginActivity*/
         String username = bundle.getString("username");
         String password = bundle.getString("password");
-        Log.d("username", username);
-        Log.d("password", password);
-
 
         imgAccount.setOnClickListener(view -> {
             Intent intentAcc = new Intent(DashboardAdminActivity.this, ManageListAccountActivity.class);

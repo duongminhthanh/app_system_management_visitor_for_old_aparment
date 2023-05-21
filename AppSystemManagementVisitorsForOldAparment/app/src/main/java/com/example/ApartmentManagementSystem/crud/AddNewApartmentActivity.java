@@ -34,7 +34,7 @@ public class AddNewApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_apartment);
-        ownerName=findViewById(R.id.edit_new_name);
+        ownerName=findViewById(R.id.edit_owner_name);
         ownerPhone=findViewById(R.id.edit_phone);
         roomId=findViewById(R.id.edit_room_id);
         btnSave=findViewById(R.id.btn_save);
@@ -63,7 +63,7 @@ public class AddNewApartmentActivity extends AppCompatActivity {
                 a.setRoom_id(id);
                 myRef.child(id).setValue(a);
                 showAddSuccessfulToast();
-                Intent intent=new Intent(AddNewApartmentActivity.this
+                Intent intent=new Intent(getApplicationContext()
                         , ManageListApartmentActivity.class);
                 startActivity(intent);
             }

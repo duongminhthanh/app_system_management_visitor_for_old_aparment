@@ -43,7 +43,7 @@ public class ListVisitorActivity extends AppCompatActivity {
     ArrayList<Visitor> list, visitors;
     FloatingActionButton btnDashboard,btnSearch,btnRefresh,btnFromDate,btnToDate;
     EditText edFrom, edTo;
-    String from, to, name, roomId, visitTime, idCard, date;
+    String from, to, name, roomId, visitTime, idCard, date,d,m,y;
 
     String username,password;
     Intent intent;
@@ -116,7 +116,6 @@ public class ListVisitorActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(view -> {
             from = edFrom.getText().toString().trim();
             to = edTo.getText().toString().trim();
-
             if (from.isEmpty() || to.isEmpty()) {
                 searchData(from,to);
                 // showSearchErrorEmptyToast();
@@ -145,7 +144,10 @@ public class ListVisitorActivity extends AppCompatActivity {
                     // on below line we are passing context.
                     this, (view, year12, monthOfYear, dayOfMonth) -> {
                 // on below line we are setting date to our text view.
-                edFrom.setText("\"2023-04-01\"");
+                d=String.valueOf(dayOfMonth);
+                m=String.valueOf(monthOfYear+1);
+                y=String.valueOf(year12);
+                edFrom.setText(y+"-"+ m+"-"+d);
 
             },
                     // on below line we are passing year,
@@ -163,13 +165,16 @@ public class ListVisitorActivity extends AppCompatActivity {
             int year = c.get(Calendar.YEAR);
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
+
             // on below line we are creating a variable for date picker dialog.
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
                     // on below line we are passing context.
                     this, (view, year1, monthOfYear, dayOfMonth) -> {
                 // on below line we are setting date to our text view.
-                edTo.setText("2023-05-10");
-
+            d=String.valueOf(dayOfMonth);
+            m=String.valueOf(monthOfYear+1);
+            y=String.valueOf(year1);
+                edTo.setText(y+"-"+ m+"-"+d);
             },
                     // on below line we are passing year,
                     // month and day for selected date in our date picker.
@@ -179,7 +184,7 @@ public class ListVisitorActivity extends AppCompatActivity {
 
     }
     public void getData() {
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -214,7 +219,7 @@ public class ListVisitorActivity extends AppCompatActivity {
 
     public void refresh() {
         list.clear();
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -239,7 +244,8 @@ public class ListVisitorActivity extends AppCompatActivity {
         Log.d("from date",from); // "2023-04-01"
         Log.d("to date",to); // "2023-05-30"
         visitors = new ArrayList<>();
-        myRef.orderByChild("date").startAt(from).endAt(to)
+        list.clear();
+        myRef.orderByKey().orderByChild("date").startAt(from).endAt(to)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -58,16 +58,13 @@ public class AddNewAccountActivity extends AppCompatActivity {
 
     public void addData(String idAcc, String username, String password, String pin_code) {
         myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                a = new Account();
-                a.setAcc_id(idAcc);
-                a.setUsername(username);
-                a.setPassword(password);
-                a.setPin_code(pin_code);
+                a = new Account(idAcc,username,password,pin_code);
                 myRef.child(idAcc).setValue(a);
                 showAddSuccessfulToast();
-                Intent intent = new Intent(AddNewAccountActivity.this
+                Intent intent = new Intent(getApplicationContext()
                         , ManageListAccountActivity.class);
                 startActivity(intent);
             }

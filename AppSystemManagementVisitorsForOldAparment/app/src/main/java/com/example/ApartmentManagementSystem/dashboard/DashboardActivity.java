@@ -1,5 +1,6 @@
 package com.example.ApartmentManagementSystem.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,7 +35,8 @@ public class DashboardActivity extends AppCompatActivity {
         createView(username,password);
     }
 
-    public void createView(String username,String password) {
+    @SuppressLint("ResourceAsColor")
+    public void createView(String username, String password) {
         imgApartment = findViewById(R.id.image_apartment);
         imgApartment.setOnClickListener(view -> {
             Intent listApartment = new Intent(DashboardActivity.this, ListApartmentActivity.class);

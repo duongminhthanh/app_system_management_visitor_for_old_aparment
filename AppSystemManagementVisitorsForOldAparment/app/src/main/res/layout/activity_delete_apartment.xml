@@ -1,115 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/wave"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".crud.DeleteApartmentActivity">
-    <TextView
-        android:id="@+id/text_title_form"
-        android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/wave">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/delete_confirm"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="48sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/shape_login_pannel"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/edit_new_name"
-        android:background="@drawable/edit_text_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/edit_visitor_name"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColorHint="@color/light_blue_600"
-        android:textSize="30sp"
-        android:textColor="@color/light_blue_600"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_form"
-        tools:ignore="TextContrastCheck" />
+        <TextView
+            android:id="@+id/text_title_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/delete_confirm"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Are you sure want to delete"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp"
+            android:layout_gravity="center_horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_yes"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/round_bg"
+                android:ems="10"
+                android:text="YES"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:ignore="VisualLintButtonSize" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_no"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/round_bg"
+                android:ems="10"
+                android:text="NO"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:ignore="VisualLintButtonSize" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/edit_room_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:autofillHints=""
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:hint="@string/hint_room_id"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColorHint="@color/light_blue_600"
-        android:textSize="30sp"
-        android:textColor="@color/light_blue_600"
-        app:layout_constraintEnd_toEndOf="@+id/edit_phone"
-        app:layout_constraintStart_toStartOf="@+id/edit_phone"
-        app:layout_constraintTop_toBottomOf="@+id/edit_phone"
-        tools:ignore="TextContrastCheck" />
-
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="160dp" />
-
-    <EditText
-        android:id="@+id/edit_phone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/edit_text_background"
-        android:ems="10"
-        android:hint="@string/hint_phone"
-        android:textColorHint="@color/light_blue_600"
-        android:textSize="30sp"
-        android:textColor="@color/light_blue_600"
-        android:inputType="phone"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_new_name"
-        app:layout_constraintStart_toStartOf="@+id/edit_new_name"
-        app:layout_constraintTop_toBottomOf="@+id/edit_new_name"
-        android:autofillHints="" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="468dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/button_background"
-        android:drawableStart="@drawable/yes"
-        android:text="@string/yes"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
-        tools:ignore="VisualLintBounds,TextContrastCheck" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="468dp"
-        android:background="@drawable/button_background"
-        android:drawableStart="@drawable/no"
-        android:text="@string/no"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_room_id"
-        tools:ignore="VisualLintBounds,TextContrastCheck" />
-
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

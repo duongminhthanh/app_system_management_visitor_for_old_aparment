@@ -14,17 +14,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.crud.DeleteAccountActivity;
 import com.example.ApartmentManagementSystem.crud.EditAccountActivity;
-import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.model.Account;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHolder> {
-    private final int VIEW_ITEM_BASE = 1;
-    private final int VIEW_PROG = 0;
+
     Context c;
     ArrayList<Account> accounts;
 
@@ -42,14 +41,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
     @NonNull
     @Override
     public AccountAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType == VIEW_ITEM_BASE){
-            View v = LayoutInflater.from(c).inflate(R.layout.account_item, parent, false);
-            return new MyViewHolder(v);
-        }
-        else {
-            View v = LayoutInflater.from(c).inflate(R.layout.progress_item, parent, false);
-            return new MyViewHolder(v);
-        }
+        View v = LayoutInflater.from(c).inflate(R.layout.account_item, parent, false);
+        return new MyViewHolder(v);
     }
 
     @Override
@@ -74,17 +67,13 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
             intent.putExtra("password", a.getPassword());
             intent.putExtra("pin_code", a.getPin_code());
             startActivity(c, intent, Bundle.EMPTY);
+
         });
     }
 
     @Override
     public int getItemCount() {
         return accounts.size();
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return (accounts.get(position) != null) ? VIEW_ITEM_BASE : VIEW_PROG;
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

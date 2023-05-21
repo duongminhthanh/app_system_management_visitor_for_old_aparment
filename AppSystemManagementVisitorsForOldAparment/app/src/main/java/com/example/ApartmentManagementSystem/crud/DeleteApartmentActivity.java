@@ -10,13 +10,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
-import com.example.ApartmentManagementSystem.model.Apartment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,36 +24,31 @@ import com.google.firebase.database.ValueEventListener;
 public class DeleteApartmentActivity extends AppCompatActivity {
 
     Button btnYes, btnNo;
-    EditText editOwnerName, editOwnerPhone, editRoomId;
     Intent intent;
     String ownerName, ownerPhone, roomId;
     DatabaseReference myRef;
-    Apartment a;
-
-    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_apartment);
-        btnYes = findViewById(R.id.button_yes);
-        btnNo = findViewById(R.id.button_no);
-        editOwnerName = findViewById(R.id.edit_new_name);
-        editOwnerPhone = findViewById(R.id.edit_phone);
-        editRoomId = findViewById(R.id.edit_room_id);
+        btnYes = findViewById(R.id.btn_yes);
+        btnNo = findViewById(R.id.btn_no);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         intent = getIntent();
         ownerName = intent.getStringExtra("owner name");
         ownerPhone = intent.getStringExtra("owner phone");
         roomId = intent.getStringExtra("room id");
-        editOwnerName.setText(ownerName);
-        editOwnerPhone.setText(ownerPhone);
-        editRoomId.setText(roomId);
         btnNo.setOnClickListener(view -> showErrorDeleteToast());
-        btnYes.setOnClickListener(view -> myRef.addValueEventListener(new ValueEventListener() {
+        btnYes.setOnClickListener(view -> deleteData());
+    }
+    public void deleteData(){
+        myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                a = new Apartment();
-                myRef.child(roomId).removeValue();
+                myRef.child(roomId).child("owner_name").removeValue();
+                myRef.child(roomId).child("owner_phone").removeValue();
+                myRef.child(roomId).child("room_id").removeValue();
                 showDeleteSuccessfulToast();
                 Intent intentManagement = new Intent(DeleteApartmentActivity.this
                         , ManageListApartmentActivity.class);
@@ -66,9 +59,8 @@ public class DeleteApartmentActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        }));
+        });
     }
-
     @SuppressLint("SetTextI18n")
     public void showDeleteSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();

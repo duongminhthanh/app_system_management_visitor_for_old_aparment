@@ -1,20 +1,24 @@
 package com.example.ApartmentManagementSystem.authentication;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chaos.view.PinView;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardActivity;
 import com.example.ApartmentManagementSystem.model.Account;
@@ -27,9 +31,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class PinCodeActivity extends AppCompatActivity implements View.OnClickListener {
+public class PinCodeActivity extends AppCompatActivity{
 
-    EditText ed1, ed2, ed3, ed4;
+    PinView pinView;
     Button btnEnter;
     String pin_code = "", code;
     DatabaseReference myRef;
@@ -42,21 +46,36 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_code);
         list = new ArrayList<>();
-        initView();
-        ed1.setOnClickListener(this);
-        ed2.setOnClickListener(this);
-        ed3.setOnClickListener(this);
-        ed4.setOnClickListener(this);
+        pinView = findViewById(R.id.pin_view);
+        btnEnter= findViewById(R.id.button_enter);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         username = bundle.getString("username");
         password = bundle.getString("password");
         Log.d("username",username);
         Log.d("password",password);
+        pinView.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+        pinView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         btnEnter.setOnClickListener(view -> {
 //            Log.d("pin_code value is: ",pin_code);
-            pin_code = ed1.getText().toString().trim() + ed2.getText().toString().trim()
-                    + ed3.getText().toString().trim() + ed4.getText().toString().trim();
+            pin_code =pinView.getText().toString().trim();
             if (pin_code.isEmpty()) showErrorEmptyToast();
             else {
                 readDataPinCode(pin_code);
@@ -64,34 +83,6 @@ public class PinCodeActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-    public void initView() {
-        ed1 = findViewById(R.id.ed_1);
-        ed2 = findViewById(R.id.ed_2);
-        ed3 = findViewById(R.id.ed_3);
-        ed4 = findViewById(R.id.ed_4);
-        btnEnter = findViewById(R.id.button_enter);
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ed_1:
-                ed1.setText(ed1.getText().toString());
-                if (!ed1.getText().toString().isEmpty()){
-                    ed2.setText(ed2.getText().toString());
-                    if (!ed2.getText().toString().isEmpty()) {
-                        ed3.setText(ed3.getText().toString());
-                        if (!ed3.getText().toString().isEmpty()) {
-                            ed4.setText(ed4.getText().toString());
-                        }
-                    }
-                }
-            case R.id.ed_2:
-            case R.id.ed_3:
-            case R.id.ed_4:
-        }
-    }
 
     public void readDataPinCode(String pin_code) {
 

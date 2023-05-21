@@ -60,6 +60,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation 'com.google.android.material:material:1.0.0'
-
+    //pin view
+    implementation 'io.github.chaosleung:pinview:1.4.4'
 }
 apply plugin: 'com.google.gms.google-services'

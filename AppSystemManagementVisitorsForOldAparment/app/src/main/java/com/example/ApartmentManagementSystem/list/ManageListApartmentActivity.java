@@ -72,8 +72,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         if (bundle!=null){
             username = bundle.getString("username");
             password = bundle.getString("password");
-            Log.d("username",username);
-            Log.d("password",password);
+
         }
         getData();
         scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
