@@ -8,13 +8,16 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,7 +40,8 @@ public class ListFeedbackActivity extends AppCompatActivity {
     DatabaseReference myRef;
     FeedbackAdapter feedbackAdapter;
     ArrayList<Feedback> list,feedbacks;
-    FloatingActionButton btnDashboard,btnSearch,btnRefresh;
+    FloatingActionButton btnDashboard,btnSearch;
+    ImageView refresh;
     String name,feedback,searchValue;
     EditText edSearch;
     Boolean checkSearch=false;
@@ -51,13 +55,17 @@ public class ListFeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_feedback);
-        btnDashboard=findViewById(R.id.button_dashboard);
+        //toolbar
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
+//        btnDashboard=findViewById(R.id.button_dashboard);
         btnSearch = findViewById(R.id.button_search);
-        btnRefresh = findViewById(R.id.button_refresh);
+        refresh = findViewById(R.id.image_refresh);
         edSearch = findViewById(R.id.edit_search);
         recyclerView = findViewById(R.id.list_feedbacks);
         myRef = FirebaseDatabase.getInstance().getReference().child("feedbacks");
-        recyclerView.setHasFixedSize(true);
         recyclerView.setHasFixedSize(true);
         scrollView=findViewById(R.id.scroll);
         progressBar=findViewById(R.id.loading);
@@ -80,6 +88,8 @@ public class ListFeedbackActivity extends AppCompatActivity {
         feedbackAdapter = new FeedbackAdapter(this, list);
         recyclerView.setAdapter(feedbackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
@@ -92,28 +102,28 @@ public class ListFeedbackActivity extends AppCompatActivity {
 
 
         getData();
-        btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard;
-            if (username.equals("admin") && password.equals("admin1234")) {
-                intentDashboard = new Intent(ListFeedbackActivity.this
-                        , DashboardAdminActivity.class);
-            } else {
-                intentDashboard = new Intent(ListFeedbackActivity.this
-                        , DashboardActivity.class);
-            }
-            bundle =new Bundle();
-            bundle.putString("username",username);
-            bundle.putString("password",password);
-            intentDashboard.putExtras(bundle);
-            ListFeedbackActivity.this.startActivity(intentDashboard);
-        });
+//        btnDashboard.setOnClickListener(view -> {
+//            Intent intentDashboard;
+//            if (username.equals("admin") && password.equals("admin1234")) {
+//                intentDashboard = new Intent(ListFeedbackActivity.this
+//                        , DashboardAdminActivity.class);
+//            } else {
+//                intentDashboard = new Intent(ListFeedbackActivity.this
+//                        , DashboardActivity.class);
+//            }
+//            bundle =new Bundle();
+//            bundle.putString("username",username);
+//            bundle.putString("password",password);
+//            intentDashboard.putExtras(bundle);
+//            ListFeedbackActivity.this.startActivity(intentDashboard);
+//        });
         btnSearch.setOnClickListener(view -> {
             edSearch.setText(edSearch.getText().toString());
             searchValue=edSearch.getText().toString();
             if (searchValue.isEmpty()) showSearchErrorEmptyToast();
             searchData(searchValue);
         });
-        btnRefresh.setOnClickListener(view -> {
+        refresh.setOnClickListener(view -> {
             feedbacks.clear();
             edSearch.setText("");
             refresh();

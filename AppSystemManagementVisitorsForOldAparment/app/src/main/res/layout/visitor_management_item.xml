@@ -4,14 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
+    android:layout_margin="4dp"
+    android:clickable="true"
     app:cardCornerRadius="8dp"
-    android:layout_margin="16dp">
+    app:cardElevation="10dp">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical">
+        android:background="#e1e1e1"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="14dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,17 +26,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/id_card"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/idCard"
                 android:text="@string/id_card"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -43,17 +46,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/name"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/visitorName"
                 android:text="@string/name"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,17 +65,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/room_id"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/roomID"
                 android:text="@string/room_id"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -86,17 +85,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/visit_time"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/visitTime"
                 android:text="@string/visit_time"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -108,17 +105,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/date"
                 android:text="@string/date"
-                android:textColor="@color/light_blue_600"
-                android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"
+                android:textSize="26sp" />
 
         </LinearLayout>
 

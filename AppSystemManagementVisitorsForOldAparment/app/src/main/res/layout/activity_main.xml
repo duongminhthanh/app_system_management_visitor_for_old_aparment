@@ -1,89 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/wave">
-
-    <ImageView
-        android:id="@+id/image_pin_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/first_ll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.953"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445"
-        app:srcCompat="@drawable/secure_49" />
-
+    tools:ignore="ExtraText">
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
     <LinearLayout
-        android:id="@+id/first_ll"
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/shape_login_pannel"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="4dp"
             android:text="Hello visitor"
-            android:textColor="@color/light_blue_600"
-            android:textSize="30sp" />
-
+            android:textSize="30sp"
+            android:textColor="@color/light_blue_600" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="What do you want to do ?"
-            android:textColor="@color/light_blue_600"
-            android:textSize="30sp" />
+            android:gravity="center"
+            android:padding="4dp"
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_register_visit"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/round_bg"
-            android:text="@string/register_visit"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_rating"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/round_bg"
-            android:text="@string/rating"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_feedback"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/round_bg"
-            android:text="@string/feedback"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:text="What do you want to do"
+            android:textSize="25sp"
+            android:textColor="@color/light_blue_600"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll1"
+        android:background="#fcfcfc"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bankcardId"
+                android:layout_width="160dp"
+                android:layout_height="190dp"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_form"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="10dp"
+                        android:src="@drawable/form_64" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/register_visit"
+                        android:textColor="@color/light_blue_600"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="160dp"
+                android:layout_height="190dp"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_feedback"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="10dp"
+                        android:src="@drawable/feedback_64" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/feedback"
+                        android:textColor="@color/light_blue_600"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="160dp"
+                android:layout_height="190dp"
+                android:layout_margin="10dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_rating"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:padding="10dp"
+                        android:src="@drawable/rating" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/rating"
+                        android:textColor="@color/light_blue_600"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

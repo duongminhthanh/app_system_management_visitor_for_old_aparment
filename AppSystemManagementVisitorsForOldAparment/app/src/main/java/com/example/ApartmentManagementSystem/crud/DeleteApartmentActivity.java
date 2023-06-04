@@ -13,8 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,7 @@ public class DeleteApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_apartment);
+        CustomProgressDialog dialog = new CustomProgressDialog(DeleteApartmentActivity.this);
         btnYes = findViewById(R.id.btn_yes);
         btnNo = findViewById(R.id.btn_no);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
@@ -38,8 +41,14 @@ public class DeleteApartmentActivity extends AppCompatActivity {
         ownerName = intent.getStringExtra("owner name");
         ownerPhone = intent.getStringExtra("owner phone");
         roomId = intent.getStringExtra("room id");
-        btnNo.setOnClickListener(view -> showErrorDeleteToast());
-        btnYes.setOnClickListener(view -> deleteData());
+        btnNo.setOnClickListener(view -> {
+            dialog.show();
+            showErrorDeleteToast();
+        });
+        btnYes.setOnClickListener(view -> {
+            dialog.show();
+            deleteData();
+        });
     }
     public void deleteData(){
         myRef.addValueEventListener(new ValueEventListener() {

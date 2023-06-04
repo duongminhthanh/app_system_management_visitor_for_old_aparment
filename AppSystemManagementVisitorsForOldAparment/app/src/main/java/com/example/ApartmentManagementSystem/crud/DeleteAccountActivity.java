@@ -16,7 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,7 @@ public class DeleteAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_account);
+        CustomProgressDialog dialog = new CustomProgressDialog(DeleteAccountActivity.this);
         btnYes = findViewById(R.id.btn_yes);
         btnNo = findViewById(R.id.btn_no);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
@@ -43,8 +46,14 @@ public class DeleteAccountActivity extends AppCompatActivity {
         password = intent.getStringExtra("password");
         pin_code = intent.getStringExtra("pin_code");
         Log.d("acc_id",idAcc);
-        btnNo.setOnClickListener(view -> showErrorDeleteToast());
-        btnYes.setOnClickListener(view -> deleteData());
+        btnNo.setOnClickListener(view -> {
+            dialog.show();
+            showErrorDeleteToast();
+        });
+        btnYes.setOnClickListener(view -> {
+            dialog.show();
+            deleteData();
+        });
     }
     public void deleteData() {
         myRef.addValueEventListener(new ValueEventListener() {

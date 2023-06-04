@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Widget.Theme.App_System_Management_Visitors_For_Old_Aparment.MyView" parent="">
+    <style name="Widget.Theme.App_System_Management_Visitors_For_Old_Aparment.MyView" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">@color/gray_400</item>
         <item name="exampleColor">@color/light_blue_400</item>
     </style>

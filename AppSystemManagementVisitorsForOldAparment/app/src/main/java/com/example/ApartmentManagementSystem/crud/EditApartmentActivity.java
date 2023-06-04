@@ -15,8 +15,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Apartment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +40,7 @@ public class EditApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_apartment);
+        CustomProgressDialog dialog = new CustomProgressDialog(EditApartmentActivity.this);
         ownerName = findViewById(R.id.edit_owner_name);
         ownerPhone = findViewById(R.id.edit_phone);
         roomId = findViewById(R.id.edit_room_id);
@@ -49,6 +52,8 @@ public class EditApartmentActivity extends AppCompatActivity {
         dataId = intent.getStringExtra("room id");
         Log.d("room id", dataId);
         roomId.setText(dataId);
+        ownerName.setText(dataName);
+        ownerPhone.setText(dataPhone);
         btnSave.setOnClickListener(view -> {
             //get data from management screen
 
@@ -59,7 +64,7 @@ public class EditApartmentActivity extends AppCompatActivity {
             name = ownerName.getText().toString();
             phone = ownerPhone.getText().toString();
             id = dataId;
-
+            dialog.show();
             if (name.isEmpty() || phone.isEmpty()) showErrorEmptyToast();
             else if (name.equals(dataName) && phone.equals(dataPhone))
                 showErrorSameDataToast();
@@ -72,11 +77,13 @@ public class EditApartmentActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                a = new Apartment();
-                a.setRoom_id(id);
-                a.setOwner_name(name);
-                a.setOwner_phone(phone);
-                myRef.child(id).setValue(a);
+//                a = new Apartment();
+//                a.setRoom_id(id);
+//                a.setOwner_name(name);
+//                a.setOwner_phone(phone);
+                myRef.child(id).child("owner_name").setValue(name);
+                myRef.child(id).child("owner_phone").setValue(phone);
+                myRef.child(id).child("room_id").setValue(id);
                 showUpdateSuccessfulToast();
                 Intent intent = new Intent(EditApartmentActivity.this
                         , ManageListApartmentActivity.class);

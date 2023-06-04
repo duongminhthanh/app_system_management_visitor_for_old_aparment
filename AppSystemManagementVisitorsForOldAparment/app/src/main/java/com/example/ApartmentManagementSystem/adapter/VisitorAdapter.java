@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ApartmentManagementSystem.R;
@@ -43,7 +44,6 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
     /*Set the properties of the View and the data.*/
     public void onBindViewHolder(@NonNull VisitorAdapter.MyViewHolder holder, int position) {
         Visitor v = visitors.get(position);
-
         holder.id_card.setText(v.getId_card());
         holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
@@ -59,7 +59,7 @@ public class VisitorAdapter extends RecyclerView.Adapter<VisitorAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView id_card, name, room_id, visit_time, date;
-        MaterialCardView cardView;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -18,6 +18,42 @@
         android:theme="@style/Theme.ApartmentManagementSystem"
         tools:targetApi="31">
         <activity
+            android:name=".chart.LineChartActivity2"
+            android:exported="false"
+            android:parentActivityName=".chart.ChartActivity"/>
+        <activity
+            android:name=".chart.PieChartActivity2"
+            android:exported="false"
+            android:parentActivityName=".chart.ChartActivity"/>
+        <activity
+            android:name=".chart.BarChartActivity2"
+            android:exported="false"
+            android:parentActivityName=".chart.ChartActivity"/>
+        <activity
+            android:name=".chart.ChartActivity"
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardActivity"/>
+        <activity
+            android:name=".list.ListFeedbackActivityAdmin"
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardAdminActivity" />
+        <activity
+            android:name=".chart.LineChartActivity"
+            android:exported="false"
+            android:parentActivityName=".chart.ChartAdminActivity" />
+        <activity
+            android:name=".chart.PieChartActivity"
+            android:exported="false"
+            android:parentActivityName=".chart.ChartAdminActivity" />
+        <activity
+            android:name=".chart.BarChartActivity"
+            android:exported="false"
+            android:parentActivityName=".chart.ChartAdminActivity" />
+        <activity
+            android:name=".chart.ChartAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardAdminActivity" />
+        <activity
             android:name=".crud.DeleteAccountActivity"
             android:exported="false" />
         <activity
@@ -31,22 +67,28 @@
             android:exported="false" />
         <activity
             android:name=".list.ListFeedbackActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardActivity" />
         <activity
             android:name=".list.ManageListApartmentActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardAdminActivity" />
         <activity
             android:name=".list.ManageListVisitorActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardAdminActivity" />
         <activity
             android:name=".list.ManageListAccountActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardAdminActivity" />
         <activity
             android:name=".list.ListApartmentActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".dashboard.DashboardActivity" />
         <activity
             android:name=".list.ListVisitorActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".dashboard.DashboardActivity" />
         <activity
             android:name=".dashboard.DashboardAdminActivity"
             android:exported="false" />
@@ -76,14 +118,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="com.zing.zalo.zalosdk.appID"
-            android:value="@string/appID" />
-
         <activity
             android:name=".main_activity.MainActivity"
             android:exported="true">

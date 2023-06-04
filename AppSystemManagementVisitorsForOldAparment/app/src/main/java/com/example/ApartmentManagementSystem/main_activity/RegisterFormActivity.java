@@ -16,9 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
 import com.example.ApartmentManagementSystem.model.Apartment;
 import com.example.ApartmentManagementSystem.model.Visitor;
 import com.google.firebase.database.DataSnapshot;
@@ -46,24 +49,28 @@ public class RegisterFormActivity extends AppCompatActivity {
     Button btnSend;
     Intent intent;
     Bundle bundle;
-    String username,password;
-    Date d=null;
+    String username, password;
+    Date d = null;
     Timestamp t;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_form);
+        CustomProgressDialog dialog = new CustomProgressDialog(RegisterFormActivity.this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         edName = findViewById(R.id.edit_name_visitor);
         edIdCard = findViewById(R.id.edit_id_card);
         edTime = findViewById(R.id.edit_time);
         spinner = findViewById(R.id.spinner_apartment_id);
-        btnSend=findViewById(R.id.button);
+        btnSend = findViewById(R.id.button);
         intent = getIntent();
         bundle = intent.getExtras();
         username = bundle.getString("username");
         password = bundle.getString("password");
-        Log.d("username",username);
-        Log.d("password",password);
+        Log.d("username", username);
+        Log.d("password", password);
         list = new ArrayList<>();
         apartmentId = new ArrayList<>();
         apartmentRef = FirebaseDatabase.getInstance().getReference().
@@ -87,7 +94,7 @@ public class RegisterFormActivity extends AppCompatActivity {
                     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            roomId= String.valueOf(adapterView.getSelectedItem());
+                            roomId = String.valueOf(adapterView.getSelectedItem());
                         }
 
                         @Override
@@ -111,7 +118,8 @@ public class RegisterFormActivity extends AppCompatActivity {
             name = edName.getText().toString();
             idCard = edIdCard.getText().toString();
             time = edTime.getText().toString();
-            if (name.isEmpty()||idCard.isEmpty()||time.isEmpty())showErrorEmptyToast();
+            dialog.show();
+            if (name.isEmpty() || idCard.isEmpty() || time.isEmpty()) showErrorEmptyToast();
             else readData(name, idCard, time, roomId);
         });
 
@@ -127,17 +135,17 @@ public class RegisterFormActivity extends AppCompatActivity {
                 v.setRoom_id(roomId);
                 v.setVisit_time(time);
                 @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 try {
-                    d=format.parse(v.getDate());
-                    t=new Timestamp(Objects.requireNonNull(d).getTime());
+                    d = format.parse(v.getDate());
+                    t = new Timestamp(Objects.requireNonNull(d).getTime());
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
                 v.setDate(t.toString());
                 visitorRef.child(name).setValue(v);
                 showAddSuccessfulToast();
-                Intent intent=new Intent(RegisterFormActivity.this, MainActivity.class);
+                Intent intent = new Intent(RegisterFormActivity.this, MainActivity.class);
                 bundle.putString("username", username);
                 bundle.putString("password", password);
                 intent.putExtras(bundle);
@@ -151,6 +159,7 @@ public class RegisterFormActivity extends AppCompatActivity {
         });
 
     }
+
     @SuppressLint("SetTextI18n")
     public void showAddSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();

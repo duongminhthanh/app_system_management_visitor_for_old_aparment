@@ -14,8 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Apartment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +36,7 @@ public class AddNewApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_apartment);
+        CustomProgressDialog dialog = new CustomProgressDialog(AddNewApartmentActivity.this);
         ownerName=findViewById(R.id.edit_owner_name);
         ownerPhone=findViewById(R.id.edit_phone);
         roomId=findViewById(R.id.edit_room_id);
@@ -46,6 +49,7 @@ public class AddNewApartmentActivity extends AppCompatActivity {
             phone=ownerPhone.getText().toString();
             roomId.setText(roomId.getText().toString());
             id=roomId.getText().toString();
+            dialog.show();
             if (name.isEmpty()||phone.isEmpty()||id.isEmpty())showErrorEmptyToast();
             else{
                 addData(id,name,phone);

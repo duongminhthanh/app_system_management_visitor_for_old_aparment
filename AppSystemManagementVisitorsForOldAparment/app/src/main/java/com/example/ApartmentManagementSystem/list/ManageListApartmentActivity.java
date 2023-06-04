@@ -6,23 +6,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.adapter.ApartmentManagementAdapter;
+import com.example.ApartmentManagementSystem.chart.ChartAdminActivity;
 import com.example.ApartmentManagementSystem.crud.AddNewApartmentActivity;
 import com.example.ApartmentManagementSystem.dashboard.DashboardAdminActivity;
 import com.example.ApartmentManagementSystem.model.Apartment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +43,8 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
     ArrayList<Apartment> list, apartments;
-    FloatingActionButton btnCreate,btnDashboard,btnSearch,btnRefresh;
+    FloatingActionButton btnCreate,btnSearch;
+    ImageView refresh;
     String searchValue, ownerName, ownerPhone, roomId;
     EditText edSearch;
 
@@ -52,6 +59,10 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_list_apartment);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
         recyclerView = findViewById(R.id.list_apartment);
         edSearch = findViewById(R.id.edit_search);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
@@ -60,12 +71,14 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.loading);
         list = new ArrayList<>();
         btnCreate = findViewById(R.id.button_create);
-        btnDashboard=findViewById(R.id.button_dashboard);
+//        btnDashboard=findViewById(R.id.button_dashboard);
         btnSearch = findViewById(R.id.button_search);
-        btnRefresh = findViewById(R.id.button_refresh);
+        refresh = findViewById(R.id.image_refresh);
         apartmentManagementAdapter = new ApartmentManagementAdapter(this, list);
         recyclerView.setAdapter(apartmentManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
@@ -91,14 +104,14 @@ public class ManageListApartmentActivity extends AppCompatActivity {
                     }
                 });
 
-        btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
-            bundle =new Bundle();
-            bundle.putString("username",username);
-            bundle.putString("password",password);
-            intentDashboard.putExtras(bundle);
-            startActivity(intentDashboard);
-        });
+//        btnDashboard.setOnClickListener(view -> {
+//            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
+//            bundle =new Bundle();
+//            bundle.putString("username",username);
+//            bundle.putString("password",password);
+//            intentDashboard.putExtras(bundle);
+//            startActivity(intentDashboard);
+//        });
         btnCreate.setOnClickListener(view -> {
             Intent intentCreate = new Intent(this, AddNewApartmentActivity.class);
             startActivity(intentCreate);
@@ -109,7 +122,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
             if (searchValue.isEmpty()) showSearchErrorEmptyToast();
             searchData(searchValue);
         });
-        btnRefresh.setOnClickListener(view -> {
+        refresh.setOnClickListener(view -> {
             apartments.clear();
             edSearch.setText("");
             refresh();

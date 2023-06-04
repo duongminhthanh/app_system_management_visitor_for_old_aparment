@@ -1,6 +1,7 @@
 package com.example.ApartmentManagementSystem.main_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
 
 public class RatingActivity extends AppCompatActivity {
     Button btnSubmit;
@@ -26,6 +28,9 @@ public class RatingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
+        CustomProgressDialog dialog = new CustomProgressDialog(RatingActivity.this);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         btnSubmit=findViewById(R.id.btn_submit);
         ratingBar=findViewById(R.id.rating_start);
         ratingBar.setOnClickListener(view -> ratingBar.setRating(3.5f));
@@ -38,6 +43,7 @@ public class RatingActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(view -> {
             ratingBar.getNumStars();
             ratingBar.getRating();
+            dialog.show();
             showRatingSuccessfulToast();
             Intent intent=new Intent(RatingActivity.this, MainActivity.class);
             bundle.putString("username", username);

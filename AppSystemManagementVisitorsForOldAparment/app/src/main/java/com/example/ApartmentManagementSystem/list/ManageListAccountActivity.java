@@ -8,13 +8,16 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,10 +41,10 @@ public class ManageListAccountActivity extends AppCompatActivity {
     DatabaseReference myRef;
     AccountAdapter accountAdapter;
     ArrayList<Account> list, accounts;
-    FloatingActionButton btnCreate, btnDashboard, btnSearch, btnRefresh;
+    FloatingActionButton btnCreate,btnSearch;
     String searchValue, accId, username, password, pinCode;
     EditText edSearch;
-
+    ImageView search,refresh;
     Boolean checkSearch = false;
     String dataUsername,dataPassword;
     Intent intent;
@@ -53,6 +56,11 @@ public class ManageListAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_list_account);
+        //toolbar
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
         recyclerView = findViewById(R.id.list_manage_account);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         scrollView=findViewById(R.id.scroll);
@@ -61,11 +69,13 @@ public class ManageListAccountActivity extends AppCompatActivity {
         accountAdapter = new AccountAdapter(this, list);
         recyclerView.setAdapter(accountAdapter);
         btnCreate = findViewById(R.id.button_create);
-        btnDashboard = findViewById(R.id.button_dashboard);
+//        btnDashboard = findViewById(R.id.button_dashboard);
         btnSearch = findViewById(R.id.button_search);
-        btnRefresh = findViewById(R.id.button_refresh);
+        refresh = findViewById(R.id.image_refresh);
         edSearch = findViewById(R.id.edit_search);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
@@ -91,14 +101,14 @@ public class ManageListAccountActivity extends AppCompatActivity {
                         }
                     }
                 });
-        btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
-            bundle =new Bundle();
-            bundle.putString("username",dataUsername);
-            bundle.putString("password",dataPassword);
-            intentDashboard.putExtras(bundle);
-            startActivity(intentDashboard);
-        });
+//        btnDashboard.setOnClickListener(view -> {
+//            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
+//            bundle =new Bundle();
+//            bundle.putString("username",dataUsername);
+//            bundle.putString("password",dataPassword);
+//            intentDashboard.putExtras(bundle);
+//            startActivity(intentDashboard);
+//        });
         btnCreate.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddNewAccountActivity.class);
             startActivity(intent);
@@ -109,7 +119,7 @@ public class ManageListAccountActivity extends AppCompatActivity {
             if (searchValue.isEmpty()) showSearchErrorEmptyToast();
             searchData(searchValue);
         });
-        btnRefresh.setOnClickListener(view -> {
+        refresh.setOnClickListener(view -> {
             accounts.clear();
             edSearch.setText("");
             refresh();

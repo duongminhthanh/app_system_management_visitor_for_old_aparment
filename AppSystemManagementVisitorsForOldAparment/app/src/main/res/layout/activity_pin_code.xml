@@ -1,75 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/wave">
-
-    <LinearLayout
-        android:id="@+id/first_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ExtraText">
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar_pin_code"></include>
+    <TextView
+        android:id="@+id/textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/shape_login_pannel"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="100dp"
+        android:text="Verify"
+        android:textAlignment="center"
+        android:textSize="55sp"
+        android:textColor="@color/light_blue_600"/>
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview"
+        android:text="Enter your pin code"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textColor="@color/light_blue_600"/>
+    <LinearLayout
+        android:id="@+id/ll2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview2"
+        android:layout_marginTop="16dp"
+        android:background="#fcfcfc"
+        android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/enter_pin_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/enter_your_pin_code_here"
-            android:textColor="@color/light_blue_600"
-            android:textSize="30sp"
-            tools:ignore="TextContrastCheck" />
-
-        <LinearLayout
+        android:padding="10dp">
+        <com.chaos.view.PinView
+            android:id="@+id/pin_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <com.chaos.view.PinView
-                android:id="@+id/pin_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:inputType="number"
-                android:textSize="30sp"
-                android:elevation="10dp"
-                app:itemWidth="60dp"
-                app:itemHeight="60dp"
-                app:itemRadius="30dp"
-                app:itemSpacing="15dp"
-                app:lineColor="@color/light_blue_600"
-                tools:ignore="SpeakableTextPresentCheck"></com.chaos.view.PinView>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:inputType="number"
+            android:textSize="30sp"
+            android:elevation="10dp"
+            android:itemBackground="#e1e1e1"
+            app:itemWidth="60dp"
+            app:itemHeight="60dp"
+            app:itemRadius="15dp"
+            app:itemSpacing="15dp"
+            app:lineColor="#e1e1e1"
+            tools:ignore="SpeakableTextPresentCheck"></com.chaos.view.PinView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_enter"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            style="@android:style/Widget.Button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/round_bg"
-            android:ems="10"
-            android:text="ENTER"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:ignore="VisualLintButtonSize" />
-
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btn_light_blue"
+            android:text="Enter"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

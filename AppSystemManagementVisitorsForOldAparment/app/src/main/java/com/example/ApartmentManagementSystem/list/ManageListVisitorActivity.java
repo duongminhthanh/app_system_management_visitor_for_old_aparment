@@ -1,13 +1,16 @@
 package com.example.ApartmentManagementSystem.list;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,14 +18,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.adapter.VisitorManagementAdapter;
-import com.example.ApartmentManagementSystem.dashboard.DashboardActivity;
+import com.example.ApartmentManagementSystem.chart.ChartAdminActivity;
 import com.example.ApartmentManagementSystem.model.Visitor;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,40 +37,54 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 public class ManageListVisitorActivity extends AppCompatActivity {
+    Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     RecyclerView recyclerView;
     DatabaseReference myRef;
     VisitorManagementAdapter visitorManagementAdapter;
     ArrayList<Visitor> list, visitors;
-    ImageView imgDashboard, imgSearch, imgRefresh;
-    EditText edFrom, edTo;
-    String from, to, name, roomId, visitTime, idCard, date;
-    Date d1=null,d2=null;
-    Timestamp t1,t2;
-    String username,password;
+    ArrayList<String> dateList;
+    FloatingActionButton btnSearch, btnFromDate, btnToDate;
+    ImageView refresh;
+    TextView txtFrom, txtTo;
+    String from, to, name, roomId, visitTime, idCard, date, d, m, y;
+    Date d1 = null, d2 = null;
+    Timestamp t1, t2;
+    String username, password;
     Intent intent;
     Bundle bundle;
     NestedScrollView scrollView;
-    int count=0;
+    int count = 0;
     ProgressBar progressBar;
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_list_visitor_acitvity);
+        setContentView(R.layout.activity_manage_list_visitor);
+        //toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
         recyclerView = findViewById(R.id.list_visitor);
-        imgDashboard = findViewById(R.id.img_dashboard);
-        imgSearch = findViewById(R.id.img_search);
-        imgRefresh = findViewById(R.id.img_refresh);
+//        btnDashboard = findViewById(R.id.button_dashboard);
+        btnSearch = findViewById(R.id.button_search);
+        refresh = findViewById(R.id.image_refresh);
+        btnFromDate = findViewById(R.id.calendar1);
+        btnToDate = findViewById(R.id.calendar2);
+        context = this;
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
-        scrollView=findViewById(R.id.scroll);
-        progressBar=findViewById(R.id.loading);
+        scrollView = findViewById(R.id.scroll);
+        progressBar = findViewById(R.id.loading);
         scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
                 (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
                     if (scrollY == v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight()) {
@@ -79,64 +100,108 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                         }
                     }
                 });
-        edFrom = findViewById(R.id.edit_from);
-        edTo = findViewById(R.id.edit_to);
+        txtFrom = findViewById(R.id.text_from);
+        txtTo = findViewById(R.id.text_to);
         list = new ArrayList<>();
+        dateList = new ArrayList<>();
         visitorManagementAdapter = new VisitorManagementAdapter(this, list);
         recyclerView.setAdapter(visitorManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
+
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
-        if (bundle!=null){
+        if (bundle != null) {
             username = bundle.getString("username");
             password = bundle.getString("password");
-            Log.d("username",username);
-            Log.d("password",password);
+            Log.d("username", username);
+            Log.d("password", password);
         }
         getData();
-
-        imgDashboard.setOnClickListener(view -> {
-            Intent intentDashboard = new Intent(this, DashboardActivity.class);
-            bundle =new Bundle();
-            bundle.putString("username",username);
-            bundle.putString("password",password);
-            intentDashboard.putExtras(bundle);
-            startActivity(intentDashboard);
+//        Log.d("d",dateList.toString());
+//        btnDashboard.setOnClickListener(view -> {
+//            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
+//            bundle =new Bundle();
+//            bundle.putString("username",username);
+//            bundle.putString("password",password);
+//            intentDashboard.putExtras(bundle);
+//            startActivity(intentDashboard);
+//        });
+        btnFromDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        txtFrom.setText(simpleDateFormat.format(calendar.getTime()));
+                        d1 = calendar.getTime();
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
         });
-        imgSearch.setOnClickListener(view -> {
-            edFrom.setText(edFrom.getText().toString());
-            edTo.setText(edTo.getText().toString());
-            from = edFrom.getText().toString();
-            to = edTo.getText().toString();
+        btnToDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        txtTo.setText(simpleDateFormat.format(calendar.getTime()));
+                        d2 = calendar.getTime();
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
+        btnSearch.setOnClickListener(view -> {
+//            txtFrom.setText(txtFrom.getText().toString());
+//            txtTo.setText(txtTo.getText().toString());
+//            pickFromDate();
+//            pickToDate();
+            from = txtFrom.getText().toString().trim();
+            to = txtTo.getText().toString().trim();
+            Log.d("from date", from);
+            Log.d("to date", to);
             if (from.isEmpty() || to.isEmpty()) showSearchErrorEmptyToast();
-            else{
-                @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    d1= dateFormat.parse(from);
-                    d2= dateFormat.parse(to);
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-                t1=new Timestamp(d1.getTime());
-                t2=new Timestamp(d2.getTime());
-                Log.d("t1",t1.toString());
-                Log.d("t2",t2.toString());
-                searchData(from,to);
+            else {
+//                @SuppressLint("SimpleDateFormat")
+//                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+//                try {
+//                    d1= dateFormat.parse(from);
+//                    d2= dateFormat.parse(to);
+//                } catch (ParseException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                t1=new Timestamp(d1.getTime());
+//                t2=new Timestamp(d2.getTime());
+//                Log.d("t1",t1.toString());
+//                Log.d("t2",t2.toString());
+                searchData();
 
             }
         });
-        imgRefresh.setOnClickListener(view -> {
+        refresh.setOnClickListener(view -> {
             visitors.clear();
-            edFrom.setText("");
-            edTo.setText("");
+            txtFrom.setText("From date");
+            txtTo.setText("To date");
             refresh();
         });
+
     }
 
+    //    public void pickFromDate(){
+//
+//
+//    }
+//    public void pickToDate(){
+//
+//    }
     public void getData() {
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -154,22 +219,27 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                             .getValue()).toString();
                     Log.d("visitor", String.valueOf(v));
                     list.add(new Visitor(name, roomId, visitTime, idCard, date));
+//                    dateList.add(date);
 
                 }
                 visitorManagementAdapter.setVisitors(list);
                 visitorManagementAdapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
         });
+
+
     }
 
     public void refresh() {
         list.clear();
-        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -190,11 +260,10 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void searchData(String from, String to) {
+    public void searchData() {
         visitors = new ArrayList<>();
         myRef.orderByChild("date").startAt(from).endAt(to)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
-
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
@@ -209,10 +278,11 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                                     .getValue()).toString();
                             date = Objects.requireNonNull(dataSnapshot.child("date")
                                     .getValue()).toString();
-                            Log.d("visitor", String.valueOf(v));
                             visitors.add(new Visitor(name, roomId, visitTime, idCard, date));
+
                         }
                         visitorManagementAdapter.setVisitors(visitors);
+                        Log.d("visitor", String.valueOf(visitors));
                         visitorManagementAdapter.notifyDataSetChanged();
                         showSearchSuccessfulToast();
                     }

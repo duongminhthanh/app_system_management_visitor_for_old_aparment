@@ -3,16 +3,17 @@ package com.example.ApartmentManagementSystem.main_activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
 
 public class MainActivity extends AppCompatActivity {
-    Button btnRegisterVisitingForm, btnRating, btnFeedback;
+    ImageView imgForm, imgRating, imgFeedback;
     Intent intent;
     ImageView img_pinCode;
     Bundle bundle;
@@ -21,51 +22,69 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnRegisterVisitingForm = findViewById(R.id.btn_register_visit);
-        btnFeedback = findViewById(R.id.btn_feedback);
-        btnRating = findViewById(R.id.btn_rating);
+        imgForm = findViewById(R.id.image_form);
+        imgFeedback = findViewById(R.id.image_feedback);
+        imgRating = findViewById(R.id.image_rating);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         img_pinCode = findViewById(R.id.image_pin_code);
-        intent = getIntent();
-        bundle = intent.getExtras();
-        String username = bundle.getString("username");
-        String password = bundle.getString("password");
-        Log.d("username", username);
-        Log.d("password", password);
-        btnRegisterVisitingForm.setOnClickListener(view -> {
-            intent = new Intent(this, RegisterFormActivity.class);
-            bundle.putString("username", username);
-            bundle.putString("password", password);
-            intent.putExtras(bundle);
+//        intent = getIntent();
+//        bundle = intent.getExtras();
+//        String username = bundle.getString("username");
+//        String password = bundle.getString("password");
+//        Log.d("username", username);
+//        Log.d("password", password);
+        imgForm.setOnClickListener(view -> {
+            intent = new Intent(MainActivity.this, RegisterFormActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            bundle.putString("username", username);
+//            bundle.putString("password", password);
+//            intent.putExtras(bundle);
             startActivity(intent);
         });
-        btnFeedback.setOnClickListener(view -> {
+        imgFeedback.setOnClickListener(view -> {
             intent = new Intent(this, FeedbackActivity.class);
-            bundle.putString("username", username);
-            bundle.putString("password", password);
-            intent.putExtras(bundle);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            bundle.putString("username", username);
+//            bundle.putString("password", password);
+//            intent.putExtras(bundle);
             startActivity(intent);
         });
 
 
-        btnRating.setOnClickListener(view -> {
+        imgRating.setOnClickListener(view -> {
             intent = new Intent(this, RatingActivity.class);
-            bundle.putString("username", username);
-            bundle.putString("password", password);
-            intent.putExtras(bundle);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            bundle.putString("username", username);
+//            bundle.putString("password", password);
+//            intent.putExtras(bundle);
             startActivity(intent);
         });
         img_pinCode.setOnClickListener(view -> {
             intent = new Intent(this, PinCodeActivity.class);
-            bundle.putString("username", username);
-            bundle.putString("password", password);
-            intent.putExtras(bundle);
+//            bundle.putString("username", username);
+//            bundle.putString("password", password);
+//            intent.putExtras(bundle);
             startActivity(intent);
         });
-
 
 
 
     }
 
-
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menutoolbar,menu);
+//        return true;
+//    }
+////
+////    @Override
+////    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+////        int id=item.getItemId();
+////        if (id == R.id.image_pin_code) {
+////            intent = new Intent(this, PinCodeActivity.class);
+////            startActivity(intent);
+////        }
+////        return true;
+////    }
 }

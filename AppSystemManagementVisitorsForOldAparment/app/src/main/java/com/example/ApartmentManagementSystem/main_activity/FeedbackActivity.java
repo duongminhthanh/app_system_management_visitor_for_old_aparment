@@ -2,6 +2,7 @@ package com.example.ApartmentManagementSystem.main_activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
 import com.example.ApartmentManagementSystem.model.Feedback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +38,9 @@ public class FeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
+        CustomProgressDialog dialog = new CustomProgressDialog(FeedbackActivity.this);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         editName = findViewById(R.id.edit_visitor_name);
         editFeedback = findViewById(R.id.edit_feedback);
         btnSend = findViewById(R.id.btn_send);
@@ -51,6 +56,7 @@ public class FeedbackActivity extends AppCompatActivity {
             editFeedback.setText(editFeedback.getText().toString());
             name = editName.getText().toString();
             feedback = editFeedback.getText().toString();
+            dialog.show();
             if (name.isEmpty() || feedback.isEmpty()) showErrorEmptyToast();
             else addData(name, feedback);
         });

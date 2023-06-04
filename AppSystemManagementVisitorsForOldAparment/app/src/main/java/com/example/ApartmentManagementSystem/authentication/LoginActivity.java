@@ -2,6 +2,7 @@ package com.example.ApartmentManagementSystem.authentication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.main_activity.MainActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardAdminActivity;
@@ -45,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        CustomProgressDialog dialog = new CustomProgressDialog(LoginActivity.this);
         edit_username = findViewById(R.id.edit_name);
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
@@ -54,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             edit_password.setText(edit_password.getText().toString());
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
+            dialog.show();
             //if it is type as username and password of admin
             if (name.equals("admin") && pass.equals("admin1234")) {
                 showSuccessfulToast();
@@ -65,8 +71,9 @@ public class LoginActivity extends AppCompatActivity {
                 dashboardAdmin.putExtras(bundle);
                 LoginActivity.this.startActivity(dashboardAdmin);
             }//if username and password is not typed
-            else if (name.isEmpty() && pass.isEmpty())
+            else if (name.isEmpty() && pass.isEmpty()) {
                 showErrorEmptyToast();
+            }
             else if (!name.isEmpty() && !pass.isEmpty()) {
                 readDataListAccount(name, pass);
             }
@@ -99,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("username", list.get(i).getUsername());
                         Log.d("password", list.get(i).getPassword());
                         showSuccessfulToast();
+//                        showSuccessDialog();
                         Intent intent = new Intent(LoginActivity.this
                                 , MainActivity.class);
                         Bundle bundle = new Bundle();
@@ -160,5 +168,21 @@ public class LoginActivity extends AppCompatActivity {
         toast.setView(layout);
         toast.show();
     }
-
+//    public void showSuccessDialog(){
+//        ConstraintLayout successConstraintLayout = findViewById(R.id.successConstraintLayout);
+//        View view = LayoutInflater.from(this).inflate(R.layout.success_dialog,successConstraintLayout);
+//        Button successDone = view.findViewById(R.id.successDone);
+//        TextView textView = view.findViewById(R.id.successDesc);
+//        textView.setText("Correct username and password");
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setView(view);
+//        final AlertDialog  alertDialog= builder.create();
+//        successDone.setOnClickListener(view1 -> {
+//            alertDialog.dismiss();
+//        });
+//        if (alertDialog.getWindow() !=null){
+//            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+//        }
+//        alertDialog.show();
+//    }
 }

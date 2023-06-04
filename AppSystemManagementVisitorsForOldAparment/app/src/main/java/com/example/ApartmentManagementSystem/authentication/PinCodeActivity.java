@@ -17,10 +17,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.chaos.view.PinView;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardActivity;
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Account;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,15 +47,18 @@ public class PinCodeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_code);
+        CustomProgressDialog dialog = new CustomProgressDialog(PinCodeActivity.this);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         list = new ArrayList<>();
         pinView = findViewById(R.id.pin_view);
         btnEnter= findViewById(R.id.button_enter);
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        username = bundle.getString("username");
-        password = bundle.getString("password");
-        Log.d("username",username);
-        Log.d("password",password);
+////        Intent intent = getIntent();
+////        Bundle bundle = intent.getExtras();
+////        username = bundle.getString("username");
+////        password = bundle.getString("password");
+////        Log.d("username",username);
+//        Log.d("password",password);
         pinView.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -76,6 +81,7 @@ public class PinCodeActivity extends AppCompatActivity{
         btnEnter.setOnClickListener(view -> {
 //            Log.d("pin_code value is: ",pin_code);
             pin_code =pinView.getText().toString().trim();
+            dialog.show();
             if (pin_code.isEmpty()) showErrorEmptyToast();
             else {
                 readDataPinCode(pin_code);

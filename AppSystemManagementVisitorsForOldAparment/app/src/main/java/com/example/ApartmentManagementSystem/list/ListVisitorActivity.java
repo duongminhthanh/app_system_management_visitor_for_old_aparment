@@ -3,20 +3,25 @@ package com.example.ApartmentManagementSystem.list;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,19 +36,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 
 public class ListVisitorActivity extends AppCompatActivity {
+    Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     RecyclerView recyclerView;
     DatabaseReference myRef;
     VisitorAdapter visitorAdapter;
     ArrayList<Visitor> list, visitors;
-    FloatingActionButton btnDashboard,btnSearch,btnRefresh,btnFromDate,btnToDate;
-    EditText edFrom, edTo;
+    FloatingActionButton btnSearch,btnFromDate,btnToDate;
+    ImageView refresh;
+    TextView txtFrom,txtTo;
     String from, to, name, roomId, visitTime, idCard, date,d,m,y;
+    Date d1=null,d2=null;
 
     String username,password;
     Intent intent;
@@ -51,23 +62,30 @@ public class ListVisitorActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     int count=0;
     ProgressBar progressBar;
+    Context context;
     @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list);
+        setContentView(R.layout.activity_list_visitor);
+        //toolbar
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
         recyclerView = findViewById(R.id.list_visitor);
-        btnDashboard=findViewById(R.id.button_dashboard);
+//        btnDashboard=findViewById(R.id.button_dashboard);
         btnSearch = findViewById(R.id.button_search);
-        btnRefresh = findViewById(R.id.button_refresh);
+        refresh = findViewById(R.id.image_refresh);
         btnFromDate = findViewById(R.id.calendar1);
         btnToDate = findViewById(R.id.calendar2);
+        context=this;
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
         scrollView=findViewById(R.id.scroll);
         progressBar=findViewById(R.id.loading);
-        edFrom = findViewById(R.id.edit_from);
-        edTo = findViewById(R.id.edit_to);
+        txtFrom=findViewById(R.id.text_from);
+        txtTo=findViewById(R.id.text_to);
         progressBar.setVisibility(View.VISIBLE);
         scrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener)
                 (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
@@ -88,6 +106,8 @@ public class ListVisitorActivity extends AppCompatActivity {
         visitorAdapter = new VisitorAdapter(this, list);
         recyclerView.setAdapter(visitorAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(itemDecoration);
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/
@@ -99,90 +119,112 @@ public class ListVisitorActivity extends AppCompatActivity {
         }
 
         getData();
-        btnDashboard.setOnClickListener(view -> {
-            Intent intentDashboard = new Intent(this, DashboardActivity.class);
-            bundle =new Bundle();
-            bundle.putString("username",username);
-            bundle.putString("password",password);
-            intentDashboard.putExtras(bundle);
-            startActivity(intentDashboard);
-        });
-        btnFromDate.setOnClickListener(view -> {
-            pickFromDate();
-        });
-        btnToDate.setOnClickListener(view -> {
-            pickToDate();
-        });
-        btnSearch.setOnClickListener(view -> {
-            from = edFrom.getText().toString().trim();
-            to = edTo.getText().toString().trim();
-            if (from.isEmpty() || to.isEmpty()) {
-                searchData(from,to);
-                // showSearchErrorEmptyToast();
-            } else {
-                searchData(from,to);
+//        btnDashboard.setOnClickListener(view -> {
+//            Intent intentDashboard = new Intent(this, DashboardActivity.class);
+//            bundle =new Bundle();
+//            bundle.putString("username",username);
+//            bundle.putString("password",password);
+//            intentDashboard.putExtras(bundle);
+//            startActivity(intentDashboard);
+//        });
+        btnFromDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        txtFrom.setText(simpleDateFormat.format(calendar.getTime()));
+                        d1=calendar.getTime();
+                    }
+                },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
             }
         });
-        btnRefresh.setOnClickListener(view -> {
+        btnToDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        txtTo.setText(simpleDateFormat.format(calendar.getTime()));
+                        d2=calendar.getTime();
+                    }
+                },calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
+
+        btnSearch.setOnClickListener(view -> {
+            from = txtFrom.getText().toString().trim();
+            to = txtTo.getText().toString().trim();
+            if (from.isEmpty() || to.isEmpty()) {
+                 showSearchErrorEmptyToast();
+            } else {
+                searchData();
+            }
+        });
+        refresh.setOnClickListener(view -> {
             visitors.clear();
-            edFrom.setText("");
-            edTo.setText("");
+            txtFrom.setText("From date");
+            txtTo.setText("To date");
             refresh();
         });
     }
-    public void pickFromDate(){
-            // on below line we are getting
-            // the instance of our calendar.
-            final Calendar c = Calendar.getInstance();
-            // on below line we are getting
-            // our day, month and year.
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-            // on below line we are creating a variable for date picker dialog.
-            DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    // on below line we are passing context.
-                    this, (view, year12, monthOfYear, dayOfMonth) -> {
-                // on below line we are setting date to our text view.
-                d=String.valueOf(dayOfMonth);
-                m=String.valueOf(monthOfYear+1);
-                y=String.valueOf(year12);
-                edFrom.setText(y+"-"+ m+"-"+d);
-
-            },
-                    // on below line we are passing year,
-                    // month and day for selected date in our date picker.
-                    year, month, day);
-            datePickerDialog.show();
-
-    }
-    public void pickToDate(){
-            // on below line we are getting
-            // the instance of our calendar.
-            final Calendar c = Calendar.getInstance();
-            // on below line we are getting
-            // our day, month and year.
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // on below line we are creating a variable for date picker dialog.
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                    // on below line we are passing context.
-                    this, (view, year1, monthOfYear, dayOfMonth) -> {
-                // on below line we are setting date to our text view.
-            d=String.valueOf(dayOfMonth);
-            m=String.valueOf(monthOfYear+1);
-            y=String.valueOf(year1);
-                edTo.setText(y+"-"+ m+"-"+d);
-            },
-                    // on below line we are passing year,
-                    // month and day for selected date in our date picker.
-                    year, month, day);
-            datePickerDialog.getDatePicker();
-            datePickerDialog.show();
-
-    }
+//    public void pickFromDate(){
+//            // on below line we are getting
+//            // the instance of our calendar.
+//            final Calendar c = Calendar.getInstance();
+//            // on below line we are getting
+//            // our day, month and year.
+//            int year = c.get(Calendar.YEAR);
+//            int month = c.get(Calendar.MONTH);
+//            int day = c.get(Calendar.DAY_OF_MONTH);
+//            // on below line we are creating a variable for date picker dialog.
+//            DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                    // on below line we are passing context.
+//                    this, (view, year12, monthOfYear, dayOfMonth) -> {
+//                // on below line we are setting date to our text view.
+//                d=String.valueOf(dayOfMonth);
+//                m=String.valueOf(monthOfYear+1);
+//                y=String.valueOf(year12);
+//                edFrom.setText(y+"-"+ m+"-"+d);
+//
+//            },
+//                    // on below line we are passing year,
+//                    // month and day for selected date in our date picker.
+//                    year, month, day);
+//            datePickerDialog.show();
+//
+//    }
+//    public void pickToDate(){
+//            // on below line we are getting
+//            // the instance of our calendar.
+//            final Calendar c = Calendar.getInstance();
+//            // on below line we are getting
+//            // our day, month and year.
+//            int year = c.get(Calendar.YEAR);
+//            int month = c.get(Calendar.MONTH);
+//            int day = c.get(Calendar.DAY_OF_MONTH);
+//
+//            // on below line we are creating a variable for date picker dialog.
+//        DatePickerDialog datePickerDialog = new DatePickerDialog(
+//                    // on below line we are passing context.
+//                    this, (view, year1, monthOfYear, dayOfMonth) -> {
+//                // on below line we are setting date to our text view.
+//            d=String.valueOf(dayOfMonth);
+//            m=String.valueOf(monthOfYear+1);
+//            y=String.valueOf(year1);
+//                edTo.setText(y+"-"+ m+"-"+d);
+//            },
+//                    // on below line we are passing year,
+//                    // month and day for selected date in our date picker.
+//                    year, month, day);
+//            datePickerDialog.getDatePicker();
+//            datePickerDialog.show();
+//
+//    }
     public void getData() {
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -240,12 +282,12 @@ public class ListVisitorActivity extends AppCompatActivity {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void searchData(String from, String to) {
+    public void searchData() {
         Log.d("from date",from); // "2023-04-01"
         Log.d("to date",to); // "2023-05-30"
         visitors = new ArrayList<>();
         list.clear();
-        myRef.orderByKey().orderByChild("date").startAt(from).endAt(to)
+        myRef.orderByChild("date").startAt(from).endAt(to)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

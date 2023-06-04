@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/visitor"
+          android:icon="@drawable/groups_48px"
+          android:title="@string/visitor"/>
+    <item android:id="@+id/apartment"
+        android:icon="@drawable/apartment_48px"
+        android:title="@string/apartment"/>
+    <item android:id="@+id/account"
+        android:icon="@drawable/account_circle_48px"
+        android:title="@string/accounts"/>
+    <item android:id="@+id/feedbacks"
+        android:icon="@drawable/reviews_48px"
+        android:title="@string/feedbacks"/>
+    <item android:id="@+id/chart"
+        android:icon="@drawable/chart_48px"
+        android:title="@string/chart"/>
+</menu>

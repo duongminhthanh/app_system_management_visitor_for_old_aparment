@@ -14,8 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
 import com.example.ApartmentManagementSystem.R;
+import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Account;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +38,7 @@ public class EditAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
+        CustomProgressDialog dialog = new CustomProgressDialog(EditAccountActivity.this);
         edIdAcc = findViewById(R.id.edit_acc_id);
         edUsername = findViewById(R.id.edit_username);
         edPassword = findViewById(R.id.edit_password);
@@ -47,7 +50,9 @@ public class EditAccountActivity extends AppCompatActivity {
         dataPassword = intent.getStringExtra("password");
         dataPinCode = intent.getStringExtra("pin_code");
         edIdAcc.setText(dataIdAcc);
-
+        edUsername.setText(dataUsername);
+        edPassword.setText(dataPassword);
+        edPinCode.setText(dataPinCode);
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
             edUsername.setText(edUsername.getText().toString());
@@ -57,6 +62,7 @@ public class EditAccountActivity extends AppCompatActivity {
             username = edUsername.getText().toString();
             password = edPassword.getText().toString();
             pin_code = edPinCode.getText().toString();
+            dialog.show();
             if (username.isEmpty() || password.isEmpty() || pin_code.isEmpty())
                 showErrorEmptyToast();
             else if (username.equals(dataUsername) && password.equals(dataPassword) &&
@@ -72,12 +78,15 @@ public class EditAccountActivity extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                a = new Account();
-                a.setAcc_id(idAcc);
-                a.setUsername(username);
-                a.setPassword(password);
-                a.setPin_code(pin_code);
-                myRef.child(idAcc).setValue(a);
+//                a = new Account();
+//                a.setAcc_id(idAcc);
+//                a.setUsername(username);
+//                a.setPassword(password);
+//                a.setPin_code(pin_code);
+                myRef.child(idAcc).child("acc_id").setValue(idAcc);
+                myRef.child(idAcc).child("password").setValue(password);
+                myRef.child(idAcc).child("pin_code").setValue(pin_code);
+                myRef.child(idAcc).child("username").setValue(username);
                 showUpdateSuccessfulToast();
                 Intent intent = new Intent(EditAccountActivity.this,
                         ManageListAccountActivity.class);
