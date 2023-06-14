@@ -48,15 +48,17 @@ public class PieChartActivity2 extends AppCompatActivity {
         getData();
     }
     public void getData() {
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     date = Objects.requireNonNull(dataSnapshot.child("date")
                             .getValue()).toString();
-                    labels.add(date);
-                    xAxisValue.add(date);
+                    StringBuilder builder= new StringBuilder(date);
+                    builder.delete(0,5);
+                    labels.add(String.valueOf(builder));
+                    xAxisValue.add(String.valueOf(builder));
                 }
                 Set<String> set = new LinkedHashSet<>();
                 set.addAll(xAxisValue);

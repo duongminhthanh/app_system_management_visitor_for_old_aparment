@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ApartmentManagementSystem.R;
@@ -80,7 +81,6 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.MyVi
             Intent intent = new Intent(Intent.ACTION_VIEW,uri);
             startActivity(c, intent, Bundle.EMPTY);
         });
-
     }
     @Override
     public int getItemCount() {
@@ -95,10 +95,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView owner_phone, owner_name, room_id;
         FloatingActionButton callPhone, zalo;
-        MaterialCardView cardView;
+        CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = itemView.findViewById(R.id.card_view);
+            cardView = itemView.findViewById(R.id.card);
             owner_phone = itemView.findViewById(R.id.owner_phone);
             owner_name = itemView.findViewById(R.id.owner_name);
             room_id = itemView.findViewById(R.id.room_id);

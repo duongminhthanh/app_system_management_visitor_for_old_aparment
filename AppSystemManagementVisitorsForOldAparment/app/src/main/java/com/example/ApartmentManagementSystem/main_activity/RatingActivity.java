@@ -21,34 +21,24 @@ import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
 public class RatingActivity extends AppCompatActivity {
     Button btnSubmit;
     RatingBar ratingBar;
-    Intent intent;
-    Bundle bundle;
     String username,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
-        CustomProgressDialog dialog = new CustomProgressDialog(RatingActivity.this);
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         btnSubmit=findViewById(R.id.btn_submit);
         ratingBar=findViewById(R.id.rating_start);
-        ratingBar.setOnClickListener(view -> ratingBar.setRating(3.5f));
-        intent = getIntent();
-        bundle = intent.getExtras();
-        username = bundle.getString("username");
-        password = bundle.getString("password");
-        Log.d("username",username);
-        Log.d("password",password);
+        ratingBar.setOnClickListener(view -> ratingBar.setRating(3.0f));
         btnSubmit.setOnClickListener(view -> {
             ratingBar.getNumStars();
             ratingBar.getRating();
-            dialog.show();
             showRatingSuccessfulToast();
             Intent intent=new Intent(RatingActivity.this, MainActivity.class);
-            bundle.putString("username", username);
-            bundle.putString("password", password);
-            intent.putExtras(bundle);
+//            bundle.putString("username", username);
+//            bundle.putString("password", password);
+//            intent.putExtras(bundle);
             startActivity(intent);
         });
     }
@@ -60,8 +50,8 @@ public class RatingActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Thank you for your rating");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

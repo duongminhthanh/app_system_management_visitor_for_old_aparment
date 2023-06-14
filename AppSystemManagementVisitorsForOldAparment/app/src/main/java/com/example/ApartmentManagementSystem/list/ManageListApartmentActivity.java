@@ -1,5 +1,4 @@
 package com.example.ApartmentManagementSystem.list;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,7 +36,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
 public class ManageListApartmentActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     DatabaseReference myRef;
@@ -47,7 +45,6 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     ImageView refresh;
     String searchValue, ownerName, ownerPhone, roomId;
     EditText edSearch;
-
     Boolean checkSearch = false;
     String username,password;
     Intent intent;
@@ -129,7 +126,6 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         });
 
     }
-
     public void getData() {
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -150,7 +146,6 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         });
 
     }
-
     @SuppressLint("NotifyDataSetChanged")
     public void searchData(String searchValue) {
         apartments = new ArrayList<>();
@@ -176,7 +171,6 @@ public class ManageListApartmentActivity extends AppCompatActivity {
 
 
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -185,12 +179,11 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Search data successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchFailToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -199,12 +192,11 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Search data fail");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -213,12 +205,11 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must enter data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     public void refresh() {
         list.clear();
         myRef.addValueEventListener(new ValueEventListener() {

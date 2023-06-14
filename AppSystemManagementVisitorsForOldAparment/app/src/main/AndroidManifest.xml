@@ -20,19 +20,19 @@
         <activity
             android:name=".chart.LineChartActivity2"
             android:exported="false"
-            android:parentActivityName=".chart.ChartActivity"/>
+            android:parentActivityName=".chart.ChartActivity" />
         <activity
             android:name=".chart.PieChartActivity2"
             android:exported="false"
-            android:parentActivityName=".chart.ChartActivity"/>
+            android:parentActivityName=".chart.ChartActivity" />
         <activity
             android:name=".chart.BarChartActivity2"
             android:exported="false"
-            android:parentActivityName=".chart.ChartActivity"/>
+            android:parentActivityName=".chart.ChartActivity" />
         <activity
             android:name=".chart.ChartActivity"
             android:exported="false"
-            android:parentActivityName=".dashboard.DashboardActivity"/>
+            android:parentActivityName=".dashboard.DashboardActivity" />
         <activity
             android:name=".list.ListFeedbackActivityAdmin"
             android:exported="false"

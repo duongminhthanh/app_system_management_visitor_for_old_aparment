@@ -1,7 +1,11 @@
 package com.example.ApartmentManagementSystem.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +50,7 @@ public class VisitorManagementAdapter extends RecyclerView.Adapter<VisitorManage
     public void onBindViewHolder(@NonNull VisitorManagementAdapter.MyViewHolder holder, int position) {
         Visitor v = visitors.get(position);
         holder.id_card.setText(v.getId_card());
-        holder.name.setText(v.getName()+" "+(position+1));
+        holder.name.setText(v.getName());
         holder.room_id.setText(v.getRoom_id());
         holder.visit_time.setText(v.getVisit_time());
         holder.date.setText(v.getDateValue());
@@ -68,7 +72,7 @@ public class VisitorManagementAdapter extends RecyclerView.Adapter<VisitorManage
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = itemView.findViewById(R.id.card_view);
+            cardView = itemView.findViewById(R.id.card);
             id_card = itemView.findViewById(R.id.idCard);
             name = itemView.findViewById(R.id.visitorName);
             room_id = itemView.findViewById(R.id.roomID);

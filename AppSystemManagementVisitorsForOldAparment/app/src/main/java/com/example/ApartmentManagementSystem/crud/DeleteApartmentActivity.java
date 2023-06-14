@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,55 +14,55 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
+import com.example.ApartmentManagementSystem.model.Apartment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class DeleteApartmentActivity extends AppCompatActivity {
 
     Button btnYes, btnNo;
     Intent intent;
-    String ownerName, ownerPhone, roomId;
+    String id,ownerName, ownerPhone, roomId;
     DatabaseReference myRef;
+    ArrayList<Apartment> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_apartment);
-        CustomProgressDialog dialog = new CustomProgressDialog(DeleteApartmentActivity.this);
+        list=new ArrayList<>();
         btnYes = findViewById(R.id.btn_yes);
         btnNo = findViewById(R.id.btn_no);
-        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         intent = getIntent();
-        ownerName = intent.getStringExtra("owner name");
-        ownerPhone = intent.getStringExtra("owner phone");
-        roomId = intent.getStringExtra("room id");
+//        ownerName = intent.getStringExtra("owner_name");
+//        ownerPhone = intent.getStringExtra("owner_phone");
+        roomId = intent.getStringExtra("room_id");
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         btnNo.setOnClickListener(view -> {
-            dialog.show();
             showErrorDeleteToast();
         });
         btnYes.setOnClickListener(view -> {
-            dialog.show();
             deleteData();
         });
     }
     public void deleteData(){
         myRef.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                myRef.child(roomId).child("owner_name").removeValue();
-                myRef.child(roomId).child("owner_phone").removeValue();
-                myRef.child(roomId).child("room_id").removeValue();
+                myRef.child(roomId).removeValue();
                 showDeleteSuccessfulToast();
-                Intent intentManagement = new Intent(DeleteApartmentActivity.this
-                        , ManageListApartmentActivity.class);
-                startActivity(intentManagement);
+                Intent intent = new Intent(DeleteApartmentActivity.this,ManageListApartmentActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -78,8 +79,8 @@ public class DeleteApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Delete apartment successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -91,8 +92,8 @@ public class DeleteApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Delete apartment failed");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

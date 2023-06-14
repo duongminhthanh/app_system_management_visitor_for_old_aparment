@@ -15,10 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Apartment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,9 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 public class EditApartmentActivity extends AppCompatActivity {
-
     EditText ownerName, ownerPhone, roomId;
     DatabaseReference myRef;
     String name, phone, id, dataName, dataPhone, dataId;
@@ -40,55 +36,43 @@ public class EditApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_apartment);
-        CustomProgressDialog dialog = new CustomProgressDialog(EditApartmentActivity.this);
         ownerName = findViewById(R.id.edit_owner_name);
         ownerPhone = findViewById(R.id.edit_phone);
         roomId = findViewById(R.id.edit_room_id);
-        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         btnSave = findViewById(R.id.btn_save);
         intent = getIntent();
-        dataName = intent.getStringExtra("owner name");
-        dataPhone = intent.getStringExtra("owner phone");
-        dataId = intent.getStringExtra("room id");
+        dataName = intent.getStringExtra("owner_name");
+        dataPhone = intent.getStringExtra("owner_phone");
+        dataId = intent.getStringExtra("room_id");
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment").child(dataId);
         Log.d("room id", dataId);
-        roomId.setText(dataId);
         ownerName.setText(dataName);
         ownerPhone.setText(dataPhone);
+        roomId.setText(dataId);
         btnSave.setOnClickListener(view -> {
             //get data from management screen
-
             Log.d("room id", dataId);
-            ownerName.setText(ownerName.getText().toString());
-            ownerPhone.setText(ownerPhone.getText().toString());
-
             name = ownerName.getText().toString();
             phone = ownerPhone.getText().toString();
             id = dataId;
-            dialog.show();
             if (name.isEmpty() || phone.isEmpty()) showErrorEmptyToast();
             else if (name.equals(dataName) && phone.equals(dataPhone))
                 showErrorSameDataToast();
             else
-                editData(id, name, phone);
+                editData(name, phone);
         });
     }
-
-    public void editData(String id, String name, String phone) {
+    public void editData(String name, String phone) {
         myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                a = new Apartment();
-//                a.setRoom_id(id);
-//                a.setOwner_name(name);
-//                a.setOwner_phone(phone);
-                myRef.child(id).child("owner_name").setValue(name);
-                myRef.child(id).child("owner_phone").setValue(phone);
-                myRef.child(id).child("room_id").setValue(id);
+                myRef.child("owner_name").setValue(name);
+                myRef.child("owner_phone").setValue(phone);
                 showUpdateSuccessfulToast();
                 Intent intent = new Intent(EditApartmentActivity.this
                         , ManageListApartmentActivity.class);
                 startActivity(intent);
-
             }
 
             @Override
@@ -98,7 +82,6 @@ public class EditApartmentActivity extends AppCompatActivity {
         });
 
     }
-
     @SuppressLint("SetTextI18n")
     public void showUpdateSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -107,12 +90,11 @@ public class EditApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Update apartment successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -120,12 +102,11 @@ public class EditApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill all data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showErrorSameDataToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -133,8 +114,8 @@ public class EditApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Data is not changed");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

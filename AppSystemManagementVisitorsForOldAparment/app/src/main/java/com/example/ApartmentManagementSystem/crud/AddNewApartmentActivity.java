@@ -14,10 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Apartment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +34,6 @@ public class AddNewApartmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_apartment);
-        CustomProgressDialog dialog = new CustomProgressDialog(AddNewApartmentActivity.this);
         ownerName=findViewById(R.id.edit_owner_name);
         ownerPhone=findViewById(R.id.edit_phone);
         roomId=findViewById(R.id.edit_room_id);
@@ -49,7 +46,6 @@ public class AddNewApartmentActivity extends AppCompatActivity {
             phone=ownerPhone.getText().toString();
             roomId.setText(roomId.getText().toString());
             id=roomId.getText().toString();
-            dialog.show();
             if (name.isEmpty()||phone.isEmpty()||id.isEmpty())showErrorEmptyToast();
             else{
                 addData(id,name,phone);
@@ -58,7 +54,9 @@ public class AddNewApartmentActivity extends AppCompatActivity {
 
     }
     public void addData(String id,String name,String phone){
+
         myRef.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 a=new Apartment();
@@ -87,8 +85,8 @@ public class AddNewApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Add new apartment successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -99,8 +97,8 @@ public class AddNewApartmentActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill all data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

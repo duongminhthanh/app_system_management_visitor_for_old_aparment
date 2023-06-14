@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,6 @@ import androidx.appcompat.widget.Toolbar;
 import com.chaos.view.PinView;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardActivity;
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Account;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -47,7 +45,6 @@ public class PinCodeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin_code);
-        CustomProgressDialog dialog = new CustomProgressDialog(PinCodeActivity.this);
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         list = new ArrayList<>();
@@ -65,12 +62,10 @@ public class PinCodeActivity extends AppCompatActivity{
         pinView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -81,8 +76,9 @@ public class PinCodeActivity extends AppCompatActivity{
         btnEnter.setOnClickListener(view -> {
 //            Log.d("pin_code value is: ",pin_code);
             pin_code =pinView.getText().toString().trim();
-            dialog.show();
-            if (pin_code.isEmpty()) showErrorEmptyToast();
+            if (pin_code.isEmpty()){
+                showErrorEmptyToast();
+            }
             else {
                 readDataPinCode(pin_code);
             }
@@ -91,7 +87,6 @@ public class PinCodeActivity extends AppCompatActivity{
 
 
     public void readDataPinCode(String pin_code) {
-
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,14 +104,14 @@ public class PinCodeActivity extends AppCompatActivity{
                         showSuccessfulToast();
                         Intent intent = new Intent(PinCodeActivity.this
                                 , DashboardActivity.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("username", username);
-                        bundle.putString("password", password);
-                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                 }
-                if (!checkPinCode) showErrorIncorrectToast();
+                if (!checkPinCode) {
+                    showErrorIncorrectToast();
+                    //clear pin code to staff can type it again
+                    pinView.setText("");
+                }
             }
 
             @Override
@@ -133,8 +128,8 @@ public class PinCodeActivity extends AppCompatActivity{
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Correct pin code");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -147,8 +142,8 @@ public class PinCodeActivity extends AppCompatActivity{
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill pin code");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -160,8 +155,8 @@ public class PinCodeActivity extends AppCompatActivity{
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Incorrect pin code");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

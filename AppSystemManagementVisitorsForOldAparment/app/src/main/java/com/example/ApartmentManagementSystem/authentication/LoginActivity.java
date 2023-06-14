@@ -2,7 +2,6 @@ package com.example.ApartmentManagementSystem.authentication;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,11 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.main_activity.MainActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardAdminActivity;
@@ -49,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        CustomProgressDialog dialog = new CustomProgressDialog(LoginActivity.this);
         edit_username = findViewById(R.id.edit_name);
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
@@ -59,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             edit_password.setText(edit_password.getText().toString());
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
-            dialog.show();
             //if it is type as username and password of admin
             if (name.equals("admin") && pass.equals("admin1234")) {
                 showSuccessfulToast();
@@ -70,7 +64,8 @@ public class LoginActivity extends AppCompatActivity {
                 bundle.putString("password", pass);
                 dashboardAdmin.putExtras(bundle);
                 LoginActivity.this.startActivity(dashboardAdmin);
-            }//if username and password is not typed
+            }
+            //if username and password is not typed
             else if (name.isEmpty() && pass.isEmpty()) {
                 showErrorEmptyToast();
             }
@@ -138,8 +133,8 @@ public class LoginActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Correct username and password");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -151,8 +146,8 @@ public class LoginActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill username and password");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -163,8 +158,8 @@ public class LoginActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Incorrect username or password");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

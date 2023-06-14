@@ -17,12 +17,9 @@ import com.example.ApartmentManagementSystem.main_activity.MainActivity;
 import com.example.ApartmentManagementSystem.R;
 
 public class DashboardActivity extends AppCompatActivity {
-
     ImageView imgVisitor, imgApartment, imgFeedbacks, imgLogout, imgHome,imgChart;
-
     Intent intent;
     Bundle bundle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +34,6 @@ public class DashboardActivity extends AppCompatActivity {
 //        Log.d("password", password);
         createView();
     }
-
     @SuppressLint("ResourceAsColor")
     public void createView() {
         imgApartment = findViewById(R.id.image_apartment);
@@ -99,6 +95,4 @@ public class DashboardActivity extends AppCompatActivity {
             startActivity(chart);
         });
     }
-
-
 }

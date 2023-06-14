@@ -79,8 +79,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Bar chart"
                         android:textColor="@color/light_blue_600"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="20sp" />
 
 
                 </LinearLayout>
@@ -114,8 +113,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Pie chart"
                         android:textColor="@color/light_blue_600"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="20sp" />
 
 
                 </LinearLayout>
@@ -158,8 +156,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Line chart"
                         android:textColor="@color/light_blue_600"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="20sp" />
 
 
                 </LinearLayout>

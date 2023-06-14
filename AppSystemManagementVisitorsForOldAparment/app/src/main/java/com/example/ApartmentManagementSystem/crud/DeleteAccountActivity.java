@@ -13,12 +13,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ApartmentManagementSystem.R;
-import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
+import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,38 +39,27 @@ public class DeleteAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_account);
-        CustomProgressDialog dialog = new CustomProgressDialog(DeleteAccountActivity.this);
         btnYes = findViewById(R.id.btn_yes);
         btnNo = findViewById(R.id.btn_no);
-        myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         intent = getIntent();
         idAcc = intent.getStringExtra("acc_id");
-        username = intent.getStringExtra("username");
-        password = intent.getStringExtra("password");
-        pin_code = intent.getStringExtra("pin_code");
+        myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         Log.d("acc_id",idAcc);
         btnNo.setOnClickListener(view -> {
-            dialog.show();
             showErrorDeleteToast();
         });
         btnYes.setOnClickListener(view -> {
-            dialog.show();
             deleteData();
         });
     }
     public void deleteData() {
         myRef.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                myRef.child(idAcc).child("acc_id").removeValue();
-                myRef.child(idAcc).child("username").removeValue();
-                myRef.child(idAcc).child("password").removeValue();
-                myRef.child(idAcc).child("pin_code").removeValue();
+                myRef.child(idAcc).removeValue();
                 showDeleteSuccessfulToast();
-                Intent intentManagement = new Intent(DeleteAccountActivity.this
-                        , ManageListAccountActivity.class);
-                startActivity(intentManagement);
+                Intent intent=new Intent(DeleteAccountActivity.this,ManageListAccountActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -84,10 +76,10 @@ public class DeleteAccountActivity extends AppCompatActivity {
         View layout = inflater.inflate(R.layout.custom_toast_success,
                 findViewById(R.id.toast_success));
         TextView text = layout.findViewById(R.id.toast_text_success);
-        text.setText("Delete apartment successfully");
+        text.setText("Delete account successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -97,10 +89,10 @@ public class DeleteAccountActivity extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast_error, findViewById(R.id.toast_error));
         TextView text = layout.findViewById(R.id.toast_text_error);
-        text.setText("Delete apartment failed");
+        text.setText("Delete account failed");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

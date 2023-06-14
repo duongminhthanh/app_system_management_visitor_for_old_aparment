@@ -30,7 +30,7 @@
             android:layout_height="wrap_content">
             <com.google.android.material.card.MaterialCardView
                 android:clickable="true"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -61,7 +61,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content">
             <com.google.android.material.card.MaterialCardView
                 android:clickable="true"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -130,7 +130,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -168,7 +168,7 @@
             android:layout_height="wrap_content">
             <com.google.android.material.card.MaterialCardView
                 android:clickable="true"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
@@ -199,7 +199,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"

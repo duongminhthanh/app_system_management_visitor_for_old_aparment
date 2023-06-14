@@ -14,10 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ApartmentManagementSystem.authentication.LoginActivity;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
 import com.example.ApartmentManagementSystem.R;
-import com.example.ApartmentManagementSystem.main_activity.CustomProgressDialog;
 import com.example.ApartmentManagementSystem.model.Account;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +34,6 @@ public class AddNewAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_account);
-        CustomProgressDialog dialog = new CustomProgressDialog(AddNewAccountActivity.this);
         edIdAcc = findViewById(R.id.edit_acc_id);
         edUsername = findViewById(R.id.edit_username);
         edPassword = findViewById(R.id.edit_password);
@@ -52,7 +49,6 @@ public class AddNewAccountActivity extends AppCompatActivity {
             password = edPassword.getText().toString();
             edPinCode.setText(edPinCode.getText().toString());
             pin_code = edPinCode.getText().toString();
-            dialog.show();
             if (idAcc.isEmpty() || username.isEmpty() || password.isEmpty() || pin_code.isEmpty())
                 showErrorEmptyToast();
             else
@@ -88,8 +84,8 @@ public class AddNewAccountActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Add new apartment successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
@@ -101,8 +97,8 @@ public class AddNewAccountActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill all data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

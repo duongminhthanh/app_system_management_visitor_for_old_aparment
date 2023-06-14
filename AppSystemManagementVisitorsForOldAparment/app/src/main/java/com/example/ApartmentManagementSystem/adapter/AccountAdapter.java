@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ApartmentManagementSystem.R;
@@ -23,7 +24,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHolder> {
-
+    private final int VIEW_ITEM_BASE = 1;
+    private final int VIEW_PROG = 0;
     Context c;
     ArrayList<Account> accounts;
 
@@ -41,8 +43,13 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
     @NonNull
     @Override
     public AccountAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(c).inflate(R.layout.account_item, parent, false);
-        return new MyViewHolder(v);
+        if (viewType == VIEW_ITEM_BASE){
+            View v = LayoutInflater.from(c).inflate(R.layout.account_item, parent, false);
+            return new MyViewHolder(v);
+        }else {
+            View v = LayoutInflater.from(c).inflate(R.layout.progress_item, parent, false);
+            return new MyViewHolder(v);
+        }
     }
 
     @Override
@@ -76,12 +83,19 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.MyViewHo
         return accounts.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return (accounts.get(position) != null) ? VIEW_ITEM_BASE : VIEW_PROG;
+    }
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView acc_id, username, password, pin_code;
         FloatingActionButton btnDelete, btnUpdate;
+        CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card);
             acc_id = itemView.findViewById(R.id.acc_id);
             username = itemView.findViewById(R.id.username);
             password = itemView.findViewById(R.id.password);

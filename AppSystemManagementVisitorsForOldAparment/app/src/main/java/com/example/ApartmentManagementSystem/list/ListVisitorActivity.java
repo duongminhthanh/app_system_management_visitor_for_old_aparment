@@ -1,6 +1,4 @@
 package com.example.ApartmentManagementSystem.list;
-
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -41,8 +39,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-
-
 public class ListVisitorActivity extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -55,7 +51,6 @@ public class ListVisitorActivity extends AppCompatActivity {
     TextView txtFrom,txtTo;
     String from, to, name, roomId, visitTime, idCard, date,d,m,y;
     Date d1=null,d2=null;
-
     String username,password;
     Intent intent;
     Bundle bundle;
@@ -117,16 +112,7 @@ public class ListVisitorActivity extends AppCompatActivity {
             Log.d("username",username);
             Log.d("password",password);
         }
-
         getData();
-//        btnDashboard.setOnClickListener(view -> {
-//            Intent intentDashboard = new Intent(this, DashboardActivity.class);
-//            bundle =new Bundle();
-//            bundle.putString("username",username);
-//            bundle.putString("password",password);
-//            intentDashboard.putExtras(bundle);
-//            startActivity(intentDashboard);
-//        });
         btnFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,9 +145,9 @@ public class ListVisitorActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(view -> {
             from = txtFrom.getText().toString().trim();
             to = txtTo.getText().toString().trim();
-            if (from.isEmpty() || to.isEmpty()) {
-                 showSearchErrorEmptyToast();
-            } else {
+            if (from.equals("From date") || to.equals("To date")) {
+                showSearchErrorEmptyToast();
+            }else {
                 searchData();
             }
         });
@@ -172,61 +158,8 @@ public class ListVisitorActivity extends AppCompatActivity {
             refresh();
         });
     }
-//    public void pickFromDate(){
-//            // on below line we are getting
-//            // the instance of our calendar.
-//            final Calendar c = Calendar.getInstance();
-//            // on below line we are getting
-//            // our day, month and year.
-//            int year = c.get(Calendar.YEAR);
-//            int month = c.get(Calendar.MONTH);
-//            int day = c.get(Calendar.DAY_OF_MONTH);
-//            // on below line we are creating a variable for date picker dialog.
-//            DatePickerDialog datePickerDialog = new DatePickerDialog(
-//                    // on below line we are passing context.
-//                    this, (view, year12, monthOfYear, dayOfMonth) -> {
-//                // on below line we are setting date to our text view.
-//                d=String.valueOf(dayOfMonth);
-//                m=String.valueOf(monthOfYear+1);
-//                y=String.valueOf(year12);
-//                edFrom.setText(y+"-"+ m+"-"+d);
-//
-//            },
-//                    // on below line we are passing year,
-//                    // month and day for selected date in our date picker.
-//                    year, month, day);
-//            datePickerDialog.show();
-//
-//    }
-//    public void pickToDate(){
-//            // on below line we are getting
-//            // the instance of our calendar.
-//            final Calendar c = Calendar.getInstance();
-//            // on below line we are getting
-//            // our day, month and year.
-//            int year = c.get(Calendar.YEAR);
-//            int month = c.get(Calendar.MONTH);
-//            int day = c.get(Calendar.DAY_OF_MONTH);
-//
-//            // on below line we are creating a variable for date picker dialog.
-//        DatePickerDialog datePickerDialog = new DatePickerDialog(
-//                    // on below line we are passing context.
-//                    this, (view, year1, monthOfYear, dayOfMonth) -> {
-//                // on below line we are setting date to our text view.
-//            d=String.valueOf(dayOfMonth);
-//            m=String.valueOf(monthOfYear+1);
-//            y=String.valueOf(year1);
-//                edTo.setText(y+"-"+ m+"-"+d);
-//            },
-//                    // on below line we are passing year,
-//                    // month and day for selected date in our date picker.
-//                    year, month, day);
-//            datePickerDialog.getDatePicker();
-//            datePickerDialog.show();
-//
-//    }
     public void getData() {
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -258,10 +191,9 @@ public class ListVisitorActivity extends AppCompatActivity {
         });
 
     }
-
     public void refresh() {
         list.clear();
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -280,7 +212,6 @@ public class ListVisitorActivity extends AppCompatActivity {
             }
         });
     }
-
     @SuppressLint("NotifyDataSetChanged")
     public void searchData() {
         Log.d("from date",from); // "2023-04-01"
@@ -319,7 +250,6 @@ public class ListVisitorActivity extends AppCompatActivity {
 
 
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -328,12 +258,11 @@ public class ListVisitorActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Search data successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -342,8 +271,8 @@ public class ListVisitorActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must enter data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

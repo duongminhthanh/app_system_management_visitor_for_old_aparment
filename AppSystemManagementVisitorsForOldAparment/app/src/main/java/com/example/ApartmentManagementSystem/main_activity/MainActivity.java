@@ -1,5 +1,4 @@
 package com.example.ApartmentManagementSystem.main_activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,13 +10,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
-
 public class MainActivity extends AppCompatActivity {
     ImageView imgForm, imgRating, imgFeedback;
     Intent intent;
     ImageView img_pinCode;
     Bundle bundle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +25,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         img_pinCode = findViewById(R.id.image_pin_code);
-//        intent = getIntent();
-//        bundle = intent.getExtras();
-//        String username = bundle.getString("username");
-//        String password = bundle.getString("password");
-//        Log.d("username", username);
-//        Log.d("password", password);
         imgForm.setOnClickListener(view -> {
             intent = new Intent(MainActivity.this, RegisterFormActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -50,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
 //            intent.putExtras(bundle);
             startActivity(intent);
         });
-
-
         imgRating.setOnClickListener(view -> {
             intent = new Intent(this, RatingActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -67,24 +56,5 @@ public class MainActivity extends AppCompatActivity {
 //            intent.putExtras(bundle);
             startActivity(intent);
         });
-
-
-
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menutoolbar,menu);
-//        return true;
-//    }
-////
-////    @Override
-////    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-////        int id=item.getItemId();
-////        if (id == R.id.image_pin_code) {
-////            intent = new Intent(this, PinCodeActivity.class);
-////            startActivity(intent);
-////        }
-////        return true;
-////    }
 }

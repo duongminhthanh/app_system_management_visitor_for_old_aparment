@@ -1,5 +1,4 @@
 package com.example.ApartmentManagementSystem.main_activity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +35,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
-
 public class RegisterFormActivity extends AppCompatActivity {
     EditText edName, edIdCard, edTime;
     Spinner spinner;
@@ -52,12 +50,10 @@ public class RegisterFormActivity extends AppCompatActivity {
     String username, password;
     Date d = null;
     Timestamp t;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_form);
-        CustomProgressDialog dialog = new CustomProgressDialog(RegisterFormActivity.this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         edName = findViewById(R.id.edit_name_visitor);
@@ -65,12 +61,12 @@ public class RegisterFormActivity extends AppCompatActivity {
         edTime = findViewById(R.id.edit_time);
         spinner = findViewById(R.id.spinner_apartment_id);
         btnSend = findViewById(R.id.button);
-        intent = getIntent();
-        bundle = intent.getExtras();
-        username = bundle.getString("username");
-        password = bundle.getString("password");
-        Log.d("username", username);
-        Log.d("password", password);
+//        intent = getIntent();
+//        bundle = intent.getExtras();
+//        username = bundle.getString("username");
+//        password = bundle.getString("password");
+//        Log.d("username", username);
+//        Log.d("password", password);
         list = new ArrayList<>();
         apartmentId = new ArrayList<>();
         apartmentRef = FirebaseDatabase.getInstance().getReference().
@@ -118,13 +114,11 @@ public class RegisterFormActivity extends AppCompatActivity {
             name = edName.getText().toString();
             idCard = edIdCard.getText().toString();
             time = edTime.getText().toString();
-            dialog.show();
             if (name.isEmpty() || idCard.isEmpty() || time.isEmpty()) showErrorEmptyToast();
             else readData(name, idCard, time, roomId);
         });
 
     }
-
     public void readData(String name, String idCard, String time, String roomId) {
         visitorRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -134,32 +128,18 @@ public class RegisterFormActivity extends AppCompatActivity {
                 v.setId_card(idCard);
                 v.setRoom_id(roomId);
                 v.setVisit_time(time);
-                @SuppressLint("SimpleDateFormat")
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    d = format.parse(v.getDate());
-                    t = new Timestamp(Objects.requireNonNull(d).getTime());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-                v.setDate(t.toString());
+                v.setDate(v.getDate());
                 visitorRef.child(name).setValue(v);
                 showAddSuccessfulToast();
                 Intent intent = new Intent(RegisterFormActivity.this, MainActivity.class);
-                bundle.putString("username", username);
-                bundle.putString("password", password);
-                intent.putExtras(bundle);
                 startActivity(intent);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
-
     }
-
     @SuppressLint("SetTextI18n")
     public void showAddSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -168,12 +148,11 @@ public class RegisterFormActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Register successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -181,8 +160,8 @@ public class RegisterFormActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must fill all data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

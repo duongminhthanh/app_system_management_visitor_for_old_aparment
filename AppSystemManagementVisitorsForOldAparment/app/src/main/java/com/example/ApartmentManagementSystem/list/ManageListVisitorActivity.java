@@ -1,5 +1,4 @@
 package com.example.ApartmentManagementSystem.list;
-
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -42,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
-
 public class ManageListVisitorActivity extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,7 +62,6 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     int count = 0;
     ProgressBar progressBar;
     Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,15 +117,6 @@ public class ManageListVisitorActivity extends AppCompatActivity {
             Log.d("password", password);
         }
         getData();
-//        Log.d("d",dateList.toString());
-//        btnDashboard.setOnClickListener(view -> {
-//            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
-//            bundle =new Bundle();
-//            bundle.putString("username",username);
-//            bundle.putString("password",password);
-//            intentDashboard.putExtras(bundle);
-//            startActivity(intentDashboard);
-//        });
         btnFromDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,30 +146,15 @@ public class ManageListVisitorActivity extends AppCompatActivity {
             }
         });
         btnSearch.setOnClickListener(view -> {
-//            txtFrom.setText(txtFrom.getText().toString());
-//            txtTo.setText(txtTo.getText().toString());
-//            pickFromDate();
-//            pickToDate();
             from = txtFrom.getText().toString().trim();
             to = txtTo.getText().toString().trim();
             Log.d("from date", from);
             Log.d("to date", to);
-            if (from.isEmpty() || to.isEmpty()) showSearchErrorEmptyToast();
+            if (from.equals("From date") || to.equals("To date")) {
+                showSearchErrorEmptyToast();
+            }
             else {
-//                @SuppressLint("SimpleDateFormat")
-//                SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-//                try {
-//                    d1= dateFormat.parse(from);
-//                    d2= dateFormat.parse(to);
-//                } catch (ParseException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                t1=new Timestamp(d1.getTime());
-//                t2=new Timestamp(d2.getTime());
-//                Log.d("t1",t1.toString());
-//                Log.d("t2",t2.toString());
                 searchData();
-
             }
         });
         refresh.setOnClickListener(view -> {
@@ -192,16 +165,8 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         });
 
     }
-
-    //    public void pickFromDate(){
-//
-//
-//    }
-//    public void pickToDate(){
-//
-//    }
     public void getData() {
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -236,10 +201,9 @@ public class ManageListVisitorActivity extends AppCompatActivity {
 
 
     }
-
     public void refresh() {
         list.clear();
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("date").addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -258,7 +222,6 @@ public class ManageListVisitorActivity extends AppCompatActivity {
             }
         });
     }
-
     @SuppressLint("NotifyDataSetChanged")
     public void searchData() {
         visitors = new ArrayList<>();
@@ -295,7 +258,6 @@ public class ManageListVisitorActivity extends AppCompatActivity {
 
 
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -304,12 +266,11 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Search data successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -318,8 +279,8 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must enter data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

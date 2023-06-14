@@ -1,13 +1,18 @@
 package com.example.ApartmentManagementSystem.adapter;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ApartmentManagementSystem.R;
@@ -64,8 +69,10 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.MyView
 
     public static class MyViewHolder  extends RecyclerView.ViewHolder{
         TextView name,feedback;
+        CardView cardView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView=itemView.findViewById(R.id.card);
             name=itemView.findViewById(R.id.visitor_name);
             feedback=itemView.findViewById(R.id.feedbacks);
         }

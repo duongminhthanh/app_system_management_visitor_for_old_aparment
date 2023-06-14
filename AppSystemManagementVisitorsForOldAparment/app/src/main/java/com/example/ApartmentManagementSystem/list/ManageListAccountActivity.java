@@ -1,5 +1,4 @@
 package com.example.ApartmentManagementSystem.list;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,9 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
 public class ManageListAccountActivity extends AppCompatActivity {
-
     RecyclerView recyclerView;
     DatabaseReference myRef;
     AccountAdapter accountAdapter;
@@ -101,14 +98,6 @@ public class ManageListAccountActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        btnDashboard.setOnClickListener(view -> {
-//            Intent intentDashboard = new Intent(this, DashboardAdminActivity.class);
-//            bundle =new Bundle();
-//            bundle.putString("username",dataUsername);
-//            bundle.putString("password",dataPassword);
-//            intentDashboard.putExtras(bundle);
-//            startActivity(intentDashboard);
-//        });
         btnCreate.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddNewAccountActivity.class);
             startActivity(intent);
@@ -126,7 +115,6 @@ public class ManageListAccountActivity extends AppCompatActivity {
         });
 
     }
-
     public void getData() {
         myRef.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -147,7 +135,6 @@ public class ManageListAccountActivity extends AppCompatActivity {
         });
 
     }
-
     public void refresh() {
         list.clear();
         myRef.addValueEventListener(new ValueEventListener() {
@@ -170,7 +157,6 @@ public class ManageListAccountActivity extends AppCompatActivity {
         });
 
     }
-
     public void searchData(String searchValue) {
         accounts = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
@@ -191,7 +177,6 @@ public class ManageListAccountActivity extends AppCompatActivity {
         }
         if (!checkSearch) showSearchFailToast();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchSuccessfulToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -200,12 +185,11 @@ public class ManageListAccountActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_success);
         text.setText("Search data successfully");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchFailToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -214,12 +198,11 @@ public class ManageListAccountActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("Search data fail");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }
-
     @SuppressLint("SetTextI18n")
     public void showSearchErrorEmptyToast() {
         LayoutInflater inflater = getLayoutInflater();
@@ -228,8 +211,8 @@ public class ManageListAccountActivity extends AppCompatActivity {
         TextView text = layout.findViewById(R.id.toast_text_error);
         text.setText("You must enter data");
         Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.RIGHT, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
     }

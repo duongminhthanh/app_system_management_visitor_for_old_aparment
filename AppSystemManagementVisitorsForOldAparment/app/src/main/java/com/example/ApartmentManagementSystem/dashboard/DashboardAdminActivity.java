@@ -15,10 +15,8 @@ import com.example.ApartmentManagementSystem.list.ManageListVisitorActivity;
 import com.example.ApartmentManagementSystem.R;
 
 public class DashboardAdminActivity extends AppCompatActivity {
-
     ImageView imgVisitor, imgApartment, imgFeedback, imgLogOut, imgAccount,imgChart;
     Bundle bundle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +27,6 @@ public class DashboardAdminActivity extends AppCompatActivity {
         imgVisitor = findViewById(R.id.image_visitor);
         imgLogOut = findViewById(R.id.image_logout);
         imgChart =findViewById(R.id.image_chart);
-
-
         imgAccount.setOnClickListener(view -> {
             Intent intentAcc = new Intent(DashboardAdminActivity.this, ManageListAccountActivity.class);
             intentAcc.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
