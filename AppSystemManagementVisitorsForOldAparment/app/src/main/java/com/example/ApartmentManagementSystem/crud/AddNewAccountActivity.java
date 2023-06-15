@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.model.Account;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +31,7 @@ public class AddNewAccountActivity extends AppCompatActivity {
     DatabaseReference myRef;
     String idAcc, username, password, pin_code;
     Account a;
-
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +41,18 @@ public class AddNewAccountActivity extends AppCompatActivity {
         edPassword = findViewById(R.id.edit_password);
         edPinCode = findViewById(R.id.edit_pin_code);
         btnSave = findViewById(R.id.btn_save);
+        dialog =new LoadingDialog(this);
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         btnSave.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             edIdAcc.setText(edIdAcc.getText().toString());
             idAcc = edIdAcc.getText().toString();
             edUsername.setText(edUsername.getText().toString());

@@ -3,6 +3,7 @@ package com.example.ApartmentManagementSystem.authentication;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.example.ApartmentManagementSystem.main_activity.MainActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardAdminActivity;
@@ -40,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList<Account> list;
     Account a;
     Boolean checkAcc=false;
-
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +51,21 @@ public class LoginActivity extends AppCompatActivity {
         edit_password = findViewById(R.id.edit_password);
         btn_login = findViewById(R.id.btn_login);
         list = new ArrayList<>();
+        dialog =new LoadingDialog(this);
         btn_login.setOnClickListener(view -> {
             edit_username.setText(edit_username.getText().toString());
             edit_password.setText(edit_password.getText().toString());
             name = edit_username.getText().toString();
             pass = edit_password.getText().toString();
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             //if it is type as username and password of admin
             if (name.equals("admin") && pass.equals("admin1234")) {
                 showSuccessfulToast();

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.chaos.view.PinView;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.dashboard.DashboardActivity;
 import com.example.ApartmentManagementSystem.model.Account;
@@ -40,7 +42,7 @@ public class PinCodeActivity extends AppCompatActivity{
     ArrayList<Account> list;
     Boolean checkPinCode = false;
     String username = "", password = "";
-
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class PinCodeActivity extends AppCompatActivity{
         list = new ArrayList<>();
         pinView = findViewById(R.id.pin_view);
         btnEnter= findViewById(R.id.button_enter);
+        dialog =new LoadingDialog(this);
 ////        Intent intent = getIntent();
 ////        Bundle bundle = intent.getExtras();
 ////        username = bundle.getString("username");
@@ -75,6 +78,15 @@ public class PinCodeActivity extends AppCompatActivity{
         });
         btnEnter.setOnClickListener(view -> {
 //            Log.d("pin_code value is: ",pin_code);
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             pin_code =pinView.getText().toString().trim();
             if (pin_code.isEmpty()){
                 showErrorEmptyToast();

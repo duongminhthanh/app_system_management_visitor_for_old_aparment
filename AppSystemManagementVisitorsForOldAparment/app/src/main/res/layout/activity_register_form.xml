@@ -8,14 +8,27 @@
   <include android:id="@+id/toolbar"
       layout="@layout/toolbar_form"></include>
   <TextView
+      android:id="@+id/textview"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_below="@+id/toolbar"
-      android:layout_marginTop="100dp"
+      android:layout_marginTop="50dp"
       android:text="Fill form below"
       android:textAlignment="center"
       android:textSize="30sp"
       android:textColor="@color/light_blue_600"/>
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/textview"
+      android:layout_centerHorizontal="true"
+      android:layout_margin="20dp"
+      android:layout_marginStart="10dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginEnd="10dp"
+      android:layout_marginBottom="10dp"
+      android:src="@drawable/form_64" />
   <LinearLayout
       android:id="@+id/ll2"
       android:layout_width="match_parent"
@@ -32,7 +45,6 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/edittext_background"

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.model.Apartment;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +33,7 @@ public class EditApartmentActivity extends AppCompatActivity {
     Button btnSave;
     Intent intent;
     Apartment a;
-
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class EditApartmentActivity extends AppCompatActivity {
         ownerPhone = findViewById(R.id.edit_phone);
         roomId = findViewById(R.id.edit_room_id);
         btnSave = findViewById(R.id.btn_save);
+        dialog =new LoadingDialog(this);
         intent = getIntent();
         dataName = intent.getStringExtra("owner_name");
         dataPhone = intent.getStringExtra("owner_phone");
@@ -50,6 +53,15 @@ public class EditApartmentActivity extends AppCompatActivity {
         ownerPhone.setText(dataPhone);
         roomId.setText(dataId);
         btnSave.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             //get data from management screen
             Log.d("room id", dataId);
             name = ownerName.getText().toString();

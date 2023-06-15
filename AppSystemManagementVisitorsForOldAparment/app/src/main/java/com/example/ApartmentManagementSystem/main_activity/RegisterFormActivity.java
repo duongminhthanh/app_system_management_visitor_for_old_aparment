@@ -2,6 +2,7 @@ package com.example.ApartmentManagementSystem.main_activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
 import com.example.ApartmentManagementSystem.model.Apartment;
 import com.example.ApartmentManagementSystem.model.Visitor;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,7 @@ public class RegisterFormActivity extends AppCompatActivity {
     String username, password;
     Date d = null;
     Timestamp t;
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +64,8 @@ public class RegisterFormActivity extends AppCompatActivity {
         edTime = findViewById(R.id.edit_time);
         spinner = findViewById(R.id.spinner_apartment_id);
         btnSend = findViewById(R.id.button);
+        dialog =new LoadingDialog(this);
+
 //        intent = getIntent();
 //        bundle = intent.getExtras();
 //        username = bundle.getString("username");
@@ -108,6 +113,15 @@ public class RegisterFormActivity extends AppCompatActivity {
             }
         });
         btnSend.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             edName.setText(edName.getText().toString());
             edTime.setText(edTime.getText().toString());
             edIdCard.setText(edIdCard.getText().toString());

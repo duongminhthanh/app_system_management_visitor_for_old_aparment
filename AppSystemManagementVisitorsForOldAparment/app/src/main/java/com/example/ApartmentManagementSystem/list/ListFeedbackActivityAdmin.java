@@ -85,8 +85,8 @@ public class ListFeedbackActivityAdmin extends AppCompatActivity {
         feedbackAdapter = new FeedbackAdapter(this, list);
         recyclerView.setAdapter(feedbackAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
+//        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+//        recyclerView.addItemDecoration(itemDecoration);
         intent = getIntent();
         bundle = intent.getExtras();
         /*get data form dashboard admin*/

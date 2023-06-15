@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.model.Account;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,7 @@ public class EditAccountActivity extends AppCompatActivity {
     Intent intent;
     String idAcc, username, password, pin_code, dataIdAcc, dataUsername, dataPassword, dataPinCode;
     Account a;
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class EditAccountActivity extends AppCompatActivity {
         edUsername = findViewById(R.id.edit_username);
         edPassword = findViewById(R.id.edit_password);
         edPinCode = findViewById(R.id.edit_pin_code);
+        dialog =new LoadingDialog(this);
         intent = getIntent();
         dataIdAcc = intent.getStringExtra("acc_id");
         dataUsername = intent.getStringExtra("username");
@@ -50,6 +54,15 @@ public class EditAccountActivity extends AppCompatActivity {
         edPinCode.setText(dataPinCode);
         btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             idAcc = dataIdAcc;
             username = edUsername.getText().toString();
             password = edPassword.getText().toString();

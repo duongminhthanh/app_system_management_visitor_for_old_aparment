@@ -3,6 +3,7 @@ package com.example.ApartmentManagementSystem.crud;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.list.ManageListAccountActivity;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -35,20 +37,40 @@ public class DeleteAccountActivity extends AppCompatActivity {
     Intent intent;
     String idAcc, username, password, pin_code;
     DatabaseReference myRef;
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_account);
         btnYes = findViewById(R.id.btn_yes);
         btnNo = findViewById(R.id.btn_no);
+        dialog =new LoadingDialog(this);
         intent = getIntent();
         idAcc = intent.getStringExtra("acc_id");
         myRef = FirebaseDatabase.getInstance().getReference().child("list_account");
         Log.d("acc_id",idAcc);
         btnNo.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             showErrorDeleteToast();
         });
         btnYes.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             deleteData();
         });
     }

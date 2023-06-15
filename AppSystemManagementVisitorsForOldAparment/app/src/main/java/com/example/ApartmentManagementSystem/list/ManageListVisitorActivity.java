@@ -104,8 +104,8 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         visitorManagementAdapter = new VisitorManagementAdapter(this, list);
         recyclerView.setAdapter(visitorManagementAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(itemDecoration);
+//        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+//        recyclerView.addItemDecoration(itemDecoration);
 
         intent = getIntent();
         bundle = intent.getExtras();

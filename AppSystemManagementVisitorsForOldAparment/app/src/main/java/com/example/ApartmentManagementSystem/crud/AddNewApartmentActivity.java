@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.model.Apartment;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +32,7 @@ public class AddNewApartmentActivity extends AppCompatActivity {
     String name,phone,id;
 
     Apartment a;
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +41,18 @@ public class AddNewApartmentActivity extends AppCompatActivity {
         ownerPhone=findViewById(R.id.edit_phone);
         roomId=findViewById(R.id.edit_room_id);
         btnSave=findViewById(R.id.btn_save);
+        dialog =new LoadingDialog(this);
         myRef= FirebaseDatabase.getInstance().getReference().child("list_apartment");
         btnSave.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             ownerName.setText(ownerName.getText().toString());
             name=ownerName.getText().toString();
             ownerPhone.setText(ownerPhone.getText().toString());

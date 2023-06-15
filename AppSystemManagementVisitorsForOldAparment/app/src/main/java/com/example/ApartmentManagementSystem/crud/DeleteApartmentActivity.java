@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.ApartmentManagementSystem.list.ManageListApartmentActivity;
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.model.Apartment;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,6 +38,7 @@ public class DeleteApartmentActivity extends AppCompatActivity {
     String id,ownerName, ownerPhone, roomId;
     DatabaseReference myRef;
     ArrayList<Apartment> list;
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +46,34 @@ public class DeleteApartmentActivity extends AppCompatActivity {
         list=new ArrayList<>();
         btnYes = findViewById(R.id.btn_yes);
         btnNo = findViewById(R.id.btn_no);
+        dialog =new LoadingDialog(this);
         intent = getIntent();
 //        ownerName = intent.getStringExtra("owner_name");
 //        ownerPhone = intent.getStringExtra("owner_phone");
         roomId = intent.getStringExtra("room_id");
         myRef = FirebaseDatabase.getInstance().getReference().child("list_apartment");
         btnNo.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             showErrorDeleteToast();
         });
         btnYes.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             deleteData();
         });
     }

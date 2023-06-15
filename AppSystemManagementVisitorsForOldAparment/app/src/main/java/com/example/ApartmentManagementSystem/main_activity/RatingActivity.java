@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,11 +18,13 @@ import android.widget.Toast;
 
 import com.example.ApartmentManagementSystem.R;
 import com.example.ApartmentManagementSystem.authentication.PinCodeActivity;
+import com.example.ApartmentManagementSystem.ultils.LoadingDialog;
 
 public class RatingActivity extends AppCompatActivity {
     Button btnSubmit;
     RatingBar ratingBar;
     String username,password;
+    LoadingDialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +33,18 @@ public class RatingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         btnSubmit=findViewById(R.id.btn_submit);
         ratingBar=findViewById(R.id.rating_start);
+        dialog =new LoadingDialog(this);
         ratingBar.setOnClickListener(view -> ratingBar.setRating(3.0f));
         btnSubmit.setOnClickListener(view -> {
+            dialog.show();
+            Handler handler = new Handler();
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    dialog.cancel();
+                }
+            };
+            handler.postDelayed(runnable,1000);
             ratingBar.getNumStars();
             ratingBar.getRating();
             showRatingSuccessfulToast();

@@ -12,7 +12,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#e1e1e1"
         android:orientation="vertical"
         android:paddingTop="8dp"
         android:paddingBottom="14dp"
@@ -23,12 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/id_card"
-                android:textColor="@color/black"
-                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,12 +39,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name"
-                android:textColor="@color/black"
-                android:textSize="26sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/visitorName"
                 android:text="@string/name"
                 android:textColor="@color/black"
@@ -62,12 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/room_id"
-                android:textColor="@color/black"
-                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,12 +66,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/visit_time"
-                android:textColor="@color/black"
-                android:textSize="26sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/visitTime"
                 android:text="@string/visit_time"
                 android:textColor="@color/black"
@@ -102,12 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:textColor="@color/black"
-                android:textSize="26sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
