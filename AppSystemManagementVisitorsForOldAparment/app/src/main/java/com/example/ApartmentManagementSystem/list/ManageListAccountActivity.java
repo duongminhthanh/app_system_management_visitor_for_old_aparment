@@ -38,7 +38,7 @@ public class ManageListAccountActivity extends AppCompatActivity {
     DatabaseReference myRef;
     AccountAdapter accountAdapter;
     ArrayList<Account> list, accounts;
-    FloatingActionButton btnCreate,btnSearch;
+    FloatingActionButton btnCreate,btnSearch,btnMenu;
     String searchValue, accId, username, password, pinCode;
     EditText edSearch;
     ImageView search,refresh;
@@ -49,6 +49,7 @@ public class ManageListAccountActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     int count=0;
     ProgressBar progressBar;
+    boolean clickMenu=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +67,9 @@ public class ManageListAccountActivity extends AppCompatActivity {
         accountAdapter = new AccountAdapter(this, list);
         recyclerView.setAdapter(accountAdapter);
         btnCreate = findViewById(R.id.button_create);
+        btnCreate.hide();
 //        btnDashboard = findViewById(R.id.button_dashboard);
+        btnMenu = findViewById(R.id.button_menu);
         btnSearch = findViewById(R.id.button_search);
         refresh = findViewById(R.id.image_refresh);
         edSearch = findViewById(R.id.edit_search);
@@ -101,6 +104,15 @@ public class ManageListAccountActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddNewAccountActivity.class);
             startActivity(intent);
+        });
+        btnMenu.setOnClickListener(view -> {
+            if (clickMenu){
+                btnCreate.show();
+                clickMenu=false;
+            }else {
+                btnCreate.hide();
+                clickMenu=true;
+            }
         });
         btnSearch.setOnClickListener(view -> {
             edSearch.setText(edSearch.getText().toString());

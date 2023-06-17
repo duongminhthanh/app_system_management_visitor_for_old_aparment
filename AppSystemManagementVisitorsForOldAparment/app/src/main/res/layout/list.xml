@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_list_account"></include>
+        layout="@layout/toolbar_list_visitor"></include>
     <LinearLayout
         android:id="@+id/first_ll"
         android:layout_width="match_parent"
@@ -18,26 +18,40 @@
         android:padding="3dp"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp">
-
-        <EditText
-            android:id="@+id/edit_search"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="220dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:background="@drawable/round_bounder_2"
-            android:ems="10"
-            android:hint="@string/what_do_you_want_to_find"
-            android:inputType="text"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:textSize="30sp" />
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/text_from"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="From date"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/text_to"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="To date"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_gravity="center"
             android:layout_marginEnd="8dp"
             app:backgroundTint="@color/light_blue_600"
             android:src="@drawable/search_48px"/>
@@ -55,7 +69,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_manage_account"
+                android:id="@+id/list_visitor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="false"
@@ -72,9 +86,31 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/calendar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/calendar1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="200dp"
+        android:src="@drawable/calendar_month_48px"
+        app:backgroundTint="@color/light_blue_600"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/calendar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_menu"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/calendar_month_48px"
+        app:backgroundTint="@color/light_blue_600"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_create"
+        android:id="@+id/button_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -83,7 +119,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@drawable/add_48px"
-        app:backgroundTint="@color/light_blue_600"></com.google.android.material.floatingactionbutton.FloatingActionButton>
-
+        android:src="@drawable/menu_48px"
+        app:backgroundTint="@color/light_blue_600"/>
 </RelativeLayout>

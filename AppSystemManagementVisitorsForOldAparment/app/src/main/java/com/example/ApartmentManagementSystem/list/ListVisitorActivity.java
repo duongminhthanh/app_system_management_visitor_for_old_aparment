@@ -46,7 +46,7 @@ public class ListVisitorActivity extends AppCompatActivity {
     DatabaseReference myRef;
     VisitorAdapter visitorAdapter;
     ArrayList<Visitor> list, visitors;
-    FloatingActionButton btnSearch,btnFromDate,btnToDate;
+    FloatingActionButton btnSearch,btnFromDate,btnToDate,btnMenu;
     ImageView refresh;
     TextView txtFrom,txtTo;
     String from, to, name, roomId, visitTime, idCard, date,d,m,y;
@@ -58,6 +58,7 @@ public class ListVisitorActivity extends AppCompatActivity {
     int count=0;
     ProgressBar progressBar;
     Context context;
+    boolean clickMenu=true;
     @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,10 @@ public class ListVisitorActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.button_search);
         refresh = findViewById(R.id.image_refresh);
         btnFromDate = findViewById(R.id.calendar1);
+        btnFromDate.hide();
         btnToDate = findViewById(R.id.calendar2);
+        btnToDate.hide();
+        btnMenu = findViewById(R.id.button_menu);
         context=this;
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
@@ -141,7 +145,17 @@ public class ListVisitorActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-
+        btnMenu.setOnClickListener(view -> {
+            if (clickMenu){
+                btnFromDate.show();
+                btnToDate.show();
+                clickMenu=false;
+            }else {
+                btnFromDate.hide();
+                btnToDate.hide();
+                clickMenu=true;
+            }
+        });
         btnSearch.setOnClickListener(view -> {
             from = txtFrom.getText().toString().trim();
             to = txtTo.getText().toString().trim();

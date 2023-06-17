@@ -41,7 +41,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     DatabaseReference myRef;
     ApartmentManagementAdapter apartmentManagementAdapter;
     ArrayList<Apartment> list, apartments;
-    FloatingActionButton btnCreate,btnSearch;
+    FloatingActionButton btnCreate,btnSearch,btnMenu;
     ImageView refresh;
     String searchValue, ownerName, ownerPhone, roomId;
     EditText edSearch;
@@ -52,6 +52,7 @@ public class ManageListApartmentActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     int count=0;
     ProgressBar progressBar;
+    boolean clickMenu=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,8 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.loading);
         list = new ArrayList<>();
         btnCreate = findViewById(R.id.button_create);
+        btnCreate.hide();
+        btnMenu = findViewById(R.id.button_menu);
 //        btnDashboard=findViewById(R.id.button_dashboard);
         btnSearch = findViewById(R.id.button_search);
         refresh = findViewById(R.id.image_refresh);
@@ -112,6 +115,15 @@ public class ManageListApartmentActivity extends AppCompatActivity {
         btnCreate.setOnClickListener(view -> {
             Intent intentCreate = new Intent(this, AddNewApartmentActivity.class);
             startActivity(intentCreate);
+        });
+        btnMenu.setOnClickListener(view -> {
+            if (clickMenu){
+                btnCreate.show();
+                clickMenu=false;
+            }else {
+                btnCreate.hide();
+                clickMenu=true;
+            }
         });
         btnSearch.setOnClickListener(view -> {
             edSearch.setText(edSearch.getText().toString());

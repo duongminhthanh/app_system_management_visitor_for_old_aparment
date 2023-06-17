@@ -20,12 +20,13 @@
         android:layout_marginBottom="1dp">
         <LinearLayout
             android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_gravity="center">
             <TextView
                 android:id="@+id/text_from"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
@@ -35,7 +36,7 @@
                 android:gravity="center"/>
             <TextView
                 android:id="@+id/text_to"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
@@ -45,38 +46,12 @@
                 android:gravity="center"/>
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
-        </LinearLayout>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/calendar1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            app:backgroundTint="@color/light_blue_600"
-            android:src="@drawable/calendar_month_48px">
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/calendar2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            app:backgroundTint="@color/light_blue_600"
-            android:src="@drawable/calendar_month_48px">
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             app:backgroundTint="@color/light_blue_600"
             android:src="@drawable/search_48px"/>
@@ -111,4 +86,39 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/calendar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/calendar1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="200dp"
+        android:src="@drawable/calendar_month_48px"
+        app:backgroundTint="@color/light_blue_600"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/calendar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_menu"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/calendar_month_48px"
+        app:backgroundTint="@color/light_blue_600"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/menu_48px"
+        app:backgroundTint="@color/light_blue_600"/>
 </RelativeLayout>

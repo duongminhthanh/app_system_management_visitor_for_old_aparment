@@ -49,7 +49,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     VisitorManagementAdapter visitorManagementAdapter;
     ArrayList<Visitor> list, visitors;
     ArrayList<String> dateList;
-    FloatingActionButton btnSearch, btnFromDate, btnToDate;
+    FloatingActionButton btnSearch, btnFromDate, btnToDate,btnMenu;
     ImageView refresh;
     TextView txtFrom, txtTo;
     String from, to, name, roomId, visitTime, idCard, date, d, m, y;
@@ -62,6 +62,7 @@ public class ManageListVisitorActivity extends AppCompatActivity {
     int count = 0;
     ProgressBar progressBar;
     Context context;
+    boolean clickMenu=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,10 @@ public class ManageListVisitorActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.button_search);
         refresh = findViewById(R.id.image_refresh);
         btnFromDate = findViewById(R.id.calendar1);
+        btnFromDate.hide();
         btnToDate = findViewById(R.id.calendar2);
+        btnToDate.hide();
+        btnMenu = findViewById(R.id.button_menu);
         context = this;
         myRef = FirebaseDatabase.getInstance().getReference().child("list_visitor");
         recyclerView.setHasFixedSize(true);
@@ -143,6 +147,17 @@ public class ManageListVisitorActivity extends AppCompatActivity {
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
+            }
+        });
+        btnMenu.setOnClickListener(view -> {
+            if (clickMenu){
+                btnFromDate.show();
+                btnToDate.show();
+                clickMenu=false;
+            }else {
+                btnFromDate.hide();
+                btnToDate.hide();
+                clickMenu=true;
             }
         });
         btnSearch.setOnClickListener(view -> {
