@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-28T13:22:02.199Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="ow_btbIlPLXGseDHBSeR" version="21.5.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-06-28T13:26:41.698Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="crvbtBlq_WRx1Zoy49TK" version="21.5.1" type="github" pages="2">
   <diagram name="Page-1" id="SnVdRLN-_1A_OSKU2oY6">
     <mxGraphModel dx="1050" dy="549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -89,6 +89,76 @@
         </mxCell>
         <mxCell id="nK3qLVdeOrHSDVej1fRH-15" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
           <mxGeometry x="20" y="300" width="100" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="7R3RUDtyLBD4u7Aj02Cq" name="Page-2">
+    <mxGraphModel dx="1050" dy="549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-1" value="Login" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.563;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=14;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-2" target="Q7b0-w76bM-RjUrW4GwP-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-2" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="30" y="180" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-5" target="Q7b0-w76bM-RjUrW4GwP-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-4" value="Display dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=14;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-5" target="Q7b0-w76bM-RjUrW4GwP-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-5" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="160" y="180" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.494;entryY=-0.036;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-8" target="Q7b0-w76bM-RjUrW4GwP-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-31" value="Select functionalities" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q7b0-w76bM-RjUrW4GwP-30">
+          <mxGeometry x="-0.2158" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-8" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="420" y="180" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-12" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.flowchart.or;" vertex="1" parent="1">
+          <mxGeometry x="280" y="335" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.014;entryY=0.496;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-18" target="Q7b0-w76bM-RjUrW4GwP-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-36" value="Stop functionalities" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q7b0-w76bM-RjUrW4GwP-35">
+          <mxGeometry x="-0.2258" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-18" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="670" y="180" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-24" target="Q7b0-w76bM-RjUrW4GwP-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-44" value="End" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q7b0-w76bM-RjUrW4GwP-43">
+          <mxGeometry x="0.1867" y="-3" relative="1" as="geometry">
+            <mxPoint y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-24" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="420" y="310" width="100" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.511;entryY=1.036;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Q7b0-w76bM-RjUrW4GwP-32" target="Q7b0-w76bM-RjUrW4GwP-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-38" value="Log out" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Q7b0-w76bM-RjUrW4GwP-37">
+          <mxGeometry x="0.019" y="3" relative="1" as="geometry">
+            <mxPoint x="3" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q7b0-w76bM-RjUrW4GwP-32" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.tab2;strokeColor=#c0c0c0;direction=north;" vertex="1" parent="1">
+          <mxGeometry x="670" y="310" width="100" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
