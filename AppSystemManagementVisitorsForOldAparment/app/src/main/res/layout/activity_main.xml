@@ -62,7 +62,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/bankcardId"
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 android:clickable="true"
@@ -95,7 +95,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 android:clickable="true"
@@ -138,7 +138,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="160dp"
+                android:layout_width="150dp"
                 android:layout_height="190dp"
                 android:layout_margin="10dp"
                 android:clickable="true"
